@@ -1,0 +1,179 @@
+/* pages/component_module/product_boardcast_component/product_broadcast_component.wxss */
+
+.product_light_component_container {
+  z-index: 999;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 620rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+
+/* 详细内容 */
+.product_light_component_container .product_detail_container {
+  position: relative;
+  width: 690rpx;
+  height: 320rpx;
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+}
+
+.product_detail_container .detial_image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.product_detail_container .detail_close {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.product_detail_container .detail_title {
+  position: relative;
+  margin-left: 30rpx;
+  line-height: 90rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 36rpx;
+  color: white;
+}
+
+.product_detail_container .more_container {
+  position: relative;
+  width: 100%;
+  height: 230rpx;
+  display: flex;
+  align-items: center;
+}
+
+.product_detail_container .broadcast_image {
+  position: absolute;
+  right: 95rpx;
+  top: 109rpx;
+  width: 102rpx;
+  height: 102rpx;
+}
+
+.more_container .left_container {
+  position: relative;
+  width: 380rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.left_container .left_title {
+  margin-left: 30rpx;
+  width: 350rpx;
+  line-height: 57rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 28rpx;
+  color: white;
+}
+
+/* 状态 */
+.product_light_component_container .status_container {
+  position: relative;
+  width: 100vw;
+  margin-top: 50rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+
+.status_container .status_title {
+  position: relative;
+  margin-left: 65rpx;
+  line-height: 80rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #666666;
+  width: 110rpx;
+}
+
+.status_container .list_bg {
+  position: absolute;
+  display: flex;
+  height: 60rpx;
+  left: 165rpx;
+  right: 165rpx;
+  border-radius: 30rpx;
+  background-color: lightgray;
+  align-items: center;
+  justify-content: center;
+}
+
+.list_bg .choose_title {
+  position: relative;
+  width: 400rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.status_container .light_sure_image {
+  position: absolute;
+  width: 74rpx;
+  height: 74rpx;
+  right: 65rpx;
+}
+
+
+/* 调光 */
+.product_light_component_container .light_container {
+  position: relative;
+  width: 100vw;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+
+.light_container .light_title {
+  position: relative;
+  margin-left: 65rpx;
+  line-height: 170rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.light_container .light_list_container {
+  position: relative;
+  width: 420rpx;
+  height: 110rpx;
+  margin-left: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.light_list_container .light_item {
+  position: relative;
+  width: 70rpx;
+  height: 42rpx;
+  border: solid lightgray 1rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  color: #333333;
+  line-height: 42rpx;
+}
+
+.light_list_container .active {
+  color: white;
+  background-color: #2F7DF6;
+}

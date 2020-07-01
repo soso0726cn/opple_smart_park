@@ -1,0 +1,24 @@
+/* pages/project/project.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project_container {
+  width: 100%;
+  height: 100rpx;
+  border: solid 0 black;
+  border-bottom-width: 1rpx;
+}
+
+.project_container .project_name {
+  width: 690rpx;
+  margin-left: 30rpx;
+  line-height: 100rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: black;
+}

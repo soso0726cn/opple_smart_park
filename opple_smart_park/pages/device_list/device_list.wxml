@@ -1,0 +1,41 @@
+<!-- pages/device_list/device_list.wxml -->
+
+<view class="container">
+	<view class="swiper-tab">
+		<view class="swiper-bg">
+			<block wx:for="{{tabList}}" wx:key='index' wx:for-index="index">
+				<text class="swiper-item {{currentTab == index ? 'on' : ''}}" data-current="{{index}}" bindtap="swichTab" decode="{{true}}">{{item.title}}</text>
+			</block>
+		</view>
+	</view>
+	
+	<swiper class="swiper_box" style="height: 100%" duration="300" current="{{currentTab}}" bindchange="bindTabChange">
+		<swiper-item wx:for="{{tabList}}" wx:key='index' wx:for-index="index" item-id="{{index}}">
+
+			<scroll-view scroll-y="true" scroll-with-animation="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{loading && currentTab === index}}" bindscrolltolower="onReachBottom" class="{{currentTab == 0 ? 'talents_list_a' : 'talents_list_b'}}">
+				<view class="recommend-content-background">
+          <view class="recommend-content-left-bg">
+            <block wx:for="{{leftRecommends}}" wx:key="index">
+              <view class="recommend-sub-left-content">
+                <image class="recommend-sub-image"></image>
+                <text class="recommend-sub-title">{{item.title}}</text>
+              </view>
+            </block>
+          </view>
+
+          <view class="recommend-content-right-bg">
+            <block wx:for="{{rightRecommends}}" wx:key="index">
+              <view class="recommend-sub-right-content">
+                <image class="recommend-sub-image"></image>
+                <text class="recommend-sub-title">{{item.title}}</text>
+              </view>
+            </block>
+          </view>
+        </view>
+				<view class="more" wx:if="{{!loading && currentTab===index}}">
+					<text>{{bottomText}}</text>
+				</view>
+			</scroll-view>
+		</swiper-item>
+	</swiper>
+</view>

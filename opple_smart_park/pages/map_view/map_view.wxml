@@ -1,0 +1,158 @@
+<!--pages/map_view/map_view.wxml-->
+<!-- GIS地图信息 -->
+
+<view class="container">
+  <map class="bgMap" longitude="{{map.centerLocation.longitude || 120.797248}}" latitude="{{map.centerLocation.latitude || 31.034777}}" show-location="true" markers="{{productList}}" scale="{{map.scale}}" bindmarkertap='actionForCallOutTap' bindregionchange='actionForChange'></map>
+
+  <!-- 顶部 -->
+  <view class="title_view_container">
+    <image class="title_map" src="/assets/map_view/icon_nav_location.png" catchtap="actionForLocation"></image>
+    <view class="title_item" catchtap="actionForChangeArea">{{showSelectItem.item.name || ''}}</view>
+    <image class="title_voice" catchtap="actionForVoiceSetting" src="/assets/map_view/icon_nav_broadcast.png"></image>
+    <image class="title_light" catchtap="actionForLightSetting" src="/assets/map_view/icon_nav_light.png"></image>
+  </view>
+
+  <!-- 选中标题切换标题 -->
+  <view class="change_title_container" wx:if="{{showChangeItem.status}}" catchtap="actionForHideChangeItem">
+    <view class="change_item" wx:for="{{areaList}}" wx:key="index" catchtap="actionForSelectChnageItem" data-item="{{item}}">
+      <text class="change_title">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 缩放 -->
+  <!-- <view class="scale_container">
+    <view class="scale_plus" catchtap="actionForPlus"></view>
+    <view class="scale_reduce" catchtap="actionForReduce"></view>
+  </view> -->
+
+  <!-- 消息 -->
+  <view class="message_container" catchtap="actionForMessage"></view>
+
+  <!-- 报告 -->
+  <!-- <view class="message_report" catchtap="actionForReport"></view> -->
+
+
+  <!-- 点击地图点图标 -->
+  <view class="night_container" wx:if="{{pole.status}}">
+    <text class="night_title">灯杆：{{pole.title}}</text>
+    <view class="night_buttons" >
+      <view class="button_container" wx:for="{{pole.settings}}" wx:key="index" catchtap="actionForNight" data-index="{{index}}">
+        <image class="button_image" src="{{item.image}}"></image>
+        <text class="button_title">{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 区域广播 -->
+  <view class="area_voice_container" wx:if="{{voiceStatus}}">
+    <text class="area_title">区域广播</text>
+    <view class="area_voice">
+      <text class="voice_title">音量：</text>
+      <view class="voice_detial" wx:for="{{voices}}" wx:key="index" catchtap="actionForChooseVoice" data-index="{{index}}">
+        <text class="voice_text" wx:if="{{!item.status}}">{{item.voice}}</text>
+        <text class="voice_text active" wx:if="{{item.status}}">{{item.voice}}</text>
+      </view>
+      <image class="voice_open" src="/assets/map_view/icon_bd_send.png"></image>
+    </view>
+    <text class="area_stop">停止播放</text>
+  </view>
+
+  <!-- 区域开灯 -->
+  <view class="area_voice_container" wx:if="{{lightStatus}}">
+    <text class="area_title">区域开关灯</text>
+    <view class="area_voice">
+      <text class="voice_title">状态：</text>
+      <text class="light" catchtap="actionForAreaTurnOn" wx:if="{{!lightOn}}">开灯</text>
+      <text class="light light_on_select" catchtap="actionForAreaTurnOn" wx:if="{{lightOn}}">开灯</text>
+      <text class="light" catchtap="actionForAreaTurnOff" wx:if="{{!lightOff}}">关灯</text>
+      <text class="light light_off_select" catchtap="actionForAreaTurnOff" wx:if="{{lightOff}}">关灯</text>
+    </view>
+    <view class="area_voice">
+      <text class="voice_title">调光：</text>
+      <view class="voice_detial" wx:for="{{lights}}" wx:key="index" catchtap="actionForChooseLight" data-index="{{index}}">
+        <text class="voice_text" wx:if="{{!item.status}}">{{item.light}}</text>
+        <text class="voice_text active" wx:if="{{item.status}}">{{item.light}}</text>
+      </view>
+      <image class="voice_open" src="/assets/map_view/icon_bd_send.png" catchtap="actionForAreaTurnLight"></image>
+    </view>
+  </view>
+
+  <!-- 选中灯杆广播 -->
+  <view class="pole_broadcast_container area_voice_container" wx:if="{{poleBroadcastStatus}}">
+
+    <!-- 图片背景 -->
+    <view class="braodcast_image_container">
+      <image class="braodcast_image" src="/assets/map_view/broadcast_bg.png"></image>
+      <image class="braodcast_close" src="/assets/map_view/ic_close.png"></image>
+      <view class="braodcast_desc_container">
+        <text class="braodcast_title">灯杆广播021</text>
+        <text class="braodcast_detail">设备ID：灯杆PM544747</text>
+        <text class="braodcast_detail">状态：在线</text>
+        <text class="braodcast_detail">当前音量：30%</text>
+        <text class="braodcast_detail">更新时间：2020-06-26 02:31</text>
+      </view>
+      <view class="braodcast_desc_omage">
+        <image class="desc_image" src="/assets/map_view/broadcast_idle.png"></image>
+      </view>
+    </view>
+
+    <!-- 选择音乐 -->
+    <view class="music_container">
+      <view class="music">
+        <text class="music_title">选择音乐</text>
+      </view>
+      <view class="music_action">播放</view>
+    </view>
+    <!-- 音量 -->
+    <view class="area_voice">
+      <text class="voice_title">音量：</text>
+      <view class="voice_detial" wx:for="{{voices}}" wx:key="index" catchtap="actionForChooseVoice" data-index="{{index}}">
+        <text class="voice_text" wx:if="{{!item.status}}">{{item.voice}}</text>
+        <text class="voice_text active" wx:if="{{item.status}}">{{item.voice}}</text>
+      </view>
+      <image class="voice_open" src="/assets/map_view/icon_bd_send.png"></image>
+    </view>
+  </view>
+
+  <!-- 选中灯杆照明 -->
+  <view class="pole_broadcast_container area_voice_container pole_light_container" wx:if="{{poleLightStatus}}">
+
+    <!-- 图片背景 -->
+    <view class="braodcast_image_container light_image_container">
+      <image class="braodcast_image" src="/assets/map_view/light_bg.png"></image>
+      <image class="braodcast_close" src="/assets/map_view/ic_close.png" catchtap="actionForClose"></image>
+      <text class="light_title">{{deviceInfo.poleName || ''}}</text>
+      <view class="braodcast_desc_container light_desc_container">
+        <text class="braodcast_detail">设备ID:{{deviceInfo.devicePlatformId}}</text>
+        <text class="braodcast_detail">型号:{{deviceInfo.devicePlatformName}}</text>
+        <text class="braodcast_detail">状态:{{deviceInfo.lastRec.online ? '在线' : '离线'}}</text>
+        <text class="braodcast_detail">亮度:{{deviceInfo.lastRec.level}}%</text>
+      </view>
+      <view class="braodcast_desc_container light_desc_container">
+        <text class="braodcast_detail">电压:{{deviceInfo.lastRec.voltage}}V</text>
+        <text class="braodcast_detail">电流:{{deviceInfo.lastRec.activeEnergy}}mA</text>
+        <text class="braodcast_detail">功率:{{deviceInfo.lastRec.activePower}}W</text>
+        <text class="braodcast_detail light_time">更新时间：{{deviceInfo.lastRec.updateTime}}</text>
+      </view>
+    </view>
+
+    <view class="area_voice">
+      <text class="voice_title">状态：</text>
+      <text class="light" catchtap="actionForPoleTurnOn" wx:if="{{!lightOn}}">开灯</text>
+      <text class="light light_on_select" catchtap="actionForPoleTurnOn" wx:if="{{lightOn}}">开灯</text>
+      <text class="light" catchtap="actionForPoleTurnOff" wx:if="{{!lightOff}}">关灯</text>
+      <text class="light light_off_select" catchtap="actionForPoleTurnOff" wx:if="{{lightOff}}">关灯</text>
+    </view>
+
+    <view class="area_voice">
+      <text class="voice_title">调光：</text>
+      <view class="voice_detial" wx:for="{{lights}}" wx:key="index" catchtap="actionForChooseLight" data-index="{{index}}">
+        <text class="voice_text" wx:if="{{!item.status}}">{{item.light}}</text>
+        <text class="voice_text active" wx:if="{{item.status}}">{{item.light}}</text>
+      </view>
+      <image class="voice_open" src="/assets/map_view/icon_bd_send.png" catchtap="actionForPoleTurnLight"></image>
+    </view>
+  </view>
+
+
+</view>

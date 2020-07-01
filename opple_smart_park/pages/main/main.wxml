@@ -1,0 +1,9 @@
+<!--pages/main/main.wxml-->
+<view class="root">
+  <view class="entrance.cis" catchtap="goCisMap">
+		<text>CIS地图</text>
+	</view>
+	<view class="entrance.equipment" catchtap="goEquipment">
+		<text>设备管理</text>
+	</view>
+</view>

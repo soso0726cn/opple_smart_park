@@ -1,0 +1,24 @@
+<!--pages/component_module/area_play_component/area_play_component.wxml-->
+
+<!-- 区域广播 -->
+<view class="area_play_component_container" wx:if="{{areaPlayStatus}}">
+  <text class="title">区域广播</text>
+  <view class="area_play_list_container">
+    <text class="list_title">文件:</text>
+    <view class="list_choose_container" catchtap="actionForChooseMusicList">
+      <text class="choose_title">{{areaPlayMusicItem.name || '请选择音频列表'}}</text>
+    </view>
+    <image class="area_play_image" src="/assets/map_view/icon_bd_send.png" catchtap="actionForPlayAreaMusic"></image>
+  </view>
+
+  <!-- 音量 -->
+  <view class="light_container">
+    <text class="light_title">音量:</text>
+    <view class="light_list_container" >
+      <text class="light_item {{item.status == true ? 'active' : ''}}" wx:for="{{lights}}" wx:key="index" catchtap="actionForAreaPlayChoose" data-index="{{index}}">{{item.light}}</text>
+    </view>
+  </view>
+
+  <!-- 停止播放 -->
+  <view class="stop" catchtap="actionForStopPlayMusic">停止播放</view>
+</view>

@@ -1,0 +1,40 @@
+<!--pages/center/center.wxml-->
+<view class="container">
+
+  <!-- 日常应用 -->
+  <view class="center_container">
+    <text class="title">日常应用</text>
+
+    <view class="items_container">
+      <view class="item_container" catchtap="actionForMap">
+        <image class="item_image"></image>
+        <text class="item_title">GIS地图</text>
+      </view>
+
+      <view class="item_container" catchtap="actionForMyWork">
+        <image class="item_image"></image>
+        <text class="item_title">我的工作</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 系统管理 -->
+  <view class="center_container">
+    <text class="title">系统管理</text>
+
+    <!-- 地图 -->
+    <view class="items_container">
+      <view class="item_container" catchtap="actionForUserInfo">
+        <image class="item_image"></image>
+        <text class="item_title">用户信息</text>
+      </view>
+
+       <view class="item_container" catchtap="actionForProject">
+        <image class="item_image"></image>
+        <text class="item_title">项目切换</text>
+      </view>
+    </view>
+
+
+  </view>
+</view>

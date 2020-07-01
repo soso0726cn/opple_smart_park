@@ -1,0 +1,8 @@
+<!--pages/project/project.wxml-->
+<!-- 项目列表 -->
+
+<view class="container">
+  <view class="project_container" wx:for="{{projectItems}}" wx:key="index" catchtap="actionForChooseItem" data-item="{{item}}">
+    <text class="project_name">{{item.name}}</text>
+  </view>
+</view>

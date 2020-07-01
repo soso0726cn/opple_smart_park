@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/map_module/gis_map/gis_map",
+    "pages/map_view/map_view",
+    "pages/login/login",
+    "pages/main/main",
+    "pages/equipment/equipment",
+    "pages/project/project",
+    "pages/center/center",
+    "pages/device_list/device_list"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2F7DF6",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

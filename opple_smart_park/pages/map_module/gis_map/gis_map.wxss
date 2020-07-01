@@ -1,0 +1,65 @@
+/* pages/map_module/gis_map/gis_map.wxss */
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* 地图 */
+.map_container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+
+/* 顶部 */
+.title_view_container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100rpx;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  background-color: #2F7DF6;
+  align-items: center;
+}
+
+.title_view_container .title_map {
+  position: relative;
+  margin-left: 30rpx;
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.title_view_container .title_item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70rpx;
+  left: 110rpx;
+  right: 200rpx;
+  text-align: center;
+  line-height: 150rpx;
+  color: white;
+  background-color: rgb(58, 150, 250);
+  border-radius: 35rpx;
+}
+
+.title_view_container .title_voice {
+  position: absolute;
+  width: 44rpx;
+  height: 44rpx;
+  right: 115rpx;
+}
+
+.title_view_container .title_light {
+  position: absolute;
+  width: 44rpx;
+  height: 44rpx;
+  right: 30rpx;
+}
