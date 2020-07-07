@@ -30,9 +30,9 @@ Page({
       {
         title: '广播设备'
       },
-      {
-        title: '广告屏幕'
-      }
+      // {
+      //   title: '广告屏幕'
+      // }
     ],
     recommends: [[], [], [], []],
     recommendsRight: [[], [], [], []],
