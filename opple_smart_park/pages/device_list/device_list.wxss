@@ -107,10 +107,32 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 220rpx;
+  /* height: 220rpx; */
   margin-bottom: 20rpx;
   border-radius: 20rpx;
   background-color: white;
+}
+
+.recommend-video-bg {
+  position: relative;
+  display: flex;
+  height: 205rpx;
+  border-radius: 20rpx 20rpx 0 0;
+  background-color: darkgray;
+}
+
+.recommend-video-bg .image {
+  width: 100%;
+  height: 100%;
+}
+
+.recommend-video-title {
+  position: relative;
+  display: flex;
+  margin-top: 15rpx;
+  margin-left: 25rpx;
+  font-size: 30rpx;
+  color: #515151;
 }
 
 .recommend-sub-content-title {
@@ -146,7 +168,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 220rpx;
+  /* height: 220rpx; */
   margin-bottom: 20rpx;
   border-radius: 20rpx;
   background-color: white;

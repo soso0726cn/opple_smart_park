@@ -48,7 +48,9 @@ const API = {
   // 照明列表
   'ls_device_list': '/ls/device/list',
   // 广播列表
-  'bc_device_list': '/bc/device/list'
+  'bc_device_list': '/bc/device/list',
+  // 监控列表
+  'vcr_ipc_list': '/vcr/ipc/list'
 }
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
@@ -119,6 +121,7 @@ module.exports = {
   vcr_ipc_infor: HOST.host + API.vcr_ipc_infor,
   ls_device_list: HOST.host + API.ls_device_list,
   bc_device_list: HOST.host + API.bc_device_list,
+  vcr_ipc_list: HOST.host + API.vcr_ipc_list,
   get,
   post,
 }

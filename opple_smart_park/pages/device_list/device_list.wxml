@@ -16,7 +16,14 @@
 				<view class="recommend-content-background">
           <view class="recommend-content-left-bg">
             <block wx:for="{{recommendsLeft[currentTab]}}" wx:key="index">
-              <view class="recommend-sub-left-content">
+              <view class="recommend-sub-left-content" style="height: {{currentTab == 0 ? '280' : '220'}}rpx">
+
+                <block wx:if="{{currentTab == 0}}">
+                  <view class="recommend-video-bg">
+                    <image class="image" wx:if="{{item.picUrl !== null}}" src="{{item.picUrl}}"></image>
+                  </view>
+                  <text class="recommend-video-title">{{item.deviceTypeName}}</text>
+                </block>
 
                 <block wx:if="{{currentTab == 1}}">
                   <text class="recommend-sub-content-title">{{item.devicePlatformName}}</text>
@@ -44,7 +51,14 @@
 
           <view class="recommend-content-right-bg">
             <block wx:for="{{recommendsRight[currentTab]}}" wx:key="index">
-              <view class="recommend-sub-right-content">
+              <view class="recommend-sub-right-content" style="height: {{currentTab == 0 ? '280' : '220'}}rpx">
+
+                <block wx:if="{{currentTab == 0}}">
+                  <view class="recommend-video-bg">
+                    <image class="image" wx:if="{{item.picUrl !== null}}" src="{{item.picUrl}}"></image>
+                  </view>
+                  <text class="recommend-video-title">{{item.deviceTypeName}}</text>
+                </block>
                 
                 <block wx:if="{{currentTab == 1}}">
                   <text class="recommend-sub-content-title">{{item.devicePlatformName}}</text>

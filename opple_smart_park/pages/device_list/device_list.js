@@ -43,14 +43,37 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let currentIndex = this.data.currentTab
+    this.requestData(currentIndex, true)
   },
 
   requestData: function (currentIndex, isFirst) {
     let recommends = this.data.recommends
     let pageSize = this.data.pageSize
 
-    if (currentIndex === 1) {
+    if (currentIndex === 0) {
+
+      const params = {
+        "queryConditions": {
+          "projectId": 1
+        },
+        "token": "string"
+      };
+
+      API.post(API.vcr_ipc_list, params).then((res) => {
+
+        if (res.rstCode === 200) {
+
+          recommends[currentIndex] = res.items
+
+          this.refreshListData(recommends[currentIndex], 0, currentIndex)
+        }
+      }).catch(error => {
+        this.setData({
+          currentTab: currentIndex
+        })
+      });
+    } else if (currentIndex === 1) {
 
       let pageNumber = this.data.pageNumber
 
@@ -72,13 +95,15 @@ Page({
         recommends[currentIndex] = newList
 
         if (res.total === 10) {
-          pageNumber = pageNumber+1
+          pageNumber = pageNumber + 1
         }
 
         this.refreshListData(recommends[currentIndex], pageNumber, currentIndex)
         
       }).catch(error => {
-        console.log(error)
+        this.setData({
+          currentTab: currentIndex
+        })
       });
     } else if (currentIndex === 2) {
       
@@ -127,7 +152,9 @@ Page({
         this.refreshListData(recommends[currentIndex], 0, currentIndex)
         
       }).catch(error => {
-        console.log(error)
+        this.setData({
+          currentTab: currentIndex
+        })
       });
     } else {
       this.setData({
