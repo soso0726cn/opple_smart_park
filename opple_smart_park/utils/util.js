@@ -14,6 +14,14 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+
+const project = {
+  // 项目列表
+  projectId: 1
+}
+
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  projectId: project.projectId,
 }

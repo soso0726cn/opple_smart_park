@@ -7,7 +7,7 @@
     <text class="detail_title">{{product.name || ''}}</text>
     <view class="more_container">
       <view class="left_container">
-        <text class="left_title">设备ID：{{product.deviceModelId || ''}}</text>
+        <text class="left_title">设备ID：{{product.macAddress || ''}}</text>
         <text class="left_title">状态：{{product.status || '空闲'}}</text>
         <text class="left_title">当前音量：{{product.volume || '0'}}%</text>
         <text class="left_title">更新时间：{{product.updateDate || ''}}</text>

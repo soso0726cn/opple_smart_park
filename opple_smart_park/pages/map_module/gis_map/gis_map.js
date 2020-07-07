@@ -1,6 +1,7 @@
 // pages/map_module/gis_map/gis_map.js
 
 const API = require('../../../utils/api.js');
+const PROJECT = require('../../../utils/util.js');
 
 Page({
 
@@ -92,7 +93,7 @@ Page({
   // 请求区域列表
   netWorkForAreaList: function() {
 
-    API.post(API.mc_area_list,{projectId: 1, token: 'string'}).then((res) => {
+    API.post(API.mc_area_list,{projectId: PROJECT.projectId, token: 'string'}).then((res) => {
       console.log(res);
       this.setData({
         areaList: res.items,
@@ -300,9 +301,13 @@ Page({
 
   // 播放区域音频
   actionForAreaPlayMusic: function (e) {
-
+    const item = e.detail.item;
     const params = {
-      "id": this.data.selectAreaPlay.id,
+      areaIds: [
+        this.data.selectArea.id,
+      ],
+      listId: item.id,
+      mode: '1',
       "token": "string"
     };
     API.post(API.bc_manager_area_playList,params).then((res) => {
@@ -543,14 +548,17 @@ Page({
   actionForChooseControl: function (e) {
     const item = e.detail.item;
 
+    console.log(item)
     
-    // 请求设备信息
+   
+
+    if (item.type === 'lighting') { // 选中照明
+       // 请求设备信息
     const params = {
-      "deviceId": item.id,
+      "deviceId": item.deviceId,
       "token": "string"
     };
 
-    if (item.type === 'lighting') { // 选中照明
       API.post(API.ls_device_info,params).then((res) => {
         this.actionForChange();
         this.setData({
@@ -567,10 +575,17 @@ Page({
       });
       
     } else if(item.type === 'broadcast') { // 选中广播
+       // 请求设备信息
+    const params = {
+      "id": item.deviceId,
+      "token": "string"
+    };
       API.post(API.bc_device_infor,params).then((res) => {
         this.actionForChange();
+        let item = res.data;
+        item.status = (item.status == 'idle' ? '空闲' : (item.status == 'offline' ? '离线' : (item.status == 'play' ? '广播' : (item.status == 'warning' ? '报警' : '空闲'))))
         this.setData({
-          controlBroadcastItem: res.data,
+          controlBroadcastItem: item,
           controlBroadcastSetting: {
             controlStatus: true, // 默认不显示
           },
@@ -578,14 +593,14 @@ Page({
       }).catch(error => {
         console.log(error)
 
-        // warning ------------------ 接口通了之后需要删除 ------------
-        this.actionForChange();
-        this.setData({
-          controlBroadcastItem: {},
-          controlBroadcastSetting: {
-            controlStatus: true, // 默认不显示
-          },
-        })
+        // // warning ------------------ 接口通了之后需要删除 ------------
+        // this.actionForChange();
+        // this.setData({
+        //   controlBroadcastItem: {},
+        //   controlBroadcastSetting: {
+        //     controlStatus: true, // 默认不显示
+        //   },
+        // })
       });
     } else if(item.type === 'vcr') { // 选中监控
 
