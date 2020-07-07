@@ -15,19 +15,57 @@
 			<scroll-view scroll-y="true" scroll-with-animation="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{loading && currentTab === index}}" bindscrolltolower="onReachBottom" class="{{currentTab == 0 ? 'talents_list_a' : 'talents_list_b'}}">
 				<view class="recommend-content-background">
           <view class="recommend-content-left-bg">
-            <block wx:for="{{leftRecommends}}" wx:key="index">
+            <block wx:for="{{recommendsLeft[currentTab]}}" wx:key="index">
               <view class="recommend-sub-left-content">
-                <image class="recommend-sub-image"></image>
-                <text class="recommend-sub-title">{{item.title}}</text>
+
+                <block wx:if="{{currentTab == 1}}">
+                  <text class="recommend-sub-content-title">{{item.devicePlatformName}}</text>
+                  <text class="recommend-sub-content-online" style="margin-top: 15rpx; color: {{item.online == 0 ? '#ababab' : '#515151'}}">{{item.online == 0 ? '设备在线' : '设备离线'}}</text>
+
+                  <text class="recommend-sub-content-online" style="color: {{item.switchOn ? '#57dfc0': '#ababab'}}">{{item.switchOn ? '已开灯' : '灯：关'}}</text>
+                  <text class="recommend-sub-content-online" wx:if="{{item.lastRec !== null}}">亮度：{{item.lastRec.level == 0 ? '0' : item.lastRec.level+'%'}}</text>
+                  <text class="recommend-sub-content-online" wx:if="{{item.lastRec !== null}}">{{item.lastRec.voltage + 'V | ' + item.lastRec.activeEnergy + 'mA'}}</text>
+                  <image class="recommend-sub-image" src="{{item.switchOn ? lightIcon.select : lightIcon.normal}}" catchtap="lightOnTap" data-index="{{index}}" data-type="left" data-data="{{item}}"></image>
+                </block>
+
+                <block wx:if="{{currentTab == 2}}">
+                  <text class="recommend-sub-content-title">{{item.deviceModelName}}</text>
+                  <text class="recommend-sub-content-online" style="margin-top: 15rpx; color: {{item.status == 'offline' ? '#515151' : '#ababab'}}">{{item.status == 'offline' ? '设备离线' : '设备在线'}}</text>
+
+                  <text class="recommend-sub-content-online" style="color: {{item.status === 'play' ? '#479fff': '#ababab'}}">{{item.statusContext}}</text>
+                  <text class="recommend-sub-content-online">音量：{{item.volume == 0 ? '0' : item.volume+'%'}}</text>
+                  <text class="recommend-sub-content-online">{{item.updateDate}}</text>
+                  <image class="recommend-sub-image" src="{{item.status === 'play' ? videoIcon.select : videoIcon.normal}}" catchtap="playOnTap" data-index="{{index}}" data-type="left" data-data="{{item}}"></image>
+                </block>
+
               </view>
             </block>
           </view>
 
           <view class="recommend-content-right-bg">
-            <block wx:for="{{rightRecommends}}" wx:key="index">
+            <block wx:for="{{recommendsRight[currentTab]}}" wx:key="index">
               <view class="recommend-sub-right-content">
-                <image class="recommend-sub-image"></image>
-                <text class="recommend-sub-title">{{item.title}}</text>
+                
+                <block wx:if="{{currentTab == 1}}">
+                  <text class="recommend-sub-content-title">{{item.devicePlatformName}}</text>
+                  <text class="recommend-sub-content-online" style="margin-top: 15rpx; color: {{item.online == 0 ? '#ababab' : '#515151'}}">{{item.online == 0 ? '设备在线' : '设备离线'}}</text>
+
+                  <text class="recommend-sub-content-online" style="color: {{item.switchOn ? '#57dfc0': '#ababab'}}">{{item.switchOn ? '已开灯' : '灯：关'}}</text>
+                  <text class="recommend-sub-content-online" wx:if="{{item.lastRec !== null}}">亮度：{{item.lastRec.level == 0 ? '0' : item.lastRec.level+'%'}}</text>
+                  <text class="recommend-sub-content-online" wx:if="{{item.lastRec !== null}}">{{item.lastRec.voltage + 'V | ' + item.lastRec.activeEnergy + 'mA'}}</text>
+                  <image class="recommend-sub-image" src="{{item.switchOn ? lightIcon.select : lightIcon.normal}}" catchtap="lightOnTap" data-index="{{index}}" data-type="left" data-data="{{item}}"></image>
+                </block>
+
+                <block wx:if="{{currentTab == 2}}">
+                  <text class="recommend-sub-content-title">{{item.deviceModelName}}</text>
+                  <text class="recommend-sub-content-online" style="margin-top: 15rpx; color: {{item.status == 'offline' ? '#515151' : '#ababab'}}">{{item.status == 'offline' ? '设备离线' : '设备在线'}}</text>
+
+                  <text class="recommend-sub-content-online" style="color: {{item.status === 'play' ? '#479fff': '#ababab'}}">{{item.statusContext}}</text>
+                  <text class="recommend-sub-content-online">音量：{{item.volume == 0 ? '0' : item.volume+'%'}}</text>
+                  <text class="recommend-sub-content-online">{{item.updateDate}}</text>
+                  <image class="recommend-sub-image" src="{{item.status === 'play' ? videoIcon.select : videoIcon.normal}}" catchtap="playOnTap" data-index="{{index}}" data-type="right" data-data="{{item}}"></image>
+                </block>
+                
               </view>
             </block>
           </view>

@@ -40,7 +40,15 @@ const API = {
   // 单个停止播放
   'bc_manager_device_stopPlay': '/bc/manager/device/stopPlay',
   // 单个音量调节
-  'bc_manager_device_volumeSet': '/bc/manager/device/volumeSet'
+  'bc_manager_device_volumeSet': '/bc/manager/device/volumeSet',
+  // 单个视频监控
+  'vcr_ipc_infor': '/vcr/ipc/infor',
+
+  // 设备列表
+  // 照明列表
+  'ls_device_list': '/ls/device/list',
+  // 广播列表
+  'bc_device_list': '/bc/device/list'
 }
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
@@ -108,6 +116,9 @@ module.exports = {
   bc_manager_device_playList: HOST.host + API.bc_manager_device_playList,
   bc_manager_device_stopPlay: HOST.host + API.bc_manager_device_stopPlay,
   bc_manager_device_volumeSet: HOST.host + API.bc_manager_device_volumeSet,
+  vcr_ipc_infor: HOST.host + API.vcr_ipc_infor,
+  ls_device_list: HOST.host + API.ls_device_list,
+  bc_device_list: HOST.host + API.bc_device_list,
   get,
   post,
 }

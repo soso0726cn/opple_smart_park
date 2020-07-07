@@ -13,6 +13,8 @@
     <image class="title_light" catchtap="actionForAreaLight" src="/assets/map_view/icon_nav_light.png"></image>
   </view>
 
+  <image class="device_container" src="/assets/map_view/icon_device_list.png" catchtap="actionForDeviceList"></image>
+
   <!-- 区域调光 -->
   <area_light areaStatus="{{areaSetting.areaStatus}}" openStatus="{{areaSetting.openStatus}}" closeStatus="{{areaSetting.closeStatus}}" bindlightstatus="actionForAreaLightStatus" bindlightchange="actionForAreaLightChange"></area_light>
 
@@ -28,5 +30,8 @@
   <play_list playListStatus="{{areaPlayListStatus}}" playList="{{areaPlayList}}" bindchoosemusic="actionForChooseMusic"></play_list>
 
   <!-- 广播 -->
-  <product_broadcast id="product_broadcast" productStatus="{{controlBroadcastSetting.controlStatus}}" product="{{controlBroadcastItem}}" bindplayvoice="actionForProductPlayVoice" bindstopmusic="actionForProductStopMusic" bindplaymusic="actionForProductPlayMusic"  bindmusicllist="actionForAreaMusicList" areaPlayMusicItem="{{selectAreaPlay}}"></product_broadcast>
+  <product_broadcast id="product_broadcast" productStatus="{{controlBroadcastSetting.controlStatus}}" product="{{controlBroadcastItem}}" bindproductclose="actionForProductBroadcastClose" bindplayvoice="actionForProductPlayVoice" bindstopmusic="actionForProductStopMusic" bindplaymusic="actionForProductPlayMusic"  bindmusicllist="actionForAreaMusicList" areaPlayMusicItem="{{selectAreaPlay}}"></product_broadcast>
+
+  <!-- 视频 -->
+  <video_modal id="video_modal" video="{{controlVideoItem}}"></video_modal>
 </view>

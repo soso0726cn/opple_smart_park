@@ -55,6 +55,16 @@ Page({
         controlStatus: false, // 默认不显示
       },
 
+      lightings:[],
+      // 区域下所有 vcr 设备
+      vcrs:[],
+      // 区域下所有 broadcast 设备
+      broadcasts:[],
+      // 区域下所有 screen 设备
+      screens:[],
+      // 视频监控
+      controlVideoItem: {},
+
       // 地图相关设置
       mapSetting: {
         centerLocation: {
@@ -114,11 +124,39 @@ Page({
         latitude:centerLocation.latitude,
         longitude:centerLocation.longitude,
       };
+      // 获取对应区域下所有分模块设备
+      let lightings = [];
+      // 区域下所有 vcr 设备
+      let vcrs = [];
+      // 区域下所有 broadcast 设备
+      let broadcasts = [];
+      // 区域下所有 screen 设备
+      let screens = [];
+      productList.map(item => {
+        item.devices.map((detail) => {
+          if (detail.type === 'vcr') {
+            vcrs.push(detail);
+          } else if (detail.type === 'lighting') {
+            lightings.push(detail);
+          } else if (detail.type === 'broadcast') {
+            broadcasts.push(detail);
+          } else if (detail.type === 'screen') {
+            screens.push(detail);
+          }
+        });
+      });
       this.setData({
         productList: productList,
         mapSetting: {
           centerLocation: centerLocation,
         },
+        lightings: lightings,
+        // 区域下所有 vcr 设备
+        vcrs:vcrs,
+        // 区域下所有 broadcast 设备
+        broadcasts:broadcasts,
+        // 区域下所有 screen 设备
+        screens:screens,
       });
     }).catch(error => {
       console.log(error)
@@ -181,6 +219,14 @@ Page({
     });
   },
 
+  /**
+   * 设备列表
+   */
+  actionForDeviceList: function () {
+    wx.navigateTo({
+      url: '/pages/device_list/device_list'
+    })
+  },
 
   /**
    * ---------- 区域部分 ----------
@@ -267,11 +313,15 @@ Page({
   },
 
   // 播放单个音频
-  actionForProductPlayMusic: function () {
+  actionForProductPlayMusic: function (e) {
+    const item = e.detail.item;
+    console.log(item);
     const params = {
       "deviceIds": [
         this.data.selectArea.id
       ],
+      listId: item.id,
+      mode: '1',
       "token": "string"
     };
     API.post(API.bc_manager_device_playList,params).then((res) => {
@@ -352,6 +402,16 @@ Page({
       console.log(error)
     });
   },
+
+  // 关闭
+  actionForProductBroadcastClose: function (e) {
+    this.setData({
+      controlBroadcastSetting: {
+        controlStatus: false, // 默认不显示
+      },
+    });
+  },
+
   /**
    * ---------- 单个产品调光部分 ----------
    */
@@ -528,6 +588,17 @@ Page({
         })
       });
     } else if(item.type === 'vcr') { // 选中监控
+
+      API.post(API.vcr_ipc_infor,params).then((res) => {
+        this.actionForChange();
+        this.setData({
+          controlVideoItem: res.data
+        });
+      }).catch(error => {
+        console.log(error)
+      });
+
+      this.selectComponent("#video_modal").showVideoModal()
       
     } else if(item.type === 'screen') { // 选中屏幕
     }

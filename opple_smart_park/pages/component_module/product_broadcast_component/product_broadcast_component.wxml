@@ -3,7 +3,7 @@
 <view class="product_light_component_container" wx:if="{{productStatus}}">
   <view class="product_detail_container">
     <image class="detial_image" src="/assets/map_view/broadcast_bg.png"></image>
-    <image class="detail_close" src="/assets/map_view/ic_close.png" catchtap="actionForProductClose"></image>
+    <image class="detail_close" src="/assets/map_view/ic_close.png" catchtap="actionForProductBroadcastClose"></image>
     <text class="detail_title">{{product.name || ''}}</text>
     <view class="more_container">
       <view class="left_container">

@@ -1,0 +1,16 @@
+<!--pages/component_module/videoModal/videoModal.wxml-->
+
+<view class="video_container" wx:if="{{show}}">
+
+  <image class="video-top-image" src="/assets/component_module/video_modal/video_bg.png"></image>
+  <view class="video-top-bg">
+    <text class="title">{{video.name}}</text>
+    <text class="device">设备ID：{{video.macAddress}}</text>
+    <text class="status">状态：{{video.status === 1 ? '在线' : '空闲'}}</text>
+    <text class="time">更新时间：{{video.updateDate}}</text>
+    <image class="close" src="/assets/component_module/video_modal/icon_close.png" catchtap="closeVideoModal"></image>
+    <image class="video" src="/assets/component_module/video_modal/icon_video.png"></image>
+  </view>
+  <!-- <view class="video-bottom-bg"></view> -->
+  <image class="video-bottom-bg" src="{{video.picUrl}}"></image>
+</view>

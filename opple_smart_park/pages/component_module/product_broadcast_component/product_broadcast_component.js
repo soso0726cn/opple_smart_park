@@ -44,10 +44,8 @@ Component({
     
 
     // 关闭
-    actionForProductClose: function () {
-      this.setData({
-        show: false
-      })
+    actionForProductBroadcastClose: function () {
+      this.triggerEvent('productclose',{});
     },
 
     // 选中

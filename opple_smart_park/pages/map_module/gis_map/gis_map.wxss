@@ -63,3 +63,12 @@
   height: 44rpx;
   right: 30rpx;
 }
+
+.device_container {
+  position: absolute;
+  right: 20rpx;
+  top: 145rpx;
+  z-index: 999;
+  width: 90rpx;
+  height: 90rpx;
+}
