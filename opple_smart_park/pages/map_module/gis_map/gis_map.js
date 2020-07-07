@@ -589,7 +589,12 @@ Page({
       });
     } else if(item.type === 'vcr') { // 选中监控
 
-      API.post(API.vcr_ipc_infor,params).then((res) => {
+      const param = {
+        "id": item.deviceId,
+        "token": "string"
+      };
+
+      API.post(API.vcr_ipc_infor,param).then((res) => {
         this.actionForChange();
         this.setData({
           controlVideoItem: res.data
