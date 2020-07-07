@@ -1,5 +1,5 @@
 const HOST = {
-  'host'  : 'https://www.shcyytech.cn:444'
+  'host'  : 'https://zhiyuan.opple.com:444'
 }
 
 
