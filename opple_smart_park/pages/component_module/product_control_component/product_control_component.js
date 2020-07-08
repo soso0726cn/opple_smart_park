@@ -31,6 +31,10 @@ Component({
     actionForChooseControl: function (e) {
       const item = e.currentTarget.dataset.item;
       this.triggerEvent('choosecontrol',{item: item}); // 选中设备 
+    },
+
+    actionForClose: function () {
+      this.triggerEvent('close',{})
     }
   }
 })

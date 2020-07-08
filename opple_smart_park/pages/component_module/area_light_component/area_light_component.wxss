@@ -24,6 +24,25 @@
   color: #333333;
 }
 
+
+.area_light_component_container .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close .close_image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+
 /* 状态 */
 .area_light_component_container .status_container {
   position: relative;
@@ -45,10 +64,10 @@
 
 .status_container .status_open {
   position: relative;
-  width: 190rpx;
+  width: 220rpx;
   height: 80rpx;
   border: solid lightgray 1rpx;
-  border-radius: 20rpx;
+  border-radius: 40rpx;
   text-align: center;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
@@ -65,10 +84,10 @@
 
 .status_container .status_close {
   position: relative;
-  width: 190rpx;
+  width: 220rpx;
   height: 80rpx;
   border: solid lightgray 1rpx;
-  border-radius: 20rpx;
+  border-radius: 40rpx;
   text-align: center;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
@@ -105,7 +124,7 @@
 
 .light_container .light_list_container {
   position: relative;
-  width: 420rpx;
+  width: 520rpx;
   height: 110rpx;
   display: flex;
   align-items: center;
@@ -114,15 +133,15 @@
 
 .light_list_container .light_item {
   position: relative;
-  width: 70rpx;
-  height: 42rpx;
+  width: 80rpx;
+  height: 50rpx;
   border: solid lightgray 1rpx;
   border-radius: 10rpx;
   text-align: center;
   font-family: PingFangSC-Regular;
   font-size: 20rpx;
   color: #333333;
-  line-height: 42rpx;
+  line-height: 50rpx;
 }
 
 .light_list_container .active {

@@ -3,6 +3,9 @@
 <!-- 区域广播 -->
 <view class="area_play_component_container" wx:if="{{areaPlayStatus}}">
   <text class="title">区域广播</text>
+  <view class="close" catchtap="actionForClose">
+    <image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>
+  </view>
   <view class="area_play_list_container">
     <text class="list_title">文件:</text>
     <view class="list_choose_container" catchtap="actionForChooseMusicList">

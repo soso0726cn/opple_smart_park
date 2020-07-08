@@ -208,6 +208,12 @@ Page({
       },
     });
   },
+
+  // 关闭区域广播
+  actionForClose: function () {
+    this.actionForChange();
+  },
+
   // 点击区域照明
   actionForAreaLight: function(){
     this.actionForChange();
@@ -512,25 +518,44 @@ Page({
     const selectId = e.markerId;
     let selectItem = this.data.productList[selectId];
     console.log(selectItem);
-    let settings = (selectItem.devices || []).map((item) => {
+    let settings = (selectItem.devices || []);
+    if (settings.length == 0) {
+      wx.showToast({
+        title: '暂无设备',
+        icon: 'none'
+      })
+      return;
+    }
+
+    // 视频，照明，广播，屏幕
+    settings = settings.map((item) => {
       if (item.type === 'vcr') {
-        const showSetting = {image:'/assets/map_view/icon_camera.png',title:'监控',type:'vcr'};
+        const showSetting = {image:'/assets/map_view/icon_camera.png',title:'监控',type:'vcr', showIndex: 0};
         item.showSetting = showSetting;
         return item;
       } else if (item.type === 'broadcast') {
-        const showSetting = {image:'/assets/map_view/icon_broadcast.png',title:'广播',type:'broadcast'};
+        const showSetting = {image:'/assets/map_view/icon_broadcast.png',title:'广播',type:'broadcast', showIndex: 2};
         item.showSetting = showSetting;
         return item;
       } else if (item.type === 'lighting') {
-        const showSetting = {image:'/assets/map_view/icon_light.png',title:'照明',type:'lighting'};
+        const showSetting = {image:'/assets/map_view/icon_light.png',title:'照明',type:'lighting', showIndex: 1};
         item.showSetting = showSetting;
         return item;
       } else if (item.type === 'screen') {
-        const showSetting = {image:'/assets/map_view/icon_screen.png',title:'屏幕',type:'screen'};
+        const showSetting = {image:'/assets/map_view/icon_screen.png',title:'屏幕',type:'screen', showIndex: 3};
         item.showSetting = showSetting;
         return item;
       }
     });
+
+    settings = settings.sort(function (a,b) {
+      console.log('----------')
+      console.log(a);
+      console.log(b);
+      console.log(a.showSetting['showIndex'] - b.showSetting['showIndex'])
+      return a.showSetting['showIndex'] - b.showSetting['showIndex'];
+    });
+
     selectItem.devices = settings;
     this.setData({
       selectProduct: selectItem,
@@ -539,6 +564,7 @@ Page({
       },
     });
   },
+
 
 
 

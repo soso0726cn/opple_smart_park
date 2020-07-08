@@ -27,6 +27,24 @@
   color: #333333;
 }
 
+
+.product_control_component_container .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close .close_image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
 .product_control_component_container .control_container {
   position: relative;
   width: 100%;

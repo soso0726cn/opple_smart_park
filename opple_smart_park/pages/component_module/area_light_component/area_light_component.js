@@ -63,6 +63,8 @@ Component({
         lights: lights
       });
 
+      this.actionForAreaTurnLight();
+
     },
 
     // 确定
@@ -73,6 +75,11 @@ Component({
       });
       const item = selectItem.length > 0 ? selectItem[0] : {}
       this.triggerEvent('lightchange',{'item':item});
+    },
+
+    // 关闭
+    actionForClose: function () {
+      this.triggerEvent('close',{})
     }
   }
 })

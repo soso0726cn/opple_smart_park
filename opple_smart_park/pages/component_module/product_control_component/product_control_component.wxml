@@ -3,6 +3,9 @@
 <!-- 单个灯杆调光 -->
 <view class="product_control_component_container" wx:if="{{controlStatus}}">
   <text class="title">灯杆：{{controlItem.name}}</text>
+    <view class="close" catchtap="actionForClose">
+    <image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>
+  </view>
   <view class="control_container">
     <view class="control_item_container" wx:for="{{controlItem.devices}}" wx:key="index" catchtap="actionForChooseControl" data-item="{{item}}">
       <image class="control_image" src="{{item.showSetting.image}}"></image>

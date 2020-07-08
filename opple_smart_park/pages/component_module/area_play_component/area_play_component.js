@@ -71,6 +71,11 @@ Component({
     // 停止播放
     actionForStopPlayMusic: function () {
       this.triggerEvent('stopmusic',{})
+    },
+
+    // 关闭
+    actionForClose: function () {
+      this.triggerEvent('close',{})
     }
   }
 })

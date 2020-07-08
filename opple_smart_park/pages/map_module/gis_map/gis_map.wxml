@@ -16,15 +16,15 @@
   <image class="device_container" src="/assets/map_view/icon_device_list.png" catchtap="actionForDeviceList"></image>
 
   <!-- 区域调光 -->
-  <area_light areaStatus="{{areaSetting.areaStatus}}" openStatus="{{areaSetting.openStatus}}" closeStatus="{{areaSetting.closeStatus}}" bindlightstatus="actionForAreaLightStatus" bindlightchange="actionForAreaLightChange"></area_light>
+  <area_light areaStatus="{{areaSetting.areaStatus}}" bindclose="actionForClose" openStatus="{{areaSetting.openStatus}}" closeStatus="{{areaSetting.closeStatus}}" bindlightstatus="actionForAreaLightStatus" bindlightchange="actionForAreaLightChange"></area_light>
 
   <!-- 单个灯杆调光 -->
   <product_light productStatus="{{productSetting.productStatus}}" product="{{controlLightItem}}" openStatus="{{productSetting.openStatus}}" closeStatus="{{productSetting.closeStatus}}" bindlightstatus="actionForProductLightStatus" bindlightchange="actionForProductLightChange" bindlightclose="actionForProductLightClose"></product_light>
 
-  <product_control controlItem="{{selectProduct}}" bindchoosecontrol="actionForChooseControl" controlStatus="{{controlSetting.controlStatus}}"></product_control>
+  <product_control controlItem="{{selectProduct}}" bindclose="actionForClose" bindchoosecontrol="actionForChooseControl" controlStatus="{{controlSetting.controlStatus}}"></product_control>
 
   <!-- 区域广播 -->
-  <area_play areaPlayStatus="{{areaPlaySetting.areaPlayStatus}}" bindstopmusic="actionForAreaStopMusic" bindplaymusic="actionForAreaPlayMusic" bindplayvoice="actionForAreaPlayVoice" bindmusicllist="actionForAreaMusicList" areaPlayMusicList="{{areaPlayList}}" areaPlayMusicItem="{{selectAreaPlay}}"></area_play>
+  <area_play areaPlayStatus="{{areaPlaySetting.areaPlayStatus}}" bindclose="actionForClose" bindstopmusic="actionForAreaStopMusic" bindplaymusic="actionForAreaPlayMusic" bindplayvoice="actionForAreaPlayVoice" bindmusicllist="actionForAreaMusicList" areaPlayMusicList="{{areaPlayList}}" areaPlayMusicItem="{{selectAreaPlay}}"></area_play>
 
   <!-- 音频列表 -->
   <play_list playListStatus="{{areaPlayListStatus}}" playList="{{areaPlayList}}" bindchoosemusic="actionForChooseMusic"></play_list>
