@@ -12,5 +12,6 @@
     <image class="video" src="/assets/component_module/video_modal/icon_video.png"></image>
   </view>
   <!-- <view class="video-bottom-bg"></view> -->
-  <image class="video-bottom-bg" src="{{video.picUrl}}"></image>
+  <!-- <image class="video-bottom-bg" src="{{video.picUrl}}"></image> -->
+  <live-player class="video-bottom-bg" src="{{video.rtmp}}" autoplay="true"></live-player>
 </view>
