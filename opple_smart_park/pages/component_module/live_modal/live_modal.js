@@ -1,4 +1,4 @@
-// pages/component_module/videoModal/videoModal.js
+// pages/component_module/live_modal/live_modal.js
 Component({
   /**
    * 组件的属性列表
@@ -21,20 +21,16 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    showVideoModal () {
+    showLiveModal () {
       this.setData({
         show: true
       })
     },
 
-    closeVideoModal () {
+    closeLiveModal () {
       this.setData({
         show: false
       })
     },
-
-    liveOnTap (e) {
-      this.triggerEvent("liveOnTap", {video: e.currentTarget.dataset.data})
-    }
   }
 })

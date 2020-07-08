@@ -19,7 +19,7 @@
               <view class="recommend-sub-left-content" style="height: {{currentTab == 0 ? '280' : '220'}}rpx">
 
                 <block wx:if="{{currentTab == 0}}">
-                  <view class="recommend-video-bg">
+                  <view class="recommend-video-bg" catchtap="liveOnTap" data-index="{{index}}" data-type="left" data-data="{{item}}">
                     <image class="image" wx:if="{{item.picUrl !== null}}" src="{{item.picUrl}}"></image>
                   </view>
                   <text class="recommend-video-title">{{item.name}}</text>
@@ -54,7 +54,7 @@
               <view class="recommend-sub-right-content" style="height: {{currentTab == 0 ? '280' : '220'}}rpx">
 
                 <block wx:if="{{currentTab == 0}}">
-                  <view class="recommend-video-bg">
+                  <view class="recommend-video-bg" catchtap="liveOnTap" data-index="{{index}}" data-type="left" data-data="{{item}}">
                     <image class="image" wx:if="{{item.picUrl !== null}}" src="{{item.picUrl}}"></image>
                   </view>
                   <text class="recommend-video-title">{{item.name}}</text>
@@ -90,4 +90,6 @@
 			</scroll-view>
 		</swiper-item>
 	</swiper>
+
+  <live_modal id="live_modal" video="{{controlVideoItem}}"></live_modal>
 </view>

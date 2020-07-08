@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 670rpx;
+  height: 740rpx;
   left: 0;
   bottom: 0;
   background-color: white;
@@ -75,18 +75,33 @@
   right: 30rpx;
 }
 
-.video-top-bg .video {
+.video-top-bg .video-bg {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 120rpx;
+  height: 130rpx;
+  top: 48.5rpx;
+  right: 70rpx;
+}
+
+.video-bg .video {
+  position: relative;
   width: 102rpx;
   height: 102rpx;
-  top: 62.5rpx;
-  right: 85rpx;
+}
+
+.video-bg .text {
+  font-size: 24rpx;
+  color: white;
 }
 
 .video-bottom-bg {
   position: relative;
   display: flex;
-  width: 94%;
+  width: 92%;
   height: calc(100% - 272rpx);
   margin-top: 15rpx;
 }

@@ -9,9 +9,14 @@
     <text class="status">状态：{{video.status === 1 ? '在线' : '空闲'}}</text>
     <text class="time">更新时间：{{video.updateDate}}</text>
     <image class="close" src="/assets/component_module/video_modal/icon_close.png" catchtap="closeVideoModal"></image>
-    <image class="video" src="/assets/component_module/video_modal/icon_video.png"></image>
+
+    <view class="video-bg" catchtap="liveOnTap" data-data="{{video}}">
+      <image class="video" src="/assets/component_module/video_modal/icon_video.png"></image>
+      <text class="text">实时画面</text>
+    </view>
+    
   </view>
-  <!-- <view class="video-bottom-bg"></view> -->
-  <!-- <image class="video-bottom-bg" src="{{video.picUrl}}"></image> -->
-  <live-player class="video-bottom-bg" src="{{video.rtmp}}" autoplay="true"></live-player>
+
+  <image class="video-bottom-bg" src="{{video.picUrl}}" catchtap="liveOnTap" data-data="{{video}}"></image>
+  
 </view>

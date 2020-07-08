@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "设备列表",
-  "usingComponents": {}
+  "usingComponents": {
+    "live_modal": "/pages/component_module/live_modal/live_modal"
+  }
 }

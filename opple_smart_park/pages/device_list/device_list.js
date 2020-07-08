@@ -20,6 +20,7 @@ Page({
     pageNumber: 0,
     pageSize: 10,
     loading: false,
+    controlVideoItem: {},
     tabList: [
       {
         title: '视频监控'
@@ -265,6 +266,39 @@ Page({
     if (currentIndex === 1 && parseInt(recommends[currentIndex].length / pageSize) >= 1 && 
     recommends[currentIndex].length % pageSize === 0) {
       this.requestData(currentIndex, false)
+    }
+  },
+
+  liveOnTap: function (e) {
+    let index = e.currentTarget.dataset.index
+    let type = e.currentTarget.dataset.type
+    let data = e.currentTarget.dataset.data
+
+    if (type === 'left') {
+      let recommends = this.data.recommendsLeft
+
+      if (recommends[0][index].rtmp === null || recommends[0][index].rtmp === '') {
+        return
+      }
+
+      this.setData({
+        controlVideoItem: data
+      })
+
+      this.selectComponent("#live_modal").showLiveModal()
+
+    } else {
+      let recommends = this.data.recommendsRight
+
+      if (recommends[0][index].rtmp === null || recommends[0][index].rtmp === '') {
+        return
+      }
+
+      this.setData({
+        controlVideoItem: data
+      })
+
+      this.selectComponent("#live_modal").showLiveModal()
     }
   },
 

@@ -1,0 +1,12 @@
+<!--pages/component_module/live_modal/live_modal.wxml-->
+
+<view class="live_container" wx:if="{{show}}">
+  <view class="live_top_bg">
+    <text class="title">{{video.name}}</text>
+    <view class="close" catchtap="closeLiveModal">
+      <image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>
+    </view>
+  </view>
+
+  <live-player class="live_bottom_bg" src="{{video.rtmp}}" autoplay="true"></live-player>
+</view>

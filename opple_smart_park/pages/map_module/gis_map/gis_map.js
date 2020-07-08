@@ -648,7 +648,11 @@ Page({
       
     } else if(item.type === 'screen') { // 选中屏幕
     }
+  },
 
-    
+  liveOnTap: function (e) {
+    let video = e.detail.video
+
+    this.selectComponent("#live_modal").showLiveModal()
   }
 })
