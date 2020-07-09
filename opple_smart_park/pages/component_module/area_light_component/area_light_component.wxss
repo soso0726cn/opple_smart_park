@@ -38,8 +38,8 @@
 }
 
 .close .close_image {
-  width: 50rpx;
-  height: 50rpx;
+  width: 26rpx;
+  height: 26rpx;
 }
 
 
@@ -50,11 +50,12 @@
   height: 80rpx;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .status_container .status_title {
   position: relative;
-  margin-left: 30rpx;
+  /* margin-left: 30rpx; */
   line-height: 80rpx;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
@@ -81,6 +82,11 @@
   border: none;
 }
 
+/* .status_container .div {
+  width: 80rpx;
+  height: 80rpx;
+  color: transparent;
+} */
 
 .status_container .status_close {
   position: relative;
@@ -93,7 +99,7 @@
   font-size: 30rpx;
   color: #333333;
   line-height: 80rpx;
-  margin-left: 50rpx;
+  margin-left: 80rpx;
 }
 
 
@@ -110,11 +116,12 @@
   height: 170rpx;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .light_container .light_title {
   position: relative;
-  margin-left: 30rpx;
+  /* margin-left: 30rpx; */
   line-height: 170rpx;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;

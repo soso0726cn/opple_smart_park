@@ -7,7 +7,7 @@
     <image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>
   </view>
   <view class="area_play_list_container">
-    <text class="list_title">文件:</text>
+    <text class="list_title">音频:</text>
     <view class="list_choose_container" catchtap="actionForChooseMusicList">
       <text class="choose_title">{{areaPlayMusicItem.name || '请选择音频列表'}}</text>
     </view>

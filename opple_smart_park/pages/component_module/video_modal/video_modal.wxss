@@ -67,12 +67,24 @@
   color: white;
 }
 
-.video-top-bg .close {
+
+
+.video-top-bg .image_close{
   position: absolute;
-  width: 20rpx;
-  height: 20rpx;
-  top: 20rpx;
-  right: 30rpx;
+  background-color: rebeccapurple;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image_close .close {
+  width: 26rpx;
+  height: 26rpx;
 }
 
 .video-top-bg .video-bg {

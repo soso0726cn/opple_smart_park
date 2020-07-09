@@ -66,7 +66,7 @@ Component({
 
     },
     actionForProductClose: function() {
-
+      this.triggerEvent('productclose',{});
     },
   
     // 获取音频列表

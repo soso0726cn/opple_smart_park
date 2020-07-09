@@ -35,8 +35,8 @@
 }
 
 .close .close_image {
-  width: 50rpx;
-  height: 50rpx;
+  width: 26rpx;
+  height: 26rpx;
 }
 
 .area_play_component_container .area_play_list_container {
@@ -45,11 +45,12 @@
   height: 70rpx;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .area_play_list_container .list_title{
   position: relative;
-  margin-left: 30rpx;
+  /* margin-left: 30rpx; */
   line-height: 70rpx;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
@@ -61,7 +62,7 @@
   position: relative;
   width: 400rpx;
   height: 70rpx;
-  background-color: lightgray;
+  background-color: #eeeeee;
   border-radius: 35rpx;
   display: flex;
   align-items: center;
@@ -93,12 +94,13 @@
   height: 100rpx;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .light_container .light_title {
   position: relative;
-  margin-left: 30rpx;
-  line-height: 170rpx;
+  /* margin-left: 30rpx; */
+  line-height: 100rpx;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
   color: #666666;

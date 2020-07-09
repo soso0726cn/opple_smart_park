@@ -5,7 +5,10 @@
 <view class="product_light_component_container" wx:if="{{productStatus}}">
   <view class="product_detail_container">
     <image class="detial_image" src="/assets/map_view/light_bg.png"></image>
-    <image class="detail_close" src="/assets/map_view/ic_close.png" catchtap="actionForProductClose"></image>
+    <view class="close"  catchtap="actionForProductClose">
+      <image class="detail_close" src="/assets/component_module/ic_close_white.png"></image>
+    </view>
+    
     <text class="detail_title">{{product.poleName || ''}}</text>
     <view class="more_container">
       <view class="left_container">
@@ -15,10 +18,10 @@
         <text class="left_title">亮度：{{product.lastRec.level}}%</text>
       </view>
       <view class="right_container">
-        <text class="right_title">电压：{{product.lastRec.voltage}}V</text>
-        <text class="right_title">电流：{{product.lastRec.activeEnergy}}mA</text>
-        <text class="right_title">功率：{{product.lastRec.activePower}}W</text>
-        <text class="right_title">更新时间：{{product.lastRec.updateTime}}</text>
+        <text class="right_title">电压：{{product.lastRec.voltage || ''}}V</text>
+        <text class="right_title">电流：{{product.lastRec.activeEnergy || ''}}mA</text>
+        <text class="right_title">功率：{{product.lastRec.activePower || ''}}W</text>
+        <text class="right_title">更新时间：{{product.lastRec.updateTime || ''}}</text>
       </view>
     </view>
   </view>
@@ -27,10 +30,12 @@
   <!-- 状态 -->
   <view class="status_container">
     <text class="status_title">状态:</text>
-    <text class="status_open" wx:if="{{!openStatus}}" catchtap="actionForProductLightOpen">开灯</text>
-    <text class="status_open select_open" wx:if="{{openStatus}}" catchtap="actionForProductLightOpen">开灯</text>
-    <text class="status_close" wx:if="{{!closeStatus}}" catchtap="actionForProductLightClose">关灯</text>
-    <text class="status_close select_close" wx:if="{{closeStatus}}" catchtap="actionForProductLightClose">关灯</text>
+    <!-- <text class="status_open" wx:if="{{!openStatus}}" catchtap="actionForProductLightOpen">开灯</text> -->
+    <!-- <text class="status_open select_open" wx:if="{{openStatus}}" catchtap="actionForProductLightOpen">开灯</text> -->
+    <!-- <text class="status_close" wx:if="{{!closeStatus}}" catchtap="actionForProductLightClose">关灯</text> -->
+    <!-- <text class="status_close select_close" wx:if="{{closeStatus}}" catchtap="actionForProductLightClose">关灯</text> -->
+    <text class="status_open select_open" catchtap="actionForProductLightOpen">开灯</text>
+    <text class="status_close select_close" catchtap="actionForProductLightClose">关灯</text>
   </view>
 
 
@@ -41,6 +46,6 @@
       <text class="light_item {{item.status == true ? 'active' : ''}}" wx:for="{{lights}}" wx:key="index" catchtap="actionForProductLightChoose" data-index="{{index}}">{{item.light}}</text>
     </view>
 
-    <image class="light_sure_image" src="/assets/map_view/icon_bd_send.png" catchtap="actionForProductTurnLight"></image>
+    <image class="light_sure_image" src="/assets/map_view/icon_bd_send.png" catchtap="actionForProductTurnLight" wx:if="{{false}}"></image>
   </view>
 </view>

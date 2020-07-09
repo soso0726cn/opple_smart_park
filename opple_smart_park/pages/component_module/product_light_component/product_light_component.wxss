@@ -31,13 +31,32 @@
   height: 100%;
 }
 
-.product_detail_container .detail_close {
+
+.product_detail_container .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close .detail_close {
+  width: 26rpx;
+  height: 26rpx;
+}
+
+
+/* .product_detail_container .detail_close {
   position: absolute;
   right: 20rpx;
   top: 20rpx;
   width: 30rpx;
   height: 30rpx;
-}
+} */
 
 .product_detail_container .detail_title {
   position: relative;
@@ -98,11 +117,12 @@
   height: 80rpx;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .status_container .status_title {
   position: relative;
-  margin-left: 30rpx;
+  /* margin-left: 30rpx; */
   line-height: 80rpx;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
@@ -112,10 +132,10 @@
 
 .status_container .status_open {
   position: relative;
-  width: 190rpx;
+  width: 220rpx;
   height: 80rpx;
   border: solid lightgray 1rpx;
-  border-radius: 20rpx;
+  border-radius: 40rpx;
   text-align: center;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
@@ -132,17 +152,18 @@
 
 .status_container .status_close {
   position: relative;
-  width: 190rpx;
+  width: 220rpx;
   height: 80rpx;
   border: solid lightgray 1rpx;
-  border-radius: 20rpx;
+  border-radius: 40rpx;
   text-align: center;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
   color: #333333;
   line-height: 80rpx;
-  margin-left: 50rpx;
+  margin-left: 80rpx;
 }
+
 
 
 .status_container .select_close {
@@ -151,7 +172,6 @@
   border: none;
 }
 
-
 /* 调光 */
 .product_light_component_container .light_container {
   position: relative;
@@ -159,11 +179,12 @@
   height: 170rpx;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .light_container .light_title {
   position: relative;
-  margin-left: 30rpx;
+  /* margin-left: 30rpx; */
   line-height: 170rpx;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
@@ -173,7 +194,7 @@
 
 .light_container .light_list_container {
   position: relative;
-  width: 420rpx;
+  width: 520rpx;
   height: 110rpx;
   display: flex;
   align-items: center;
@@ -182,15 +203,15 @@
 
 .light_list_container .light_item {
   position: relative;
-  width: 70rpx;
-  height: 42rpx;
+  width: 80rpx;
+  height: 50rpx;
   border: solid lightgray 1rpx;
   border-radius: 10rpx;
   text-align: center;
   font-family: PingFangSC-Regular;
   font-size: 20rpx;
   color: #333333;
-  line-height: 42rpx;
+  line-height: 50rpx;
 }
 
 .light_list_container .active {

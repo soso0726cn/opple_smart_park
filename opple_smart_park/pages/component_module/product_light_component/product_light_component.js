@@ -73,6 +73,7 @@ Component({
         lights: lights
       });
 
+      this.actionForProductTurnLight();
     },
 
     // 确定

@@ -8,10 +8,15 @@
     <text class="device">设备ID：{{video.macAddress}}</text>
     <text class="status">状态：{{video.status === 1 ? '在线' : '空闲'}}</text>
     <text class="time">更新时间：{{video.updateDate}}</text>
-    <image class="close" src="/assets/component_module/video_modal/icon_close.png" catchtap="closeVideoModal"></image>
+    <view class="image_close">
+      <image class="close" src="/assets/component_module/video_modal/icon_close.png" catchtap="closeVideoModal"></image>  
+    </view>
+    
 
     <view class="video-bg" catchtap="liveOnTap" data-data="{{video}}">
-      <image class="video" src="/assets/component_module/video_modal/icon_video.png"></image>
+    
+    <image class="video" src="/assets/component_module/video_modal/icon_video.png"></image>
+      
       <text class="text">实时画面</text>
     </view>
     
