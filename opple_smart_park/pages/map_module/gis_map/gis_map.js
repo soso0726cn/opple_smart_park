@@ -326,10 +326,11 @@ Page({
   // 播放单个音频
   actionForProductPlayMusic: function (e) {
     const item = e.detail.item;
+    const selectItem = e.detail.selectItem;
     console.log(item);
     const params = {
       "deviceIds": [
-        this.data.selectArea.id
+        selectItem.id
       ],
       listId: item.id,
       mode: '1',
@@ -358,10 +359,11 @@ Page({
   },
 
   // 停止播放单个
-  actionForProductStopMusic: function () {
+  actionForProductStopMusic: function (e) {
+    const selectItem = e.detail.selectItem;
     const params = {
       deviceIds: [
-        this.data.selectProduct.id
+        selectItem.id
       ],
       token: "string"
     };
@@ -394,10 +396,11 @@ Page({
   // 单个调音量
   actionForProductPlayVoice: function (e) {
     const item = e.detail.item;
+    const selectItem = e.detail.selectItem;
     console.log(item)
     const params = {
       deviceIds: [
-        this.data.selectProduct.id
+        selectItem.id
       ],
       token: 'string',
       volume: item.brightness,
@@ -549,10 +552,6 @@ Page({
     });
 
     settings = settings.sort(function (a,b) {
-      console.log('----------')
-      console.log(a);
-      console.log(b);
-      console.log(a.showSetting['showIndex'] - b.showSetting['showIndex'])
       return a.showSetting['showIndex'] - b.showSetting['showIndex'];
     });
 
@@ -573,11 +572,7 @@ Page({
    */
   actionForChooseControl: function (e) {
     const item = e.detail.item;
-
     console.log(item)
-    
-   
-
     if (item.type === 'lighting') { // 选中照明
        // 请求设备信息
     const params = {
@@ -618,15 +613,6 @@ Page({
         })
       }).catch(error => {
         console.log(error)
-
-        // // warning ------------------ 接口通了之后需要删除 ------------
-        // this.actionForChange();
-        // this.setData({
-        //   controlBroadcastItem: {},
-        //   controlBroadcastSetting: {
-        //     controlStatus: true, // 默认不显示
-        //   },
-        // })
       });
     } else if(item.type === 'vcr') { // 选中监控
 

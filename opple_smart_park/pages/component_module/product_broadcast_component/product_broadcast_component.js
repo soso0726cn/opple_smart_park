@@ -16,6 +16,12 @@ Component({
       value: {}
     },
 
+    // 选中灯杆设备
+    selectItem: {
+      type: Object,
+      value: {},
+    },
+
     // 选中媒体
    areaPlayMusicItem: {
     type: Object,
@@ -62,7 +68,7 @@ Component({
         volumes: volumes
       });
 
-      this.triggerEvent('playvoice',{item: selectItem});
+      this.triggerEvent('playvoice',{item: selectItem,selectItem: this.data.selectItem});
 
     },
     actionForProductClose: function() {
@@ -77,12 +83,12 @@ Component({
     // 播放音频列表
     actionForPlayAreaMusic: function() {
       if (!this.data.areaPlayMusicItem.id) return;
-      this.triggerEvent('playmusic',{item:this.data.areaPlayMusicItem})
+      this.triggerEvent('playmusic',{item:this.data.areaPlayMusicItem,selectItem: this.data.selectItem})
     },
 
     // 停止播放
     actionForStopPlayMusic: function () {
-      this.triggerEvent('stopmusic',{})
+      this.triggerEvent('stopmusic',{selectItem: this.data.selectItem})
     }
   }
 })

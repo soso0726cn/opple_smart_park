@@ -68,6 +68,7 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
           header: {
               'content-type': 'application/json' // 默认值 ,另一种是 "content-type": "application/x-www-form-urlencoded"
           },
+          timeout: 50000,
           ...other,
           complete: (res) => {
               wx.hideLoading();
@@ -77,7 +78,14 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
               if (res.statusCode >= 200 && res.statusCode < 300 && res.data.rstCode == 200) {
                   resolve(res.data)
               } else {
+                if (res.errMsg === 'request:fail timeout') {
+                  wx.showToast({
+                    title: '网络超时',
+                    icon: 'none'
+                  })
+                } else {
                   reject(res)
+                }
               }
           }
       })
