@@ -8,6 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    area: {},
+    areaId: '',
+    areaPlayListStatus: false,
     lightIcon: {
       normal: '/assets/device_list/icon_light_off.png',
       select: '/assets/device_list/icon_light_on.png'
@@ -18,7 +21,7 @@ Page({
     },
     currentTab: 0,
     pageNumber: 0,
-    pageSize: 10,
+    pageSize: 8,
     loading: false,
     controlVideoItem: {},
     tabList: [
@@ -44,6 +47,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    let area = JSON.parse(options.area)
+
+    this.setData({
+      area: area,
+      areaId: area.selectArea.id
+    })
+
     let currentIndex = this.data.currentTab
     this.requestData(currentIndex, true)
   },
@@ -56,7 +67,8 @@ Page({
 
       const params = {
         "queryConditions": {
-          "projectId": 1
+          "projectId": 1,
+          "areaId": this.data.areaId
         },
         "token": "string"
       };
@@ -86,6 +98,7 @@ Page({
         "offset": pageNumber,
         "pageSize": pageSize,
         "projectId": "1",
+        "areaId": this.data.areaId,
         "token": "string"
       };
 
@@ -110,7 +123,8 @@ Page({
       
       const params = {
         "queryConditions": {
-          "projectId": 1
+          "projectId": 1,
+          "areaId": this.data.areaId
         },
         "token": "string"
       };
@@ -162,13 +176,6 @@ Page({
         currentTab: currentIndex
       })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
   },
 
   swichTab: function (e) {
@@ -267,6 +274,27 @@ Page({
     recommends[currentIndex].length % pageSize === 0) {
       this.requestData(currentIndex, false)
     }
+  },
+
+  changeAreaOnTap: function () {
+    this.setData({
+      areaPlayListStatus: true
+    })
+  },
+
+  actionForChooseAera: function (e) {
+
+    let currentIndex = this.data.currentTab
+    let selectArea = e.detail.item
+    let area = this.data.area
+    area.selectArea = selectArea
+
+    this.setData({
+      area: area,
+      areaId: selectArea.id
+    })
+
+    this.requestData(currentIndex, false)
   },
 
   liveOnTap: function (e) {

@@ -11,6 +11,7 @@
   background-color: white;
   border-top-left-radius: 20rpx;
   border-top-right-radius: 20rpx;
+  border: solid 2rpx #EEEEEE;
 }
 
 .area_play_component_container .title {

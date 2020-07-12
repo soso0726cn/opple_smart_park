@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "设备列表",
   "usingComponents": {
+    "select_view": "/pages/component_module/select_component/select_component",
     "live_modal": "/pages/component_module/live_modal/live_modal"
   }
 }

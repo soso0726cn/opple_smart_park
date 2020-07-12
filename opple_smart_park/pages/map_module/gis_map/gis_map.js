@@ -32,6 +32,8 @@ Page({
 
       // 区域音频列表显示状态
       areaPlayListStatus: false, // 默认不显示
+      // 选中显示类型
+      showType: 1, // 默认为选中音乐播放列表 1:默认，2:区域列表
 
       // 当前选中区域产品列表
       productList:[],
@@ -197,7 +199,12 @@ Page({
   },
   // 点击选择区域
   actionForChangeArea: function(){
-    if (this.areaList.length <= 1) return;
+    this.setData({
+      areaPlayListStatus: true,
+      areaPlayList: this.data.areaList,
+      showType: '2',
+    });
+    
   },
   // 点击区域广播
   actionForAreaBroadcast: function(){
@@ -230,8 +237,12 @@ Page({
    * 设备列表
    */
   actionForDeviceList: function () {
+    let param = {
+      selectArea: this.data.selectArea,
+      areaList: this.data.areaList
+    }
     wx.navigateTo({
-      url: '/pages/device_list/device_list'
+      url: '/pages/device_list/device_list?area=' + JSON.stringify(param)
     })
   },
 
@@ -337,7 +348,11 @@ Page({
       "token": "string"
     };
     API.post(API.bc_manager_device_playList,params).then((res) => {
-      console.log(res);
+      let controlBroadcastItem = this.data.controlBroadcastItem;
+      controlBroadcastItem.status = '广播';
+      this.setData({
+        controlBroadcastItem: controlBroadcastItem,
+      });
     }).catch(error => {
       console.log(error)
     });
@@ -368,7 +383,11 @@ Page({
       token: "string"
     };
     API.post(API.bc_manager_device_stopPlay,params).then((res) => {
-      console.log(res);
+      let controlBroadcastItem = this.data.controlBroadcastItem;
+      controlBroadcastItem.status = '离线';
+      this.setData({
+        controlBroadcastItem: controlBroadcastItem,
+      });
     }).catch(error => {
       console.log(error)
     });
@@ -640,5 +659,19 @@ Page({
     let video = e.detail.video
 
     this.selectComponent("#live_modal").showLiveModal()
+  },
+
+  // 点击关闭选择框
+  actionForCloseChoose: function () {
+    this.setData({
+      areaPlayListStatus: false,
+    });
+  },
+
+  // 选中选择园区
+  actionForChooseAera: function (e) {
+    this.actionForChange();
+    const item = e.detail.item;
+    this.networkForAreaItem(item);
   }
 })

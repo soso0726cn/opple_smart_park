@@ -26,14 +26,14 @@
   <!-- 区域广播 -->
   <area_play areaPlayStatus="{{areaPlaySetting.areaPlayStatus}}" bindclose="actionForClose" bindstopmusic="actionForAreaStopMusic" bindplaymusic="actionForAreaPlayMusic" bindplayvoice="actionForAreaPlayVoice" bindmusicllist="actionForAreaMusicList" areaPlayMusicList="{{areaPlayList}}" areaPlayMusicItem="{{selectAreaPlay}}"></area_play>
 
-  <!-- 音频列表 -->
-  <play_list playListStatus="{{areaPlayListStatus}}" playList="{{areaPlayList}}" bindchoosemusic="actionForChooseMusic"></play_list>
-
   <!-- 广播 -->
   <product_broadcast id="product_broadcast" productStatus="{{controlBroadcastSetting.controlStatus}}" product="{{controlBroadcastItem}}" bindproductclose="actionForClose" bindplayvoice="actionForProductPlayVoice" bindstopmusic="actionForProductStopMusic" bindplaymusic="actionForProductPlayMusic"  bindmusicllist="actionForAreaMusicList" areaPlayMusicItem="{{selectAreaPlay}}"></product_broadcast>
 
   <!-- 视频 -->
   <video_modal id="video_modal" video="{{controlVideoItem}}" bind:liveOnTap="liveOnTap"></video_modal>
 
+  <!-- 选择 -->
+  <select_view  playListStatus="{{areaPlayListStatus}}" playList="{{areaPlayList}}" showType="{{showType}}" bindchoosearea="actionForChooseAera" bindclose="actionForCloseChoose" bindchoosemusic="actionForChooseMusic"></select_view>
   <live_modal id="live_modal" video="{{controlVideoItem}}"></live_modal>
 </view>
+

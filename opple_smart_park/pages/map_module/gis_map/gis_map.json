@@ -7,6 +7,7 @@
     "play_list": "/pages/component_module/play_list_component/play_list_component",
     "product_broadcast": "/pages/component_module/product_broadcast_component/product_broadcast_component",
     "video_modal": "/pages/component_module/video_modal/video_modal",
-    "live_modal": "/pages/component_module/live_modal/live_modal"
+    "live_modal": "/pages/component_module/live_modal/live_modal",
+    "select_view": "/pages/component_module/select_component/select_component"
   }
 }
