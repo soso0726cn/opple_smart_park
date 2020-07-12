@@ -94,11 +94,13 @@ Page({
         pageNumber = 0
       }
 
+      let offset = pageNumber * pageSize
+
       const params = {
-        "offset": pageNumber,
+        "offset": offset,
         "pageSize": pageSize,
         "projectId": "1",
-        "areaId": this.data.areaId,
+        // "areaId": this.data.areaId,
         "token": "string"
       };
 
@@ -229,7 +231,7 @@ Page({
     let pageNum = this.data.pageNumber
   
     if (currentIndex === 1) {
-      pageNum = pageNumber
+      pageNum = pageNumber + 1
     }
 
     for (let i = 0; i < recommends.length; ++i) {
