@@ -1,6 +1,7 @@
 <!--pages/component_module/product_boardcast_component/product_broadcast_component.wxml-->
 
-<view class="product_light_component_container" wx:if="{{productStatus}}">
+<view class="container" wx:if="{{productStatus}}" catchtap="actionForclose" catchtouchmove="actionForclose">
+<view class="product_light_component_container" >
   <view class="product_detail_container">
     <image class="detial_image" src="/assets/map_view/broadcast_bg.png"></image>
     <view class="close" catchtap="actionForProductClose"> 
@@ -12,7 +13,7 @@
         <text class="left_title">设备ID：{{product.macAddress || ''}}</text>
         <text class="left_title">状态：{{product.status || '空闲'}}</text>
         <text class="left_title">当前音量：{{product.volume || '0'}}%</text>
-        <text class="left_title">更新时间：{{product.updateDate || ''}}</text>
+        <text class="left_title time">更新时间：{{product.updateDate || '2020-09-09 11:12:12'}}</text>
       </view>
     </view>
     <image class="broadcast_image" src="{{(!product.status || product.status == '离线') ? '/assets/map_view/braodcast_desc_image.png' : '/assets/map_view/broadcast_play.png'}}" catchtap="actionForStopPlayMusic"></image>
@@ -36,4 +37,5 @@
       <text class="light_item {{item.status == true ? 'active' : ''}}" wx:for="{{volumes}}" wx:key="index" catchtap="actionForProductVolumeChoose" data-index="{{index}}">{{item.volume}}</text>
     </view>
   </view>
+</view>
 </view>

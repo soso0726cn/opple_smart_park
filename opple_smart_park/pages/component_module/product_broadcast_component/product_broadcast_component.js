@@ -48,10 +48,17 @@ Component({
    */
   methods: {
     
+    // 点击隐藏
+    actionForclose: function (e) {
+      this.setData({
+        productStatus: false
+      });
+    },
 
     // 关闭
     actionForProductBroadcastClose: function () {
-      this.triggerEvent('productclose',{});
+      // this.triggerEvent('productclose',{});
+      this.actionForclose();
     },
 
     // 选中
@@ -72,7 +79,8 @@ Component({
 
     },
     actionForProductClose: function() {
-      this.triggerEvent('productclose',{});
+      // this.triggerEvent('productclose',{});
+      this.actionForclose();
     },
   
     // 获取音频列表

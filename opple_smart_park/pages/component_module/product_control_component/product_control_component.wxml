@@ -1,7 +1,8 @@
 <!--pages/component_module/product_control_component/product_control_component.wxml-->
 
 <!-- 单个灯杆调光 -->
-<view class="product_control_component_container" wx:if="{{controlStatus}}">
+<view class="container" wx:if="{{controlStatus}}" catchtap="actionForclose" catchtouchmove="actionForclose">
+<view class="product_control_component_container" >
   <text class="title">灯杆：{{controlItem.name}}</text>
     <view class="close" catchtap="actionForClose">
     <image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>
@@ -12,4 +13,5 @@
       <text class="control_title">{{item.showSetting.title}}</text>
     </view>
   </view>
+</view>
 </view>

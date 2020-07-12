@@ -1,6 +1,18 @@
 /* pages/component_module/product_control_component/product_control_component.wxss */
 
 
+.container {
+  z-index: 999;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
 .product_control_component_container {
   z-index: 999;
   position: absolute;

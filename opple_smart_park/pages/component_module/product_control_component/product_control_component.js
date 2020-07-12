@@ -28,13 +28,19 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    actionForclose: function (e) {
+      this.setData({
+        controlStatus: false
+      })
+    },
     actionForChooseControl: function (e) {
       const item = e.currentTarget.dataset.item;
       this.triggerEvent('choosecontrol',{item: item}); // 选中设备 
     },
 
     actionForClose: function () {
-      this.triggerEvent('close',{})
+      // this.triggerEvent('close',{})
+      this.actionForclose();
     }
   }
 })

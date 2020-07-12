@@ -118,6 +118,10 @@
   text-overflow: clip;
 }
 
+.right_container .time {
+  font-size: 18rpx;
+}
+
 /* 状态 */
 .product_light_component_container .status_container {
   position: relative;

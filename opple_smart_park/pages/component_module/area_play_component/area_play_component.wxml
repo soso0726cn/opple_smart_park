@@ -1,6 +1,7 @@
 <!--pages/component_module/area_play_component/area_play_component.wxml-->
 
 <!-- 区域广播 -->
+<view class="container" wx:if="{{areaPlayStatus}}" catchtap="actionForclose" catchtouchmove="actionForclose">
 <view class="area_play_component_container" wx:if="{{areaPlayStatus}}">
   <text class="title">区域广播</text>
   <view class="close" catchtap="actionForClose">
@@ -24,4 +25,6 @@
 
   <!-- 停止播放 -->
   <view class="stop" catchtap="actionForStopPlayMusic">停止播放</view>
+</view>
+
 </view>

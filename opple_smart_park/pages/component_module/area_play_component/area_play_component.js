@@ -40,6 +40,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 点击隐藏
+    actionForclose: function (e) {
+      this.setData({
+        areaPlayStatus: false
+      });
+    },
     // 选中
     actionForAreaPlayChoose: function (e) {
       const currentSelectIndex = e.currentTarget.dataset.index;
@@ -75,7 +81,10 @@ Component({
 
     // 关闭
     actionForClose: function () {
-      this.triggerEvent('close',{})
+      // this.triggerEvent('close',{})
+      this.setData({
+        areaPlayStatus: false
+      });
     }
   }
 })

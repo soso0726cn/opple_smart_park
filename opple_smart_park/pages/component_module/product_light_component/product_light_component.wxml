@@ -21,7 +21,7 @@
         <text class="right_title">电压：{{product.lastRec.voltage || ''}}V</text>
         <text class="right_title">电流：{{product.lastRec.activeEnergy || ''}}mA</text>
         <text class="right_title">功率：{{product.lastRec.activePower || ''}}W</text>
-        <text class="right_title">更新时间：{{product.lastRec.updateTime || ''}}</text>
+        <text class="right_title time">更新时间：{{product.lastRec.updateTime || ''}}</text>
       </view>
     </view>
   </view>

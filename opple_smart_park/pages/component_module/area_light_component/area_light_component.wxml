@@ -1,7 +1,8 @@
 <!--pages/component_module/area_light_component/area_light_component.wxml-->
 
 <!-- 区域调光 -->
-<view class="area_light_component_container" wx:if="{{areaStatus}}">
+<view class="container" wx:if="{{areaStatus}}" catchtap="actionForclose" catchtouchmove="actionForclose">
+<view class="area_light_component_container">
   <text class="title">区域开关灯</text>
   <view class="close" catchtap="actionForClose">
       <image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>
@@ -26,4 +27,5 @@
 
     <image class="light_sure_image" src="/assets/map_view/icon_bd_send.png" catchtap="actionForAreaTurnLight" wx:if="{{false}}"></image>
   </view>
+</view>
 </view>

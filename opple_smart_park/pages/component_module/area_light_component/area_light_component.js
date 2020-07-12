@@ -41,6 +41,13 @@ Component({
    */
   methods: {
 
+    // 点击隐藏
+    actionForclose: function (e) {
+      this.setData({
+        areaStatus: false
+      });
+    },
+
     // 开灯
     actionForAreaLightOpen: function () {
       this.triggerEvent('lightstatus',{'status':true});
@@ -79,7 +86,7 @@ Component({
 
     // 关闭
     actionForClose: function () {
-      this.triggerEvent('close',{})
+      this.actionForclose();
     }
   }
 })

@@ -166,9 +166,7 @@ Page({
     });
   },
 
-  /**
-   * ---------- 顶部按钮操作部分 ---------- 
-   */
+
   // 处理地图定位点
   businessForChangeToShowLocation: function(lists) {
     const showList = lists.map((item,index) => {
@@ -183,9 +181,11 @@ Page({
     return showList;
   },
 
+
   /**
-   * ---------- 顶部按钮操作部分 ----------
+   * ---------- 顶部按钮操作部分 ---------- 
    */
+
   // 点击定位
   actionForLocation: function (){
     this.setData({
@@ -197,6 +197,7 @@ Page({
       },
     });
   },
+
   // 点击选择区域
   actionForChangeArea: function(){
     this.setData({
@@ -206,6 +207,8 @@ Page({
     });
     
   },
+
+
   // 点击区域广播
   actionForAreaBroadcast: function(){
     this.actionForChange();
@@ -216,12 +219,13 @@ Page({
     });
   },
 
+
   // 关闭区域广播
   actionForClose: function () {
     this.actionForChange();
   },
 
-  // 点击区域照明
+  // 点击区域照明---
   actionForAreaLight: function(){
     this.actionForChange();
     this.setData({
@@ -233,9 +237,8 @@ Page({
     });
   },
 
-  /**
-   * 设备列表
-   */
+
+  // 点击进去设备列表
   actionForDeviceList: function () {
     let param = {
       selectArea: this.data.selectArea,
@@ -247,47 +250,96 @@ Page({
   },
 
   /**
-   * ---------- 区域部分 ----------
+   * ---------- 地图相关操作 ---------- 
    */
 
-  // 区域照明部分 状态
-  actionForAreaLightStatus: function (e) {
+  actionForChooseProduct: function (e){
+    this.actionForChange();
+    console.log(e);
+    const selectId = e.markerId;
+    let selectItem = this.data.productList[selectId];
+    console.log(selectItem);
+    let settings = (selectItem.devices || []);
+    if (settings.length == 0) {
+      wx.showToast({
+        title: '暂无设备',
+        icon: 'none'
+      })
+      return;
+    }
 
-    let params = {
-      "areaPath": this.data.selectArea.id,
-      "switchStatus": e.detail.status ? 1 : 0,
-      "token": "string"
-    };
+    // 视频，照明，广播，屏幕
+    settings = settings.map((item) => {
+      if (item.type === 'vcr') {
+        const showSetting = {image:'/assets/map_view/icon_camera.png',title:'监控',type:'vcr', showIndex: 0};
+        item.showSetting = showSetting;
+        return item;
+      } else if (item.type === 'broadcast') {
+        const showSetting = {image:'/assets/map_view/icon_broadcast.png',title:'广播',type:'broadcast', showIndex: 2};
+        item.showSetting = showSetting;
+        return item;
+      } else if (item.type === 'lighting') {
+        const showSetting = {image:'/assets/map_view/icon_light.png',title:'照明',type:'lighting', showIndex: 1};
+        item.showSetting = showSetting;
+        return item;
+      } else if (item.type === 'screen') {
+        const showSetting = {image:'/assets/map_view/icon_screen.png',title:'屏幕',type:'screen', showIndex: 3};
+        item.showSetting = showSetting;
+        return item;
+      }
+    });
 
-    API.post(API.ls_device_area_switch,params).then((res) => {
-      this.setData({
-        areaSetting:{
-          areaStatus: this.data.areaSetting.areaStatus,
-          openStatus: e.detail.status,
-          closeStatus: !e.detail.status
-        },
-      });
-    }).catch(error => {
-      console.log(error)
+    settings = settings.sort(function (a,b) {
+      return a.showSetting['showIndex'] - b.showSetting['showIndex'];
+    });
+
+    selectItem.devices = settings;
+    this.setData({
+      selectProduct: selectItem,
+      controlSetting: {
+        controlStatus: !this.data.controlSetting.controlStatus, // 默认不显示
+      },
     });
   },
 
-  // 区域调光部分
-  actionForAreaLightChange: function (e) {
-    console.log(e.detail.item);
+  actionForChange: function (){
+    this.setData({
+      controlSetting: {
+        controlStatus: false, // 默认不显示
+      },
+      // 当前选中产品设置
+      productSetting:{
+        productStatus: false, // 默认不显示
+        openStatus: false,
+        closeStatus: false
+      },
 
-    const params = {
-      "areaPath": this.data.selectArea.id,
-      "brightness": e.detail.item.brightness,
-      "token": "string"
-    };
+      // 区域调光
+      areaSetting:{
+        areaStatus: false, // 默认不显示
+        openStatus: false,
+        closeStatus: false
+      },
 
-    API.post(API.ls_device_area_control,params).then((res) => {
-      console.log(res);
-    }).catch(error => {
-      console.log(error)
+      // 区域广播
+      areaPlaySetting: {
+        areaPlayStatus: false, // 默认不显示
+      },
+
+      controlBroadcastSetting: {
+        controlStatus: false, // 默认不显示
+      },
+
+      areaPlayListStatus: false, // 默认不显示
+
+      selectAreaPlay:{}, // 消除选中音频
     });
   },
+
+
+  /**
+   * ---------- 区域广播 ----------
+   */
 
   // 区域音频列表
   actionForAreaMusicList: function () {
@@ -334,6 +386,90 @@ Page({
     });
   },
 
+
+  // 停止播放区域音频
+  actionForAreaStopMusic: function () {
+    const params = {
+      areaIds: [
+        this.data.selectArea.id
+      ],
+      token: "string"
+    };
+    API.post(API.bc_manager_area_stopPlay,params).then((res) => {
+      console.log(res);
+    }).catch(error => {
+      console.log(error)
+    });
+  },
+
+
+  // 区域广播音量调整
+  actionForAreaPlayVoice: function (e) {
+    const item = e.detail.item;
+    console.log(item)
+    const params = {
+      areaIds: [
+        this.data.selectArea.id
+      ],
+      token: 'string',
+      volume: item.brightness,
+    };
+    API.post(API.bc_manager_area_volumeSet,params).then((res) => {
+      console.log(res);
+    }).catch(error => {
+      console.log(error)
+    });
+
+  },
+
+
+  /**
+   * ---------- 区域灯光处理 ----------
+   */
+  
+  // 区域照明部分 开关状态
+  actionForAreaLightStatus: function (e) {
+
+    let params = {
+      "areaPath": this.data.selectArea.id,
+      "switchStatus": e.detail.status ? 1 : 0,
+      "token": "string"
+    };
+
+    API.post(API.ls_device_area_switch,params).then((res) => {
+      this.setData({
+        areaSetting:{
+          areaStatus: this.data.areaSetting.areaStatus,
+          openStatus: e.detail.status,
+          closeStatus: !e.detail.status
+        },
+      });
+    }).catch(error => {
+      console.log(error)
+    });
+  },
+
+  // 区域调光部分
+  actionForAreaLightChange: function (e) {
+    console.log(e.detail.item);
+
+    const params = {
+      "areaPath": this.data.selectArea.id,
+      "brightness": e.detail.item.brightness,
+      "token": "string"
+    };
+
+    API.post(API.ls_device_area_control,params).then((res) => {
+      console.log(res);
+    }).catch(error => {
+      console.log(error)
+    });
+  },
+
+
+  /**
+   * ---------- 单个灯杆 控制广播 ---------- 
+   */
   // 播放单个音频
   actionForProductPlayMusic: function (e) {
     const item = e.detail.item;
@@ -358,21 +494,6 @@ Page({
     });
   },
 
-  // 停止播放区域音频
-  actionForAreaStopMusic: function () {
-    const params = {
-      areaIds: [
-        this.data.selectArea.id
-      ],
-      token: "string"
-    };
-    API.post(API.bc_manager_area_stopPlay,params).then((res) => {
-      console.log(res);
-    }).catch(error => {
-      console.log(error)
-    });
-  },
-
   // 停止播放单个
   actionForProductStopMusic: function (e) {
     const selectItem = e.detail.selectItem;
@@ -391,25 +512,6 @@ Page({
     }).catch(error => {
       console.log(error)
     });
-  },
-
-  // 区域广播音量调整
-  actionForAreaPlayVoice: function (e) {
-    const item = e.detail.item;
-    console.log(item)
-    const params = {
-      areaIds: [
-        this.data.selectArea.id
-      ],
-      token: 'string',
-      volume: item.brightness,
-    };
-    API.post(API.bc_manager_area_volumeSet,params).then((res) => {
-      console.log(res);
-    }).catch(error => {
-      console.log(error)
-    });
-
   },
 
   // 单个调音量
@@ -497,92 +599,6 @@ Page({
       },
     });
   },
-  /**
-   * ---------- 地图部分 ----------
-   */
-  actionForChange: function (){
-    this.setData({
-      controlSetting: {
-        controlStatus: false, // 默认不显示
-      },
-      // 当前选中产品设置
-      productSetting:{
-        productStatus: false, // 默认不显示
-        openStatus: false,
-        closeStatus: false
-      },
-
-      // 区域调光
-      areaSetting:{
-        areaStatus: false, // 默认不显示
-        openStatus: false,
-        closeStatus: false
-      },
-
-      // 区域广播
-      areaPlaySetting: {
-        areaPlayStatus: false, // 默认不显示
-      },
-
-      controlBroadcastSetting: {
-        controlStatus: false, // 默认不显示
-      },
-
-      areaPlayListStatus: false, // 默认不显示
-
-      selectAreaPlay:{}, // 消除选中音频
-    });
-  },
-
-  actionForChooseProduct: function (e){
-    this.actionForChange();
-    console.log(e);
-    const selectId = e.markerId;
-    let selectItem = this.data.productList[selectId];
-    console.log(selectItem);
-    let settings = (selectItem.devices || []);
-    if (settings.length == 0) {
-      wx.showToast({
-        title: '暂无设备',
-        icon: 'none'
-      })
-      return;
-    }
-
-    // 视频，照明，广播，屏幕
-    settings = settings.map((item) => {
-      if (item.type === 'vcr') {
-        const showSetting = {image:'/assets/map_view/icon_camera.png',title:'监控',type:'vcr', showIndex: 0};
-        item.showSetting = showSetting;
-        return item;
-      } else if (item.type === 'broadcast') {
-        const showSetting = {image:'/assets/map_view/icon_broadcast.png',title:'广播',type:'broadcast', showIndex: 2};
-        item.showSetting = showSetting;
-        return item;
-      } else if (item.type === 'lighting') {
-        const showSetting = {image:'/assets/map_view/icon_light.png',title:'照明',type:'lighting', showIndex: 1};
-        item.showSetting = showSetting;
-        return item;
-      } else if (item.type === 'screen') {
-        const showSetting = {image:'/assets/map_view/icon_screen.png',title:'屏幕',type:'screen', showIndex: 3};
-        item.showSetting = showSetting;
-        return item;
-      }
-    });
-
-    settings = settings.sort(function (a,b) {
-      return a.showSetting['showIndex'] - b.showSetting['showIndex'];
-    });
-
-    selectItem.devices = settings;
-    this.setData({
-      selectProduct: selectItem,
-      controlSetting: {
-        controlStatus: !this.data.controlSetting.controlStatus, // 默认不显示
-      },
-    });
-  },
-
 
 
 
