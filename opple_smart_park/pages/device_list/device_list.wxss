@@ -124,7 +124,7 @@
 	font-size: 30rpx;
 	color: white;
 	letter-spacing: 0;
-  border-bottom: 8rpx solid #343434;
+  border-bottom: 8rpx solid #2F7DF6;
 }
 
 
@@ -160,6 +160,8 @@
 .recommend-video-bg {
   position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
   height: 205rpx;
   border-radius: 20rpx 20rpx 0 0;
   background-color: #dddddd;
@@ -169,6 +171,11 @@
   width: 100%;
   height: 100%;
   border-radius: 20rpx 20rpx 0 0;
+}
+
+.recommend-video-bg .no-image {
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .recommend-video-title {

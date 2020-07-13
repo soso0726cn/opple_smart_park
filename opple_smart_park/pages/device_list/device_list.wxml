@@ -26,7 +26,12 @@
 
                 <block wx:if="{{currentTab == 0}}">
                   <view class="recommend-video-bg" catchtap="liveOnTap" data-index="{{index}}" data-type="left" data-data="{{item}}">
-                    <image class="image" wx:if="{{item.picUrl !== null}}" src="{{item.picUrl}}"></image>
+                    <block wx:if="{{item.picUrl == null || item.picUrl.length == 0}}">
+                      <image class="no-image" src="/assets/device_list/icon_no_video.png"></image>
+                    </block>
+                    <block wx:else>
+                      <image class="image" src="{{item.picUrl}}"></image>
+                    </block>
                   </view>
                   <text class="recommend-video-title">{{item.name}}</text>
                 </block>
@@ -61,7 +66,12 @@
 
                 <block wx:if="{{currentTab == 0}}">
                   <view class="recommend-video-bg" catchtap="liveOnTap" data-index="{{index}}" data-type="right" data-data="{{item}}">
-                    <image class="image" wx:if="{{item.picUrl !== null}}" src="{{item.picUrl}}"></image>
+                    <block wx:if="{{item.picUrl == null || item.picUrl.length == 0}}">
+                      <image class="no-image" src="/assets/device_list/icon_no_video.png"></image>
+                    </block>
+                    <block wx:else>
+                      <image class="image" src="{{item.picUrl}}"></image>
+                    </block>
                   </view>
                   <text class="recommend-video-title">{{item.name}}</text>
                 </block>
