@@ -162,7 +162,7 @@
   display: flex;
   height: 205rpx;
   border-radius: 20rpx 20rpx 0 0;
-  background-color: darkgray;
+  background-color: #dddddd;
 }
 
 .recommend-video-bg .image {

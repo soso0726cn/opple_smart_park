@@ -560,12 +560,16 @@ Page({
     };
 
     API.post(API.ls_device_switch,params).then((res) => {
+      let item = this.data.controlLightItem;
+      item.lastRec.online = e.detail.status ? true : false;
+      console.log(item)
       this.setData({
         productSetting:{
           productStatus: this.data.productSetting.productStatus, // 默认不显示
           openStatus: e.detail.status,
           closeStatus: !e.detail.status
         },
+        controlLightItem: item,
       });
     }).catch(error => {
       console.log(error)
@@ -584,6 +588,11 @@ Page({
 
     API.post(API.ls_device_control,params).then((res) => {
       console.log(res);
+      let item = this.data.controlLightItem;
+      item.lastRec.level = e.detail.item.brightness;
+      this.setData({
+        controlLightItem: item
+      })
     }).catch(error => {
       console.log(error)
     });

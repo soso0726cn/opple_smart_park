@@ -22,7 +22,7 @@
 				<view class="recommend-content-background">
           <view class="recommend-content-left-bg">
             <block wx:for="{{recommendsLeft[currentTab]}}" wx:key="index">
-              <view class="recommend-sub-left-content" style="height: {{currentTab == 0 ? '280' : '220'}}rpx">
+              <view class="recommend-sub-left-content" style="height: {{currentTab == 0 ? '280' : '220'}}rpx" catchtap="{{onTap[currentTab]}}" data-index="{{index}}" data-item="{{item}}" data-type="left">
 
                 <block wx:if="{{currentTab == 0}}">
                   <view class="recommend-video-bg" catchtap="liveOnTap" data-index="{{index}}" data-type="left" data-data="{{item}}">
@@ -57,10 +57,10 @@
 
           <view class="recommend-content-right-bg">
             <block wx:for="{{recommendsRight[currentTab]}}" wx:key="index">
-              <view class="recommend-sub-right-content" style="height: {{currentTab == 0 ? '280' : '220'}}rpx">
+              <view class="recommend-sub-right-content" style="height: {{currentTab == 0 ? '280' : '220'}}rpx" catchtap="{{onTap[currentTab]}}" data-index="{{index}}" data-item="{{item}}" data-type="right">
 
                 <block wx:if="{{currentTab == 0}}">
-                  <view class="recommend-video-bg" catchtap="liveOnTap" data-index="{{index}}" data-type="left" data-data="{{item}}">
+                  <view class="recommend-video-bg" catchtap="liveOnTap" data-index="{{index}}" data-type="right" data-data="{{item}}">
                     <image class="image" wx:if="{{item.picUrl !== null}}" src="{{item.picUrl}}"></image>
                   </view>
                   <text class="recommend-video-title">{{item.name}}</text>
@@ -73,7 +73,7 @@
                   <text class="recommend-sub-content-online" style="color: {{item.switchOn ? '#57dfc0': '#ababab'}}">{{item.switchOn ? '已开灯' : '灯：关'}}</text>
                   <text class="recommend-sub-content-online" wx:if="{{item.lastRec !== null}}">亮度：{{item.lastRec.level == 0 ? '0' : item.lastRec.level+'%'}}</text>
                   <text class="recommend-sub-content-online" wx:if="{{item.lastRec !== null}}">{{item.lastRec.voltage + 'V | ' + item.lastRec.activeEnergy + 'mA'}}</text>
-                  <image class="recommend-sub-image" src="{{item.switchOn ? lightIcon.select : lightIcon.normal}}" catchtap="lightOnTap" data-index="{{index}}" data-type="left" data-data="{{item}}"></image>
+                  <image class="recommend-sub-image" src="{{item.switchOn ? lightIcon.select : lightIcon.normal}}" catchtap="lightOnTap" data-index="{{index}}" data-type="right" data-data="{{item}}"></image>
                 </block>
 
                 <block wx:if="{{currentTab == 2}}">
@@ -100,4 +100,10 @@
   <live_modal id="live_modal" video="{{controlVideoItem}}"></live_modal>
 </view>
 
-<select_view  playListStatus="{{areaPlayListStatus}}" playList="{{area.areaList}}" showType="{{2}}" bindchoosearea="actionForChooseAera"></select_view>
+<!-- 单个灯杆调光 -->
+<product_light productStatus="{{productSetting.productStatus}}" product="{{controlLightItem}}" openStatus="{{productSetting.openStatus}}" closeStatus="{{productSetting.closeStatus}}" bindlightstatus="actionForProductLightStatus" bindlightchange="actionForProductLightChange" bindlightclose="actionForClose"></product_light>
+
+<!-- 广播 -->
+<product_broadcast id="product_broadcast" productStatus="{{controlBroadcastSetting.controlStatus}}" product="{{controlBroadcastItem}}" bindproductclose="actionForClose" bindplayvoice="actionForProductPlayVoice" bindstopmusic="actionForProductStopMusic" bindplaymusic="actionForProductPlayMusic"  bindmusicllist="actionForAreaMusicList" areaPlayMusicItem="{{selectAreaPlay}}"></product_broadcast>
+
+<select_view  playListStatus="{{areaPlayListStatus}}" playList="{{areaPlayList}}" showType="{{showType}}" bindchoosearea="actionForChooseAera" bindclose="actionForCloseChoose" bindchoosemusic="actionForChooseMusic"></select_view>

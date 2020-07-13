@@ -8,9 +8,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+    onTap:['', 'detailOnTap', 'broadcastOnTap'],
     area: {},
     areaId: '',
+    // 区域音频列表
+    areaPlayList:[],
     areaPlayListStatus: false,
+    // 选中显示类型
+    showType: 1, // 默认为选中音乐播放列表 1:默认，2:区域列表
+    // 选中音频
+    selectAreaPlay:{},
     lightIcon: {
       normal: '/assets/device_list/icon_light_off.png',
       select: '/assets/device_list/icon_light_on.png'
@@ -19,6 +26,22 @@ Page({
       normal: '/assets/device_list/icon_play_normal.png',
       select: '/assets/device_list/icon_play_select.png'
     },
+
+    // 当前选中产品设置
+    productSetting:{
+      productStatus: false, // 默认不显示
+      openStatus: false,
+      closeStatus: false
+    },
+    // 产品控制
+    controlLightItem: {}, // 当前点击请求产品信息
+
+    // 广播控制
+    controlBroadcastItem: {},
+    controlBroadcastSetting: {
+      controlStatus: false, // 默认不显示
+    },
+
     currentTab: 0,
     pageNumber: 0,
     pageSize: 8,
@@ -278,12 +301,17 @@ Page({
     }
   },
 
+  // 区域点击
   changeAreaOnTap: function () {
+    let areaPlayList = this.data.area.areaList
     this.setData({
-      areaPlayListStatus: true
+      areaPlayList: areaPlayList,
+      areaPlayListStatus: true,
+      showType: '2'
     })
   },
 
+  // 区域选择
   actionForChooseAera: function (e) {
 
     let currentIndex = this.data.currentTab
@@ -299,6 +327,7 @@ Page({
     this.requestData(currentIndex, false)
   },
 
+  // 视频监控
   liveOnTap: function (e) {
     let index = e.currentTarget.dataset.index
     let type = e.currentTarget.dataset.type
@@ -332,6 +361,43 @@ Page({
     }
   },
 
+  // 照明详情
+  detailOnTap: function (e) {
+    let index = e.currentTarget.dataset.index
+    let type = e.currentTarget.dataset.type
+    let item = e.currentTarget.dataset.item
+
+    // if (type === 'left') {
+
+    // } else {
+
+    // }
+
+    this.setData({
+      controlLightItem: item,
+      productSetting:{
+        productStatus: true, // 默认不显示
+        openStatus: false,
+        closeStatus: false
+      },
+    })
+  },
+
+  broadcastOnTap: function (e) {
+    console.log('---- ')
+    let item = e.currentTarget.dataset.item
+
+    item.status = (item.status == 'idle' ? '空闲' : (item.status == 'offline' ? '离线' : (item.status == 'play' ? '广播' : (item.status == 'warning' ? '报警' : '空闲'))))
+
+    this.setData({
+      controlBroadcastItem: item,
+      controlBroadcastSetting: {
+        controlStatus: true, // 默认不显示
+      },
+    })
+  },
+
+  // 照明开关灯
   lightOnTap: function (e) {
 
     let index = e.currentTarget.dataset.index
@@ -478,6 +544,170 @@ Page({
     }).catch(error => {
       console.log(error)
     });
-  }
+  },
+
+
+  /**
+   * ---------- 单个产品调光部分 ----------
+   */
+  // 单个照明部分 状态
+  actionForProductLightStatus: function (e) {
+
+    let params = {
+      "deviceId": this.data.controlLightItem.id,
+      "switchStatus": e.detail.status ? 1 : 0,
+      "token": "string"
+    };
+
+    API.post(API.ls_device_switch,params).then((res) => {
+      let item = this.data.controlLightItem;
+      item.lastRec.online = e.detail.status ? true : false;
+      console.log(item)
+      this.setData({
+        productSetting:{
+          productStatus: this.data.productSetting.productStatus, // 默认不显示
+          openStatus: e.detail.status,
+          closeStatus: !e.detail.status
+        },
+        controlLightItem: item,
+      });
+    }).catch(error => {
+      console.log(error)
+    });
+  },
+
+  // 单个调光部分
+  actionForProductLightChange: function (e) {
+    console.log(e.detail.item);
+
+    const params = {
+      "deviceId": this.data.controlLightItem.id,
+      "brightness": e.detail.item.brightness,
+      "token": "string"
+    };
+
+    API.post(API.ls_device_control,params).then((res) => {
+      console.log(res);
+      let item = this.data.controlLightItem;
+      item.lastRec.level = e.detail.item.brightness;
+      this.setData({
+        controlLightItem: item
+      })
+    }).catch(error => {
+      console.log(error)
+    });
+  },
+
+  // 关闭区域广播
+  actionForClose: function () {
+    this.setData({
+      controlLightItem: {},
+      productSetting:{
+        productStatus: false, // 默认不显示
+        openStatus: false,
+        closeStatus: false
+      },
+    })
+  },
+
+
+
+  /**
+   * ---------- 单个灯杆 控制广播 ---------- 
+   */
+  // 播放单个音频
+  actionForProductPlayMusic: function (e) {
+    const item = e.detail.item;
+    const selectItem = e.detail.selectItem;
+    console.log(item);
+    const params = {
+      "deviceIds": [
+        selectItem.id
+      ],
+      listId: item.id,
+      mode: '1',
+      "token": "string"
+    };
+    API.post(API.bc_manager_device_playList,params).then((res) => {
+      let controlBroadcastItem = this.data.controlBroadcastItem;
+      controlBroadcastItem.status = '广播';
+      this.setData({
+        controlBroadcastItem: controlBroadcastItem,
+      });
+    }).catch(error => {
+      console.log(error)
+    });
+  },
+
+  // 停止播放单个
+  actionForProductStopMusic: function (e) {
+    const selectItem = e.detail.selectItem;
+    const params = {
+      deviceIds: [
+        selectItem.id
+      ],
+      token: "string"
+    };
+    API.post(API.bc_manager_device_stopPlay,params).then((res) => {
+      let controlBroadcastItem = this.data.controlBroadcastItem;
+      controlBroadcastItem.status = '离线';
+      this.setData({
+        controlBroadcastItem: controlBroadcastItem,
+      });
+    }).catch(error => {
+      console.log(error)
+    });
+  },
+
+  // 单个调音量
+  actionForProductPlayVoice: function (e) {
+    const item = e.detail.item;
+    const selectItem = e.detail.selectItem;
+    console.log(item)
+    const params = {
+      deviceIds: [
+        selectItem.id
+      ],
+      token: 'string',
+      volume: item.brightness,
+    };
+    API.post(API.bc_manager_device_volumeSet,params).then((res) => {
+      console.log(res);
+      let controlBroadcastItem = this.data.controlBroadcastItem;
+      controlBroadcastItem.volume = item.brightness;
+      this.setData({
+        controlBroadcastItem: controlBroadcastItem,
+      });
+    }).catch(error => {
+      console.log(error)
+    });
+  },
+
+  // 区域音频列表
+  actionForAreaMusicList: function () {
+    const params = {
+      "projectId": 1,
+      "token": "string"
+    };
+
+    API.post(API.bc_media_type_list,params).then((res) => {
+      this.setData({
+        areaPlayList: res.items,
+        areaPlayListStatus: true,
+      });
+    }).catch(error => {
+      console.log(error)
+    });
+  },
+
+  // 选中音频
+  actionForChooseMusic: function (e) {
+    const item = e.detail.item;
+    console.log(item);
+    this.setData({
+      selectAreaPlay: item,
+      areaPlayListStatus: false, // 默认不显示
+    })
+  },
 
 })

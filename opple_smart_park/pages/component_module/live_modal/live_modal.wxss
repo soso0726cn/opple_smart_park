@@ -11,6 +11,7 @@
   bottom: 0;
   background-color: white;
   border-radius: 30rpx 30rpx 0 0;
+  border: solid 2rpx #EEEEEE;
   z-index: 999;
 }
 
