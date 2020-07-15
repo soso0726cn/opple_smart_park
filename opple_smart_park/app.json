@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/main/main",
     "pages/map_module/gis_map/gis_map",
     "pages/map_view/map_view",
     "pages/login/login",
-    "pages/main/main",
     "pages/equipment/equipment",
     "pages/project/project",
     "pages/center/center",
