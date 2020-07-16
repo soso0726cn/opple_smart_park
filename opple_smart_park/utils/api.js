@@ -50,7 +50,11 @@ const API = {
   // 广播列表
   'bc_device_list': '/bc/device/list',
   // 监控列表
-  'vcr_ipc_list': '/vcr/ipc/list'
+  'vcr_ipc_list': '/vcr/ipc/list',
+
+  // 登录相关
+  'auth_user_mobile_wx_session_fetch': '/auth/user/mobile/wx/session/fetch',
+  'auth_user_mobile_wx_phone_check': '/auth/user/mobile/wx/phone/check'
 }
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
@@ -130,6 +134,8 @@ module.exports = {
   ls_device_list: HOST.host + API.ls_device_list,
   bc_device_list: HOST.host + API.bc_device_list,
   vcr_ipc_list: HOST.host + API.vcr_ipc_list,
+  auth_user_mobile_wx_session_fetch: HOST.host + API.auth_user_mobile_wx_session_fetch,
+  auth_user_mobile_wx_phone_check: HOST.host + API.auth_user_mobile_wx_phone_check,
   get,
   post,
 }

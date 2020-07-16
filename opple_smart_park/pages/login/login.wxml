@@ -1,5 +1,7 @@
 <!--pages/login/login.wxml-->
 
 <view class="container">
-  <view class="button" catchtap="login">登录</view>
+  <!-- <view class="button" catchtap="login">登录</view> -->
+  <!-- <button class="user" open-type="getUserInfo" bindgetuserinfo="userInfo">登录</button> -->
+  <button class="user" open-type="getPhoneNumber" bindgetphonenumber="phone">登录</button>
 </view>

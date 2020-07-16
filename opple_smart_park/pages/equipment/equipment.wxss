@@ -1,1 +1,16 @@
 /* pages/equipment/equipment.wxss */
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.text {
+  font-size: 36rpx;
+  color: #333333;
+}
