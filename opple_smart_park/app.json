@@ -7,7 +7,8 @@
     "pages/equipment/equipment",
     "pages/project/project",
     "pages/center/center",
-    "pages/device_list/device_list"
+    "pages/device_list/device_list",
+    "pages/setting/setting"
   ],
   "window": {
     "backgroundTextStyle": "light",

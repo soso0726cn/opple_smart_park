@@ -1,0 +1,51 @@
+/* pages/setting/setting.wxss */
+
+
+page {
+  background-color: #F4F5F6;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container .title_container {
+  position: relative;
+  width: 100vw;
+  height: 385rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title_container .title_image {
+  width: 100vw;
+  height: 340rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.title_container .title_icon {
+  position: relative;
+  margin-top: 30rpx;
+  width: 162rpx;
+  height: 162rpx;
+}
+
+.title_container .title_phone {
+  position: relative;
+  width: 100vw;
+  text-align: center;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  color: white;
+  margin-top: 40rpx;
+}
+
+.container .project {
+  margin-top: 30rpx;
+}

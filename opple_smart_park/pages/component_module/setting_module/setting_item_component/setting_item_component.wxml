@@ -1,0 +1,17 @@
+<!--pages/component_module/setting_module/setting_item_component/setting_item_component.wxml-->
+
+<view class="setting_item_component_container">
+  <view class="setting_item_contianer">
+    <view class="title_container">
+      <image class="icon" src="{{item.icon}}"></image>
+      <text class="title">{{item.title || ''}}</text>
+    </view>
+    <view class="desc_container">
+      <text class="des_title">{{item.desc || ''}}</text>
+      <image class="more" src="/assets/setting/ic_right_arrow.png" wx:if="{{item.more}}"></image>
+    </view>
+
+    <view class="div" wx:if="{{item.div}}"></view>
+    
+  </view>
+</view>

@@ -2,22 +2,9 @@
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    wx.checkSession({
-      success: (res) => {
-        // wx.navigateTo({
-        //   url: '/pages/main/main'
-        // })
-      },
-      fail: (err) => {
-        wx.redirectTo({
-          url: '/pages/login/login'
-        })
-      }
-    })
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
 
     // 登录
     // wx.login({

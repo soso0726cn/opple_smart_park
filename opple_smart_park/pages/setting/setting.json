@@ -1,0 +1,7 @@
+{
+  "navigationBarBackgroundColor": "#027aff",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "itemView": "/pages/component_module/setting_module/setting_item_component/setting_item_component"
+  }
+}

@@ -16,30 +16,71 @@ Page({
   },
 
   // 地图
-  locationOnTap: function () {
-    wx.navigateTo({
-      url: '/pages/map_module/gis_map/gis_map'
-    })
+  locationOnTap: async function () {
+    let check = await this.check()
+    if (check) {
+      wx.navigateTo({
+        url: '/pages/map_module/gis_map/gis_map'
+      })
+    }
   },
 
   // 设备录入
-  scanOnTap: function () {
-
+  scanOnTap: async function () {
+    let check = await this.check()
+    if (check) {
+      console.log('------ 设备录入 ------')
+    }
   },
 
   // 设备列表
-  listOnTap: function () {
-
+  listOnTap: async function () {
+    let check = await this.check()
+    if (check) {
+      console.log('------ 设备列表 ------')
+    }
   },
 
   // 事件中心
-  centerOnTap: function () {
-    
+  centerOnTap: async function () {
+    let check = await this.check()
+    if (check) {
+      console.log('------ 事件中心 ------')
+    }
   },
 
   // 我的账号
-  accountOnTap: function () {
-    
+  accountOnTap: async function () {
+    let check = await this.check()
+    if (check) {
+      wx.navigateTo({
+        url: '/pages/setting/setting'
+      })
+    }
+  },
+
+  check: async function () {
+
+    let isLogin = false
+    let self = this
+
+    await wx.checkSession().then((res) => {
+      if (res.errMsg === 'checkSession:ok') {
+        isLogin = true
+      } else {
+        self.redicetToLogin()
+      }
+    }).catch(err => {
+      self.redicetToLogin()
+    })
+
+    return isLogin;
+  },
+
+  redicetToLogin: function () {
+    wx.redirectTo({
+      url: '/pages/login/login'
+    })
   }
 
 })

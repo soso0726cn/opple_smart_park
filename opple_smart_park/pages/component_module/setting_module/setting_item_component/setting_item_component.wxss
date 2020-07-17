@@ -1,0 +1,68 @@
+/* pages/component_module/setting_module/setting_item_component/setting_item_component.wxss */
+
+.setting_item_component_container {
+  position: relative;
+  width: 100vw;
+  height: 130rpx;
+  background-color: white;
+}
+
+.setting_item_component_container .setting_item_contianer {
+  width: 100vw;
+  height: 130rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.setting_item_contianer .div {
+  position: absolute;
+  bottom: 0;
+  left: 160rpx;
+  width: 590rpx;
+  height: 4rpx;
+  background-color: #F3F3F3;
+}
+
+.setting_item_contianer .title_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.title_container .icon {
+  margin-left: 55rpx;
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.title_container .title {
+  margin-left: 65rpx;
+  color: #515151;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+/*  */
+.setting_item_contianer .desc_container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+.desc_container .des_title {
+  margin-right: 30rpx;
+  color: #8a8a8a;
+  font-size: 25rpx;
+  line-height: 30rpx;
+}
+
+.desc_container .more {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 30rpx;
+}
