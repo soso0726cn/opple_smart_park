@@ -1,50 +1,154 @@
 <!--pages/main/main.wxml-->
-<!-- <view class="root">
-  <view class="entrance.cis" catchtap="goCisMap">
-		<text>CIS地图</text>
-	</view>
-	<view class="entrance.equipment" catchtap="goEquipment">
-		<text>设备管理</text>
-	</view>
-</view> -->
 
 <view class="container">
 
 	<view class="top-background">
 		<image class="city-bg" src="/assets/main/top_city_bg.png"></image>
-		<image class="location" src="/assets/main/icon_location.png" catchtap="locationOnTap"></image>
+		<block wx:if="{{isLogin}}">
+			<image class="location" src="/assets/main/icon_location.png" catchtap="locationOnTap"></image>
+		</block>
+		<block wx:else>
+			<image class="location" src="/assets/main/icon_location.png">
+				<button class="icon" open-type="getPhoneNumber" bindgetphonenumber="getPhone" data-type="location"></button>
+			</image>
+		</block>
+	</view>
+
+	<view class="bottom-background">
+		<view class="item-background">
+			<view class="top">
+				<block wx:if="{{isLogin}}">
+					<view class="left" catchtap="scanOnTap">
+						<view class="center-bg">
+							<image class="icon" src="/assets/main/icon_scan.png"></image>
+							<text class="text">设备录入</text>
+						</view>
+					</view>
+					<view class="right" catchtap="listOnTap">
+						<view class="center-bg">
+							<image class="icon" src="/assets/main/icon_device_list.png"></image>
+							<text class="text">设备列表</text>
+						</view>
+					</view>
+				</block>
+				<block wx:else>
+					<view class="left">
+						<view class="center-bg">
+							<image class="icon" src="/assets/main/icon_scan.png"></image>
+							<text class="text">设备录入</text>
+						</view>
+						<button class="phone" open-type="getPhoneNumber" bindgetphonenumber="getPhone" data-type="scan"></button>
+					</view>
+					<view class="right">
+						<view class="center-bg">
+							<image class="icon" src="/assets/main/icon_device_list.png"></image>
+							<text class="text">设备列表</text>
+						</view>
+						<button class="phone" open-type="getPhoneNumber" bindgetphonenumber="getPhone" data-type="list"></button>
+					</view>
+				</block>
+			</view>
+			<view class="bottom">
+				<block wx:if="{{isLogin}}">
+					<view class="left" catchtap="centerOnTap">
+						<view class="center-bg">
+							<image class="icon" src="/assets/main/icon_events.png"></image>
+							<text class="text">事件中心</text>
+						</view>
+					</view>
+					<view class="right" catchtap="accountOnTap">
+						<view class="center-bg">
+							<image class="icon" src="/assets/main/icon_setting.png"></image>
+							<text class="text">我的账号</text>
+						</view>
+					</view>
+				</block>
+				<block wx:else>
+					<view class="left">
+						<view class="center-bg">
+							<image class="icon" src="/assets/main/icon_events.png"></image>
+							<text class="text">事件中心</text>
+						</view>
+						<button class="phone" open-type="getPhoneNumber" bindgetphonenumber="getPhone" data-type="center"></button>
+					</view>
+					<view class="right">
+						<view class="center-bg">
+							<image class="icon" src="/assets/main/icon_setting.png"></image>
+							<text class="text">我的账号</text>
+						</view>
+						<button class="phone" open-type="getPhoneNumber" bindgetphonenumber="getPhone" data-type="account"></button>
+					</view>
+				</block>
+			</view>
+		</view>
 	</view>
 
 
-	<view class="item-background">
+	<!-- <view class="item-background">
 		<view class="top">
-			<view class="left" catchtap="scanOnTap">
-				<view class="center-bg">
-					<image class="icon" src="/assets/main/icon_scan.png"></image>
-					<text class="text">设备录入</text>
+			<block wx:if="{{isLogin}}">
+				<view class="left" catchtap="scanOnTap">
+					<view class="center-bg">
+						<image class="icon" src="/assets/main/icon_scan.png"></image>
+						<text class="text">设备录入</text>
+					</view>
 				</view>
-			</view>
-			<view class="right" catchtap="listOnTap">
-				<view class="center-bg">
-					<image class="icon" src="/assets/main/icon_device_list.png"></image>
-					<text class="text">设备列表</text>
+				<view class="right" catchtap="listOnTap">
+					<view class="center-bg">
+						<image class="icon" src="/assets/main/icon_device_list.png"></image>
+						<text class="text">设备列表</text>
+					</view>
 				</view>
-			</view>
+			</block>
+			<block wx:else>
+				<view class="left">
+					<view class="center-bg">
+						<image class="icon" src="/assets/main/icon_scan.png"></image>
+						<text class="text">设备录入</text>
+					</view>
+					<button class="phone" open-type="getPhoneNumber" bindgetphonenumber="getPhone" data-type="scan"></button>
+				</view>
+				<view class="right">
+					<view class="center-bg">
+						<image class="icon" src="/assets/main/icon_device_list.png"></image>
+						<text class="text">设备列表</text>
+					</view>
+					<button class="phone" open-type="getPhoneNumber" bindgetphonenumber="getPhone" data-type="list"></button>
+				</view>
+			</block>
 		</view>
 		<view class="bottom">
-			<view class="left" catchtap="centerOnTap">
-				<view class="center-bg">
-					<image class="icon" src="/assets/main/icon_events.png"></image>
-					<text class="text">事件中心</text>
+			<block wx:if="{{isLogin}}">
+				<view class="left" catchtap="centerOnTap">
+					<view class="center-bg">
+						<image class="icon" src="/assets/main/icon_events.png"></image>
+						<text class="text">事件中心</text>
+					</view>
 				</view>
-			</view>
-			<view class="right" catchtap="accountOnTap">
-				<view class="center-bg">
-					<image class="icon" src="/assets/main/icon_setting.png"></image>
-					<text class="text">我的账号</text>
+				<view class="right" catchtap="accountOnTap">
+					<view class="center-bg">
+						<image class="icon" src="/assets/main/icon_setting.png"></image>
+						<text class="text">我的账号</text>
+					</view>
 				</view>
-			</view>
+			</block>
+			<block wx:else>
+				<view class="left">
+					<view class="center-bg">
+						<image class="icon" src="/assets/main/icon_events.png"></image>
+						<text class="text">事件中心</text>
+					</view>
+					<button class="phone" open-type="getPhoneNumber" bindgetphonenumber="getPhone" data-type="center"></button>
+				</view>
+				<view class="right">
+					<view class="center-bg">
+						<image class="icon" src="/assets/main/icon_setting.png"></image>
+						<text class="text">我的账号</text>
+					</view>
+					<button class="phone" open-type="getPhoneNumber" bindgetphonenumber="getPhone" data-type="account"></button>
+				</view>
+			</block>
 		</view>
-	</view>
+	</view> -->
 
 </view>

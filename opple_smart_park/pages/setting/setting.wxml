@@ -4,10 +4,12 @@
   <view class="title_container">
     <image class="title_image" src="/assets/setting/ic_setting_bg.png"></image>
     <image class="title_icon" src="/assets/setting/ic_setting_user.png"></image>
-    <text class="title_phone">15515155657</text>
+    <text class="title_phone">{{userName}}</text>
   </view>
   <itemView item="{{name}}"></itemView>
   <itemView item="{{phone}}"></itemView>
   <itemView item="{{role}}"></itemView>
-  <itemView item="{{project}}" class="project"></itemView>
+  <itemView item="{{project}}" class="project" list="{{chooseList}}" bindproject="actionForChooseProject"></itemView>
+
+  <chooseView show="{{showChooseProject}}" bindselect="actionForSelectProject" list="{{chooseList}}"></chooseView>
 </view>

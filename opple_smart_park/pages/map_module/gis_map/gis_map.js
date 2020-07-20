@@ -10,6 +10,8 @@ Page({
    */
   data: {
 
+      // 项目id
+      projectId: '',
       // 区域列表
       areaList:[],
       // 当前选中区域
@@ -95,7 +97,13 @@ Page({
   // 请求区域列表
   netWorkForAreaList: function() {
 
-    API.post(API.mc_area_list,{projectId: PROJECT.projectId, token: 'string'}).then((res) => {
+    // 获取当前项目id
+    const project = wx.getStorageSync('project');
+    const projectId = project.id || PROJECT.projectId;
+    this.setData({
+      projectId: projectId
+    });
+    API.post(API.mc_area_list,{projectId: projectId, token: 'string'}).then((res) => {
       console.log(res);
       this.setData({
         areaList: res.items,
@@ -240,12 +248,8 @@ Page({
 
   // 点击进去设备列表
   actionForDeviceList: function () {
-    let param = {
-      selectArea: this.data.selectArea,
-      areaList: this.data.areaList
-    }
     wx.navigateTo({
-      url: '/pages/device_list/device_list?area=' + JSON.stringify(param)
+      url: '/pages/device_list/device_list'
     })
   },
 
@@ -344,7 +348,7 @@ Page({
   // 区域音频列表
   actionForAreaMusicList: function () {
     const params = {
-      "projectId": 1,
+      "projectId": this.data.projectId,
       "token": "string"
     };
 

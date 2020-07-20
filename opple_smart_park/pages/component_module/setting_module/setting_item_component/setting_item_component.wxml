@@ -1,7 +1,7 @@
 <!--pages/component_module/setting_module/setting_item_component/setting_item_component.wxml-->
 
 <view class="setting_item_component_container">
-  <view class="setting_item_contianer">
+  <view class="setting_item_contianer" catchtap="actionForTap">
     <view class="title_container">
       <image class="icon" src="{{item.icon}}"></image>
       <text class="title">{{item.title || ''}}</text>

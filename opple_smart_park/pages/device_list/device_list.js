@@ -1,6 +1,7 @@
 // pages/device_list/device_list.js
 
 const API = require('../../utils/api.js');
+const PROJECT = require('../../utils/util.js');
 
 Page({
 
@@ -71,15 +72,41 @@ Page({
    */
   onLoad: function (options) {
 
-    let area = JSON.parse(options.area)
+    // let area = JSON.parse(options.area)
 
-    this.setData({
-      area: area,
-      areaId: area.selectArea.id
-    })
+    // this.setData({
+    //   area: area,
+    //   areaId: area.selectArea.id
+    // })
 
-    let currentIndex = this.data.currentTab
-    this.requestData(currentIndex, true)
+    // let currentIndex = this.data.currentTab
+    // this.requestData(currentIndex, true)
+
+    this.netWorkForAreaList()
+  },
+
+  netWorkForAreaList: function() {
+
+    const project = wx.getStorageSync('project');
+    const projectId = project.id || PROJECT.projectId;
+
+    API.post(API.mc_area_list,{projectId: projectId, token: 'string'}).then((res) => {
+      console.log(res);
+      let area = {
+        selectArea: res.items.length > 0 ? res.items[0] : null,
+        areaList: res.items
+      }
+      this.setData({
+        area: area,
+        areaId: area.selectArea.id
+      });
+
+      let currentIndex = this.data.currentTab
+      this.requestData(currentIndex, true)
+      // this.networkForAreaItem(this.data.selectArea);
+    }).catch(error => {
+      console.log(error)
+    });
   },
 
   requestData: function (currentIndex, isFirst) {

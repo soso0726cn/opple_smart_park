@@ -21,6 +21,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    // 选中
+    actionForTap: function () {
+      if(this.data.item.type == 'project') {
+        this.triggerEvent('project',{})
+      }
+    }
   }
 })
