@@ -1,0 +1,38 @@
+<!--pages/map_module/gis_map_v2/gis_map_v2.wxml-->
+
+<!-- V2.0 版本地图 -->
+<view class="container" style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px">
+<!-- <view class="container"> -->
+	<navBar backType='back' title='GIS地图'></navBar>
+  <!-- 地图 -->
+  <map class="map_container" style="top: {{statusHeight+navigateHeight}}px" longitude="{{selectAreaMapSetting.centerLocation.longitude || 120.797248}}" latitude="{{selectAreaMapSetting.centerLocation.latitude || 31.034777}}" show-location="true" markers="{{selectAreaProducts}}" bindmarkertap='actionForChooseProduct' bindregionchange='actionForChange'></map>
+
+   <!-- 顶部 -->
+  <view class="title_view_container" catchtouchmove="none">
+    <image class="title_map" src="/assets/map_view/icon_nav_location.png" catchtap="actionForLocation"></image>
+    <view class="title_item" catchtap="actionForChangeArea">{{selectArea.name || ''}}</view>
+    <image class="title_voice" catchtap="actionForAreaBroadcast" src="/assets/map_view/icon_nav_broadcast.png"></image>
+    <image class="title_light" catchtap="actionForAreaLight" src="/assets/map_view/icon_nav_light.png"></image>
+  </view>
+
+  <image class="device_container" style="top: {{statusHeight+navigateHeight+70}}px" src="/assets/map_view/icon_device_list.png" catchtap="actionForDeviceList"></image>
+  <image class="select_container" style="top: {{statusHeight+navigateHeight+130}}px" src="/assets/map_view/xuanze.jpg" catchtap="actionForSelect"></image>
+
+
+  <!-- 选择框区域 -->
+  <selectView status="{{changeAreaStatus}}" list="{{areaList}}" bindselect="actionForChooseArea"></selectView>
+
+  <!-- 区域广播 -->
+  <areaBroadcastView status="{{selectAreaBroadcastStatus}}" area="{{selectArea}}"></areaBroadcastView>
+
+  <!-- 区域调光 -->
+  <areaLightView status="{{selectAreaLightingStatus}}" area="{{selectArea}}"></areaLightView>
+
+  <!-- 设备控制台 -->
+  <productControlView status="{{selectSignalProductStatus}}" product="{{selectSignalProduct}}"></productControlView>
+
+  <!-- 多选 -->
+  <multipleView status="{{multipleStatus}}" lists="{{multipleLists}}" bindselect="actionForMultipleSelects" ></multipleView>
+
+</view>
+

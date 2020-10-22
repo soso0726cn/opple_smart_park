@@ -4,9 +4,16 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    video: {
+    
+
+    product: {
       type: Object,
-      value: {}
+      value: null,
+    },
+
+    status: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -14,23 +21,16 @@ Component({
    * 组件的初始数据
    */
   data: {
-    show: false
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    showLiveModal () {
+    actionForClose: function  () {
       this.setData({
-        show: true
+        status: false,
       })
-    },
-
-    closeLiveModal () {
-      this.setData({
-        show: false
-      })
-    },
+    }
   }
 })

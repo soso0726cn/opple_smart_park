@@ -1,0 +1,28 @@
+<!--pages/component_module/product_module/product_control_component/product_control_component.wxml-->
+
+
+<!-- 单个灯杆调光 -->
+<view class="container" wx:if="{{status}}" catchtap="actionForClose" catchtouchmove="none">
+	<view class="product_control_component_container">
+		<text class="title">灯杆：{{product.name}}</text>
+		<view class="close" catchtap="actionForClose">
+			<image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>
+		</view>
+		<view class="control_container">
+			<view class="control_item_container" wx:for="{{product.devices || []}}" wx:key="index" catchtap="actionForChooseControl" data-item="{{item}}">
+				<image class="control_image" src="{{item.showSetting.image}}"></image>
+				<text class="control_title">{{item.showSetting.title}}</text>
+			</view>
+		</view>
+	</view>
+
+
+  <!-- 单个灯杆 -->
+  <signalLightView status="{{signalLightStatus}}" product="{{signalLight}}"></signalLightView>
+  <!-- 单个广播 -->
+  <signalBroadcastView status="{{signalBroadcastStatus}}" product="{{signalBroadcast}}"></signalBroadcastView>
+  <!-- 视频 -->
+  <video_modal  status="{{signalVcrStauts}}"  product="{{signalVcr}}"></video_modal>
+	<!-- 广告 -->
+	<ad_view status="{{signalAdStatus}}" product="{{signalAd}}"></ad_view>
+</view>

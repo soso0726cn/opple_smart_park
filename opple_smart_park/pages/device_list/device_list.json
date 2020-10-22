@@ -1,9 +1,11 @@
 {
   "navigationBarTitleText": "设备列表",
   "usingComponents": {
-    "product_broadcast": "/pages/component_module/product_broadcast_component/product_broadcast_component",
-    "product_light": "/pages/component_module/product_light_component/product_light_component",
-    "select_view": "/pages/component_module/select_component/select_component",
-    "live_modal": "/pages/component_module/live_modal/live_modal"
+    "signalLightView": "/pages/component_module/light_module/signal_light_component/signal_light_component",
+    "signalBroadcastView": "/pages/component_module/broadcast_module/signal_broadcast_component/signal_broadcast_component",
+    "selectView": "/pages/component_module/select_module/select_component/select_component",
+    "ad_view": "/pages/component_module/ad_module/ad_component",
+    "live_modal": "/pages/component_module/live_modal/live_modal",
+    "sensor_view": "/pages/component_module/sensor_module/sensor_component"
   }
 }

@@ -1,0 +1,26 @@
+<!--pages/component_module/sensor_module/sensor_component.wxml-->
+
+<view class="signal_light_component_container" wx:if="{{status}}" catchtap="none">
+	<view class="product_light_component_container">
+		<view class="product_detail_container">
+			<view class="detial_image"></view>
+			<view class="close" catchtap="actionForClose">
+				<image class="detail_close" src="/assets/component_module/video_modal/icon_close.png"></image>
+			</view>
+
+			<text class="detail_title">{{name || ''}}</text>
+			<view class="more_container">
+				<view class="left_container">
+          <block wx:for="{{sensors}}" wx:key="index">
+            <text class="left_title" wx:if="{{index < 3}}">{{item.desc+' : '+item.value+item.unit}}</text>
+          </block>
+				</view>
+				<view class="right_container">
+					<block wx:for="{{sensors}}" wx:key="index">
+            <text class="right_title" wx:if="{{index > 2}}">{{item.desc+' : '+item.value+item.unit}}</text>
+          </block>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

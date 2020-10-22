@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "signalLightView": "/pages/component_module/light_module/signal_light_component/signal_light_component",
+    "signalBroadcastView": "/pages/component_module/broadcast_module/signal_broadcast_component/signal_broadcast_component",
+    "ad_view": "/pages/component_module/ad_module/ad_component",
+    "video_modal": "/pages/component_module/video_modal/video_modal"
+  }
+}

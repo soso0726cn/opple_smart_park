@@ -1,7 +1,7 @@
 // pages/main/main.js
 
 const API = require('../../utils/api.js');
-
+const app = getApp()
 /**
  * 登录逻辑
  * 1、wx.checkSession
@@ -26,13 +26,16 @@ Page({
    */
   data: {
     isLogin: false, // 当前账号是否已登录
-    type: ''
+    type: '',
+    statusHeight: 44,
+    navigateHeight: 44
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({ statusHeight: app.globalData.statusHeight,navigateHeight: app.globalData.navigateHeight});
     this.checkSession()
   },
 
@@ -77,26 +80,37 @@ Page({
   // 地图
   locationOnTap: function () {
     wx.navigateTo({
-      url: '/pages/map_module/gis_map/gis_map'
+      url: '/pages/map_module/gis_map_v2/gis_map_v2'
     })
   },
 
   // 设备录入
   scanOnTap: function () {
-    console.log('------ 设备录入 ------')
-    wx.scanCode({
-      success (res) {
-        console.log(res)
-      },
-      fail(error) {
-        console.log(error);
-      },
-    });
+
+    wx.scanCode().then(res => {
+      if (res.errMsg == 'scanCode:ok') {
+        wx.getLocation({
+          type: 'wgs84'
+        }).then(location => {
+
+          let data = {
+            code: res.result,
+            location: {
+              longitude: location.longitude,
+              latitude: location.latitude,
+            }
+          }
+          
+          wx.navigateTo({
+            url: '/pages/equipment/equipment?data=' + JSON.stringify(data)
+          })
+        })
+      }
+    })
   },
 
   // 设备列表
   listOnTap: function () {
-    console.log('------ 设备列表 ------')
     wx.navigateTo({
       url: '/pages/device_list/device_list'
     })
@@ -104,14 +118,32 @@ Page({
 
   // 事件中心
   centerOnTap: function () {
-    console.log('------ 事件中心 ------')
+    wx.navigateTo({
+      url: '/pages/center/center'
+    })
   },
 
   // 我的账号
   accountOnTap: function () {
-    wx.navigateTo({
-      url: '/pages/setting/setting'
-    })
+    const temp = wx.getStorageSync('user');
+    const params = {
+      "userName": temp.phone,
+    }
+    console.log("accountOnTap:user.phone:"+temp.phone)
+    API.post(API.user_info_fetch, params).then((res) => {
+      if (res.rstCode === 200) {
+        // 1.保存用户信息到本地
+        wx.setStorageSync('user', res.info);
+        wx.navigateTo({
+          url: '/pages/setting/setting'
+        })
+      }
+    }).catch(error => {
+      wx.showToast({
+        icon: 'none',
+        title: error.data.desc
+      })
+    });
   },
 
   requestFetch: function (param) {
@@ -170,7 +202,7 @@ Page({
           switch (param.type) {
             case 'location':
               wx.navigateTo({
-                url: '/pages/map_module/gis_map/gis_map'
+                url: '/pages/map_module/gis_map_v2/gis_map_v2'
               })
               break;
             case 'scan':
@@ -189,7 +221,9 @@ Page({
               })
               break;
             case 'center':
-              
+              wx.navigateTo({
+                url: '/pages/center/center'
+              })
               break;
             case 'account':
               wx.navigateTo({

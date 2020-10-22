@@ -1,6 +1,7 @@
 <!--pages/setting/setting.wxml-->
-
-<view class="container">
+<view class="container" style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px">
+<!-- <view class="container"> -->
+	<navBar backType='back' title='账号设置' backgroudColor="#027aff"></navBar>
   <view class="title_container">
     <image class="title_image" src="/assets/setting/ic_setting_bg.png"></image>
     <image class="title_icon" src="/assets/setting/ic_setting_user.png"></image>
@@ -9,7 +10,7 @@
   <itemView item="{{name}}"></itemView>
   <itemView item="{{phone}}"></itemView>
   <itemView item="{{role}}"></itemView>
-  <itemView item="{{project}}" class="project" list="{{chooseList}}" bindproject="actionForChooseProject"></itemView>
+  <itemView item="{{project}}" class="project" bindproject="actionForChooseProject"></itemView>
 
-  <chooseView show="{{showChooseProject}}" bindselect="actionForSelectProject" list="{{chooseList}}"></chooseView>
+  <selectView status="{{showChooseProject}}" list="{{chooseList}}" bindselect="actionForSelectProject"></selectView>
 </view>

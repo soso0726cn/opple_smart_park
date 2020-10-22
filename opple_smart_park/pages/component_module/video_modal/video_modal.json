@@ -1,5 +1,7 @@
 
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "live_modal": "/pages/component_module/live_modal/live_modal"
+  }
 }

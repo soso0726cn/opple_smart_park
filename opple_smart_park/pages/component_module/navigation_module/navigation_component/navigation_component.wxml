@@ -1,0 +1,14 @@
+<!--pages/component_module/navigation_module/navigation_component/navigation_component.wxml-->
+
+<!-- 导航栏 -->
+<view class="navigation_component_container" style='height: {{statusHeight+navigateHeight}}px; background-color: {{backgroudColor}}'>
+	<view class="navigation_container">
+		<view class="statusView" style='height: {{statusHeight}}px'></view>
+		<view class="type_view" style='height: {{navigateHeight}}px'>
+			<view class="back_img_container" wx:if="{{backType == 'back'}}">
+				<image class="back_img" src="/assets/component_module/back.png" catchtap="backAction" />
+			</view>
+      <text class="type_title">{{title}}</text>
+		</view>
+	</view>
+</view>

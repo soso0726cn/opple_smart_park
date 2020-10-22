@@ -4,37 +4,44 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    video: {
+    product: {
       type: Object,
       value: {}
+    },
+
+    status: {
+      type: Boolean,
+      value: false
     }
+
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    show: false
+    liveProduct: null,
+    liveStatus: false
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    showVideoModal () {
+    actionForClose: function() {
       this.setData({
-        show: true
-      })
-    },
-
-    closeVideoModal () {
-      this.setData({
-        show: false
+        status: false
       })
     },
 
     liveOnTap (e) {
-      this.triggerEvent("liveOnTap", {video: e.currentTarget.dataset.data})
+      console.log("this.data.product:"+this.data.product.picUrl);
+      if(this.data.product.picUrl != null&&this.data.product.picUrl!=""){
+        this.setData({
+          liveProduct: this.data.product,
+          liveStatus: true
+        })
+      }
     }
   }
 })

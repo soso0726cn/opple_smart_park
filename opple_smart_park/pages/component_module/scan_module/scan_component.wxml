@@ -1,0 +1,50 @@
+<!--pages/component_module/scan_module/scan_component.wxml-->
+<view class="container">
+  <view class="item-background">
+    <text class="title">{{deviceType == 0 ? '灯具名称':'灯杆名称'}}</text>
+    <input class="input" placeholder="输入设备名称" placeholder-class="placeholder" bindinput="actionForNameInput" value="{{item.name || ''}}"></input>
+    <view class="line"></view>
+  </view>
+  <view class="item-background">
+    <text class="title">{{deviceType == 0 ? '灯具编号':'灯杆编号'}}</text>
+    <input class="input" placeholder="输入设备编号" placeholder-class="placeholder" bindinput="actionForCodeInput" value="{{item.code || ''}}"></input>
+    <view class="line"></view>
+  </view>
+  <view class="item-background" catchtap="actionForProductType">
+    <text class="title">{{deviceType == 0 ? '灯具型号':'灯杆型号'}}</text>
+    <view class="right-bg">
+      <text class="right-title">{{item.model.name}}</text>
+      <image class="arrow" src="/assets/component_module/scan_module/right_arrow.png"></image>
+    </view>
+    <view class="line"></view>
+  </view>
+  <view class="item-background" catchtap="actionForArea" >
+    <text class="title">所属区域</text>
+    <view class="right-bg">
+      <text class="right-title">{{item.area.name}}</text>
+      <image class="arrow" src="/assets/component_module/scan_module/right_arrow.png"></image>
+    </view>
+    <view class="line"></view>
+  </view>
+
+  <view class="item-background">
+    <view class="location-bg">
+      <text class="context">经度</text>
+      <text class="input-location">{{item.location.longitude || '0.0'}}</text>
+      <text class="context">纬度</text>
+      <text class="input-location">{{item.location.latitude || '0.0'}}</text>
+    </view>
+    
+
+    <image class="location" src="/assets/component_module/scan_module/location.png" catchtap="getLocation"></image>
+    <view class="line"></view>
+  </view>
+
+  <view class="item-background">
+    <text class="title">备注</text>
+    <input class="input" bindinput="actionForRemark" value="{{item.remark || ''}}"></input>
+    <view class="line"></view>
+  </view>
+</view>
+
+

@@ -2,14 +2,17 @@
 
 const API = require('../../utils/api.js');
 const PROJECT = require('../../utils/util.js');
-
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    onTap:['', 'detailOnTap', 'broadcastOnTap'],
+
+    statusHeight: 44,
+    navigateHeight: 44,
+    onTap:['', 'detailOnTap', 'broadcastOnTap', 'adOnTap', 'sensorOnTap'],
     area: {},
     areaId: '',
     // 区域音频列表
@@ -25,8 +28,27 @@ Page({
     },
     videoIcon: {
       normal: '/assets/device_list/icon_play_normal.png',
-      select: '/assets/device_list/icon_play_select.png'
+      select: '/assets/device_list/icon_play_select.png',
+      idle: '/assets/device_list/icon_play_idle.png'
     },
+
+    adStatus: false,
+    adProduct: {},
+
+    sensorStatus: false,
+    sensorItem: {},
+
+    signalLightStatus: false,
+    signalLight: {},
+
+    signalBroadcastStatus: false,
+    signalBroadcast: {},
+
+    liveProduct: {},
+    liveStatus: false,
+
+    changeAreaStatus: false,
+    areaList: {},
 
     // 当前选中产品设置
     productSetting:{
@@ -44,8 +66,9 @@ Page({
     },
 
     currentTab: 0,
-    pageNumber: 0,
-    pageSize: 8,
+    pageNumber: [0, 0, 0, 0, 0],
+    listHeight: [280, 230, 230, 280, 260],
+    pageSize: 20,
     loading: false,
     controlVideoItem: {},
     tabList: [
@@ -58,13 +81,16 @@ Page({
       {
         title: '广播设备'
       },
-      // {
-      //   title: '广告屏幕'
-      // }
+      {
+        title: '广告屏幕'
+      },
+      {
+        title: '环境检测'
+      }
     ],
-    recommends: [[], [], [], []],
-    recommendsRight: [[], [], [], []],
-    recommendsLeft: [[], [], [], []],
+    recommends: [[], [], [], [], []],
+    recommendsRight: [[], [], [], [], []],
+    recommendsLeft: [[], [], [], [], []],
   },
 
   /**
@@ -72,6 +98,7 @@ Page({
    */
   onLoad: function (options) {
 
+    this.setData({ statusHeight: app.globalData.statusHeight,navigateHeight: app.globalData.navigateHeight});
     // let area = JSON.parse(options.area)
 
     // this.setData({
@@ -88,7 +115,7 @@ Page({
   netWorkForAreaList: function() {
 
     const project = wx.getStorageSync('project');
-    const projectId = project.id || PROJECT.projectId;
+    const projectId = project.id;
 
     API.post(API.mc_area_list,{projectId: projectId, token: 'string'}).then((res) => {
       console.log(res);
@@ -103,7 +130,7 @@ Page({
 
       let currentIndex = this.data.currentTab
       this.requestData(currentIndex, true)
-      // this.networkForAreaItem(this.data.selectArea);
+
     }).catch(error => {
       console.log(error)
     });
@@ -113,23 +140,43 @@ Page({
     let recommends = this.data.recommends
     let pageSize = this.data.pageSize
 
+    const project = wx.getStorageSync('project');
+    const projectId = project.id;
+
     if (currentIndex === 0) {
 
+      let pageNumber = this.data.pageNumber[currentIndex]
+
+      if (isFirst) {
+        pageNumber = 0
+      }
+
+      let offset = pageNumber /* pageSize*/
+
       const params = {
+        "offset": offset,
+        "pageSize": pageSize,
         "queryConditions": {
-          "projectId": 1,
-          "areaId": this.data.areaId
+          "areaId": this.data.areaId,
+          "projectId": projectId
         },
         "token": "string"
-      };
+      }
 
-      API.post(API.vcr_ipc_list, params).then((res) => {
+      API.post(API.vcr_ipc_page, params).then((res) => {
 
         if (res.rstCode === 200) {
 
-          recommends[currentIndex] = res.items
+          let newList = recommends[currentIndex]
+          newList = newList.concat(res.rows)
 
-          this.refreshListData(recommends[currentIndex], 0, currentIndex)
+          recommends[currentIndex] = newList
+
+          if (res.rows.length === pageSize) {
+            pageNumber = pageNumber + 1
+          }
+
+          this.refreshListData(recommends[currentIndex], pageNumber, currentIndex)
         }
       }).catch(error => {
         this.setData({
@@ -138,7 +185,7 @@ Page({
       });
     } else if (currentIndex === 1) {
 
-      let pageNumber = this.data.pageNumber
+      let pageNumber = this.data.pageNumber[currentIndex]
 
       if (isFirst) {
         pageNumber = 0
@@ -149,7 +196,7 @@ Page({
       const params = {
         "offset": offset,
         "pageSize": pageSize,
-        "projectId": "1",
+        "projectId": projectId,
         // "areaId": this.data.areaId,
         "token": "string"
       };
@@ -158,9 +205,19 @@ Page({
 
         let newList = recommends[currentIndex]
         newList = newList.concat(res.rows)
+
+        newList.filter(item => {
+          if (item.online === 0) {
+            item.onlineContext = '设备离线'
+          } else if (item.online === 1) {
+            item.onlineContext = '设备在线'
+          } else {
+            item.onlineContext = '设备报警'
+          }
+        })
         recommends[currentIndex] = newList
 
-        if (res.total === 10) {
+        if (res.rows.length === pageSize) {
           pageNumber = pageNumber + 1
         }
 
@@ -172,38 +229,54 @@ Page({
         })
       });
     } else if (currentIndex === 2) {
+
+      let pageNumber = this.data.pageNumber[currentIndex]
+
+      if (isFirst) {
+        pageNumber = 0
+      }
+
+      let offset = pageNumber /* pageSize*/
       
       const params = {
+        "offset": offset,
+        "pageSize": pageSize,
         "queryConditions": {
-          "projectId": 1,
-          "areaId": this.data.areaId
+          "areaId": this.data.areaId,
+          "projectId": projectId,
         },
         "token": "string"
       };
 
-      API.post(API.bc_device_list, params).then((res) => {
+      API.post(API.bc_device_page, params).then((res) => {
 
-        res.items.filter((item) => {
+        res.rows.filter((item) => {
           let status = item.status
+
+          item.showStatus = (item.status == 'idle' ? '空闲' : (item.status == 'offline' ? '离线' : (item.status == 'play' ? '正在播放' : (item.status == 'warning' ? '报警' : '空闲'))))
 
           switch (status) {
             case 'offline': 
               {
+                item.playImage = this.data.videoIcon.normal,
                 item.statusContext = '状态：离线'
               }
               break;
             case 'idle': 
               {
+                item.playImage = this.data.videoIcon.idle,
                 item.statusContext = '状态：空闲'
               }
               break;
             case 'play': 
               {
+                item.playImage = this.data.videoIcon.select,
                 item.statusContext = '正在播放'
               }
               break;
             case 'warning': 
               {
+                item.playImage = this.data.videoIcon.select,
                 item.statusContext = '状态：报警'
               }
               break;
@@ -213,8 +286,94 @@ Page({
 
           }
         })
+
+        let newList = recommends[currentIndex]
+        newList = newList.concat(res.rows)
+
+        recommends[currentIndex] = newList
+
+        if (res.rows.length === pageSize) {
+          pageNumber = pageNumber + 1
+        }
+
+        this.refreshListData(recommends[currentIndex], pageNumber, currentIndex)
         
-        recommends[currentIndex] = res.items
+      }).catch(error => {
+        this.setData({
+          currentTab: currentIndex
+        })
+      });
+    } else if (currentIndex == 3) {
+      let pageNumber = this.data.pageNumber[currentIndex]
+
+      if (isFirst) {
+        pageNumber = 0
+      }
+
+      let offset = pageNumber * pageSize
+
+      const params = {
+        "offset": offset,
+        "pageSize": pageSize,
+        "projectId": projectId,
+        "areaId": this.data.areaId,
+        "areaPath": this.data.area.selectArea.path,
+        "screenshot": 1,
+        "token": "string"
+      };
+
+      API.post(API.scn_device_list, params).then((res) => {
+
+        let newList = recommends[currentIndex]
+        newList = newList.concat(res.rows)
+
+        newList.filter(item => {
+          if (item.online === 0) {
+            item.onlineContext = '设备离线'
+          } else if (item.online === 1) {
+            item.onlineContext = '设备在线'
+          } else {
+            item.onlineContext = '设备报警'
+          }
+        })
+        recommends[currentIndex] = newList
+
+        if (res.rows.length === pageSize) {
+          pageNumber = pageNumber + 1
+        }
+
+        this.refreshListData(recommends[currentIndex], pageNumber, currentIndex)
+        
+      }).catch(error => {
+        this.setData({
+          currentTab: currentIndex
+        })
+      });
+    } else if (currentIndex == 4) {
+
+      const params = {
+        "queryConditions": {
+          "manufactureId": 1,
+          "modelId": 1,
+          "projectId": projectId
+        },
+        "token": "string"
+      };
+
+      API.post(API.sensor_weather_device_list, params).then((res) => {
+
+        let newList = res.items
+
+        newList.filter(item => {
+          if (item.online === 0) {
+            item.onlineContext = '设备离线'
+          } else if (item.online === 1) {
+            item.onlineContext = '设备在线'
+          } else {
+            item.onlineContext = '设备报警'
+          }
+        })
+        recommends[currentIndex] = newList
 
         this.refreshListData(recommends[currentIndex], 0, currentIndex)
         
@@ -250,6 +409,7 @@ Page({
     }
   },
 
+
   /**
    * 滑动切换tab
    */
@@ -272,17 +432,15 @@ Page({
     }
   },
 
-  refreshListData: function (recommends, pageNumber, currentIndex) {
+  refreshListData: function (recommends, pageNum, currentIndex) {
     var left = new Array()
     var right = new Array()
 
     let recommendsRight = this.data.recommendsRight
     let recommendsLeft = this.data.recommendsLeft
-    let pageNum = this.data.pageNumber
+    let pageNumber = this.data.pageNumber
+    pageNumber[currentIndex] = pageNum
   
-    if (currentIndex === 1) {
-      pageNum = pageNumber + 1
-    }
 
     for (let i = 0; i < recommends.length; ++i) {
       if (i % 2 === 0) {
@@ -299,7 +457,7 @@ Page({
     this.setData({
       recommendsRight: recommendsRight,
       recommendsLeft: recommendsLeft,
-      pageNumber: pageNum,
+      pageNumber: pageNumber,
       currentTab: currentIndex,
       loading: false
     })
@@ -310,10 +468,20 @@ Page({
    */
   onRefresh: function () {
     let currentIndex = this.data.currentTab
+    let recommends = this.data.recommends
+    recommends[currentIndex] = []
+
+    this.setData({
+      recommends: recommends
+    })
 
     this.requestData(currentIndex, true)
   },
 
+
+  actionForRefreshAdView : function () {
+    this.onRefresh();
+  },
   /**
    *  上拉加载列表数据
    */
@@ -322,36 +490,34 @@ Page({
     let recommends = this.data.recommends
     let pageSize = this.data.pageSize
 
-    if (currentIndex === 1 && parseInt(recommends[currentIndex].length / pageSize) >= 1 && 
+    if (parseInt(recommends[currentIndex].length / pageSize) >= 1 && 
     recommends[currentIndex].length % pageSize === 0) {
       this.requestData(currentIndex, false)
     }
+  },
+
+  /**
+   * ---------- 区域选择 ----------
+   */
+  actionForChangeArea : function () {
+    this.setData({
+      changeAreaStatus: true
+    })
+  },
+
+  // 选中区域
+  actionForChooseArea: function (e) {
+    let select = e.detail.item;
+    this.netWorkForAreaList(select);
   },
 
   // 区域点击
   changeAreaOnTap: function () {
     let areaPlayList = this.data.area.areaList
     this.setData({
-      areaPlayList: areaPlayList,
-      areaPlayListStatus: true,
-      showType: '2'
+      changeAreaStatus: true,
+      areaList: areaPlayList
     })
-  },
-
-  // 区域选择
-  actionForChooseAera: function (e) {
-
-    let currentIndex = this.data.currentTab
-    let selectArea = e.detail.item
-    let area = this.data.area
-    area.selectArea = selectArea
-
-    this.setData({
-      area: area,
-      areaId: selectArea.id
-    })
-
-    this.requestData(currentIndex, false)
   },
 
   // 视频监控
@@ -366,41 +532,28 @@ Page({
       if (recommends[0][index].rtmp === null || recommends[0][index].rtmp === '') {
         return
       }
-
-      this.setData({
-        controlVideoItem: data
-      })
-
-      this.selectComponent("#live_modal").showLiveModal()
-
     } else {
       let recommends = this.data.recommendsRight
-
       if (recommends[0][index].rtmp === null || recommends[0][index].rtmp === '') {
         return
       }
-
-      this.setData({
-        controlVideoItem: data
-      })
-
-      this.selectComponent("#live_modal").showLiveModal()
     }
+
+    this.setData({
+      liveStatus: true,
+      liveProduct: data
+    })
   },
 
   // 照明详情
   detailOnTap: function (e) {
-    let index = e.currentTarget.dataset.index
-    let type = e.currentTarget.dataset.type
+    // let index = e.currentTarget.dataset.index
+    // let type = e.currentTarget.dataset.type
     let item = e.currentTarget.dataset.item
 
-    // if (type === 'left') {
-
-    // } else {
-
-    // }
-
     this.setData({
+      signalLight: item,
+      signalLightStatus: true,
       controlLightItem: item,
       productSetting:{
         productStatus: true, // 默认不显示
@@ -417,11 +570,60 @@ Page({
     item.status = (item.status == 'idle' ? '空闲' : (item.status == 'offline' ? '离线' : (item.status == 'play' ? '广播' : (item.status == 'warning' ? '报警' : '空闲'))))
 
     this.setData({
+      signalBroadcastStatus: true,
+      signalBroadcast: item,
       controlBroadcastItem: item,
       controlBroadcastSetting: {
         controlStatus: true, // 默认不显示
       },
     })
+  },
+
+  // 广告详情
+  adOnTap: function (e) {
+
+    let item = e.currentTarget.dataset.item
+
+    this.setData({
+      adStatus: true,
+      adProduct: item,
+    })
+  },
+
+  // 广告开关
+  adSwitchOnTap: function(e) {
+    // let index = e.currentTarget.dataset.index
+    // let type = e.currentTarget.dataset.type
+    let data = e.currentTarget.dataset.data
+
+    let params = {
+      "deviceId": data.id,
+      "switchOn": data.online == 1 ? 0 : 1,
+      "token": "string"
+    };
+
+    let that = this;
+    API.post(API.scn_device_ctrl_power,params).then((res) => {
+      that.setData({
+        openStatus: true,
+        closeStatus: false
+      });
+
+      wx.showLoading({
+        title: '加载中',
+      })
+      // 重拉数据
+      setTimeout(() => {
+        wx.hideLoading()
+        that.onRefresh()
+      }, 6000);
+      
+    }).catch(error => {
+      wx.showToast({
+        icon:'none',
+        title: '当前设备打开失败',
+      })
+    });
   },
 
   // 照明开关灯
@@ -573,168 +775,17 @@ Page({
     });
   },
 
+  // 环境检测详情
+  sensorOnTap: function (e) {
 
-  /**
-   * ---------- 单个产品调光部分 ----------
-   */
-  // 单个照明部分 状态
-  actionForProductLightStatus: function (e) {
+    let item = e.currentTarget.dataset.item.values
+    let name = e.currentTarget.dataset.item.name
 
-    let params = {
-      "deviceId": this.data.controlLightItem.id,
-      "switchStatus": e.detail.status ? 1 : 0,
-      "token": "string"
-    };
-
-    API.post(API.ls_device_switch,params).then((res) => {
-      let item = this.data.controlLightItem;
-      item.lastRec.online = e.detail.status ? true : false;
-      console.log(item)
-      this.setData({
-        productSetting:{
-          productStatus: this.data.productSetting.productStatus, // 默认不显示
-          openStatus: e.detail.status,
-          closeStatus: !e.detail.status
-        },
-        controlLightItem: item,
-      });
-    }).catch(error => {
-      console.log(error)
-    });
-  },
-
-  // 单个调光部分
-  actionForProductLightChange: function (e) {
-    console.log(e.detail.item);
-
-    const params = {
-      "deviceId": this.data.controlLightItem.id,
-      "brightness": e.detail.item.brightness,
-      "token": "string"
-    };
-
-    API.post(API.ls_device_control,params).then((res) => {
-      console.log(res);
-      let item = this.data.controlLightItem;
-      item.lastRec.level = e.detail.item.brightness;
-      this.setData({
-        controlLightItem: item
-      })
-    }).catch(error => {
-      console.log(error)
-    });
-  },
-
-  // 关闭区域广播
-  actionForClose: function () {
     this.setData({
-      controlLightItem: {},
-      productSetting:{
-        productStatus: false, // 默认不显示
-        openStatus: false,
-        closeStatus: false
-      },
+      sensorStatus: true,
+      sensorItem: item,
+      sensorName: name
     })
-  },
-
-
-
-  /**
-   * ---------- 单个灯杆 控制广播 ---------- 
-   */
-  // 播放单个音频
-  actionForProductPlayMusic: function (e) {
-    const item = e.detail.item;
-    const selectItem = e.detail.selectItem;
-    console.log(item);
-    const params = {
-      "deviceIds": [
-        selectItem.id
-      ],
-      listId: item.id,
-      mode: '1',
-      "token": "string"
-    };
-    API.post(API.bc_manager_device_playList,params).then((res) => {
-      let controlBroadcastItem = this.data.controlBroadcastItem;
-      controlBroadcastItem.status = '广播';
-      this.setData({
-        controlBroadcastItem: controlBroadcastItem,
-      });
-    }).catch(error => {
-      console.log(error)
-    });
-  },
-
-  // 停止播放单个
-  actionForProductStopMusic: function (e) {
-    const selectItem = e.detail.selectItem;
-    const params = {
-      deviceIds: [
-        selectItem.id
-      ],
-      token: "string"
-    };
-    API.post(API.bc_manager_device_stopPlay,params).then((res) => {
-      let controlBroadcastItem = this.data.controlBroadcastItem;
-      controlBroadcastItem.status = '离线';
-      this.setData({
-        controlBroadcastItem: controlBroadcastItem,
-      });
-    }).catch(error => {
-      console.log(error)
-    });
-  },
-
-  // 单个调音量
-  actionForProductPlayVoice: function (e) {
-    const item = e.detail.item;
-    const selectItem = e.detail.selectItem;
-    console.log(item)
-    const params = {
-      deviceIds: [
-        selectItem.id
-      ],
-      token: 'string',
-      volume: item.brightness,
-    };
-    API.post(API.bc_manager_device_volumeSet,params).then((res) => {
-      console.log(res);
-      let controlBroadcastItem = this.data.controlBroadcastItem;
-      controlBroadcastItem.volume = item.brightness;
-      this.setData({
-        controlBroadcastItem: controlBroadcastItem,
-      });
-    }).catch(error => {
-      console.log(error)
-    });
-  },
-
-  // 区域音频列表
-  actionForAreaMusicList: function () {
-    const params = {
-      "projectId": 1,
-      "token": "string"
-    };
-
-    API.post(API.bc_media_type_list,params).then((res) => {
-      this.setData({
-        areaPlayList: res.items,
-        areaPlayListStatus: true,
-      });
-    }).catch(error => {
-      console.log(error)
-    });
-  },
-
-  // 选中音频
-  actionForChooseMusic: function (e) {
-    const item = e.detail.item;
-    console.log(item);
-    this.setData({
-      selectAreaPlay: item,
-      areaPlayListStatus: false, // 默认不显示
-    })
-  },
+  }
 
 })

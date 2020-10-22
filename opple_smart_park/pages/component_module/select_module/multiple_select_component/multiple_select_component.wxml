@@ -1,0 +1,25 @@
+<!--pages/component_module/select_module/multiple_select_component/multiple_select_component.wxml-->
+
+<!-- 多项选择 -->
+<view class="multiple_select_component_container" catchtap="actionForClose" wx:if="{{status}}" catchtouchmove="none">
+
+	<view class="multiple_select_container">
+
+		<view class="select_view_container">
+
+			<view class="select_view" catchtap="actionForHolder">
+				<view class="select_item_view" wx:for="{{showLists}}" wx:key="index" catchtap="actionForChoose" data-index="{{index}}">
+					<image class="img_status" src="/assets/component_module/select.png" wx:if="{{item.status}}"></image>
+					<image class="img_status" src="/assets/component_module/unselect.png" wx:else></image>
+					<text class="title">{{item.name}}</text>
+					<view class="div" wx:if="{{false}}"></view>
+				</view>
+			</view>
+		</view>
+
+		<view class="sure_view" catchtap="actionForHolder">
+			<text class="close" catchtap="actionForClose">取消</text>
+			<text class="sure" catchtap="actionForSure">确定</text>
+		</view>
+	</view>
+</view>

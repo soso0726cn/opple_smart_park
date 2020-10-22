@@ -1,6 +1,18 @@
 /* pages/component_module/live_modal/live_modal.wxss */
 
-.live_container {
+.live_component_container {
+
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  background-color: transparent;
+}
+
+.live_component_container .live_container {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -46,8 +58,8 @@
 }
 
 .close .close_image {
-  width: 26rpx;
-  height: 26rpx;
+  width: 32rpx;
+  height: 32rpx;
 }
 
 .live_bottom_bg {
@@ -56,5 +68,4 @@
   width: 95%;
   height: calc(100% - 130rpx);
   margin-top: 10rpx;
-  /* background-color: greenyellow; */
 }

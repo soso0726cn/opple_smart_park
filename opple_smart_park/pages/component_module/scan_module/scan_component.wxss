@@ -1,0 +1,118 @@
+/* pages/component_module/scan_module/scan_component.wxss */
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  background-color: white;
+}
+
+.item-background {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 100rpx;
+  align-items: center;
+}
+
+.item-background .right-bg {
+  position: absolute;
+  display: flex;
+  width: calc(100% - 200rpx);
+  height: 100%;
+  right: 30rpx;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.right-bg .arrow {
+  position: relative;
+  display: flex;
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.right-bg .right-title {
+  position: relative;
+  display: flex;
+  margin-right: 30rpx;
+  font-size: 30rpx;
+  color: #515151;
+}
+
+.item-background .title {
+  position: relative;
+  display: flex;
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  color: #515151;
+}
+
+.item-background .input {
+  position: relative;
+  display: flex;
+  width: calc(100% - 200rpx);
+  height: 100%;
+  margin-left: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.item-background .placeholder {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #999999;
+}
+
+.item-background .line {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 2rpx;
+  bottom: 0;
+  background-color: #F3F3F3;
+}
+
+.item-background .location-bg {
+  position: relative;
+  display: flex;
+  width: calc(100% - 125rpx);
+  height: 100%;
+  margin-left: 30rpx;
+  align-items: center;
+}
+
+.location-bg .context {
+  position: relative;
+  display: flex;
+  font-size: 30rpx;
+  color: #515151;
+}
+
+.location-bg .input-location {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 200rpx;
+  height: 100%;
+  margin-left: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #999999;
+}
+
+/* .location-bg .placeholder {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #999999;
+} */
+
+.item-background .location {
+  position: absolute;
+  display: flex;
+  width: 45rpx;
+  height: 45rpx;
+  right: 30rpx;
+}

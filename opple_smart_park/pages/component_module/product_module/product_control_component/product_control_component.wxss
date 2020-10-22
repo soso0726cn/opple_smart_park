@@ -1,0 +1,89 @@
+/* pages/component_module/product_module/product_control_component/product_control_component.wxss */
+
+
+.container {
+  z-index: 999;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.product_control_component_container {
+  z-index: 999;
+  position: absolute;
+  left: 50rpx;
+  bottom: 0;
+  width: 650rpx;
+  height: 300rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  border: solid 2rpx #EEEEEE;
+}
+
+
+.product_control_component_container .title {
+  width: 100%;
+  height: 90rpx;
+  margin-left: 30rpx;
+  position: relative;
+  line-height: 90rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+
+.product_control_component_container .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close .close_image {
+  width: 26rpx;
+  height: 26rpx;
+}
+
+.product_control_component_container .control_container {
+  position: relative;
+  width: 100%;
+  height: 210rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.control_container .control_item_container {
+  width: 160rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.control_item_container .control_image {
+  width: 108rpx;
+  height: 108rpx;
+}
+
+.control_item_container .control_title {
+  line-height: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+  color: #333333;
+  margin-top: 20rpx;
+}

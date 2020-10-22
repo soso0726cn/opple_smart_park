@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "signalView": "/pages/component_module/light_module/signal_light_component/signal_light_component",
+    "selectView": "/pages/component_module/select_module/select_component/select_component",
+    "areaBroadcastView": "/pages/component_module/broadcast_module/area_broadcast_component/area_broadcast_component",
+    "areaLightView": "/pages/component_module/light_module/area_light_component/area_light_component",
+    "productControlView": "/pages/component_module/product_module/product_control_component/product_control_component",
+    "multipleView": "/pages/component_module/select_module/multiple_select_component/multiple_select_component"
+  }
+}

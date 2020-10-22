@@ -1,0 +1,32 @@
+<!--pages/component_module/light_module/area_light_component/area_light_component.wxml-->
+
+<!--pages/component_module/area_light_component/area_light_component.wxml-->
+
+<!-- 区域调光 -->
+<view class="container" wx:if="{{status}}" catchtap="none" catchtouchmove="none">
+<view class="area_light_component_container">
+  <text class="title">区域开关灯</text>
+  <view class="close" catchtap="actionForClose">
+      <image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>
+    </view>
+  <!-- 状态 -->
+  <view class="status_container">
+    <text class="status_title">状态:</text>
+    <text class="status_open" wx:if="{{!openStatus}}" catchtap="actionForAreaLightOpen">开灯</text>
+    <text class="status_open select_open" wx:if="{{openStatus}}" catchtap="actionForAreaLightOpen">开灯</text>
+    <text class="status_close" wx:if="{{!closeStatus}}" catchtap="actionForAreaLightClose">关灯</text>
+    <text class="status_close select_close" wx:if="{{closeStatus}}" catchtap="actionForAreaLightClose">关灯</text>
+  </view>
+
+  <!-- 调光 -->
+  <view class="light_container">
+    <text class="light_title">调光:</text>
+    <view class="light_list_container" >
+      <text class="light_item {{item.status == true ? 'active' : ''}}" wx:for="{{lists}}" wx:key="index" catchtap="actionForAreaLightChoose" data-index="{{index}}">{{item.show}}</text>
+    </view>
+
+    <image class="light_sure_image" src="/assets/map_view/icon_bd_send.png" catchtap="actionForAreaTurnLight" wx:if="{{false}}"></image>
+  </view>
+</view>
+</view>
+

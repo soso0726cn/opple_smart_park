@@ -1,7 +1,8 @@
 <!--pages/main/main.wxml-->
 
-<view class="container">
-
+<view class="container" style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px">
+<!-- <view class="container"> -->
+	<navBar backType='none'></navBar>
 	<view class="top-background">
 		<image class="city-bg" src="/assets/main/top_city_bg.png"></image>
 		<block wx:if="{{isLogin}}">
@@ -19,12 +20,14 @@
 			<view class="top">
 				<block wx:if="{{isLogin}}">
 					<view class="left" catchtap="scanOnTap">
+						<button class="button" hover-class="button-hover"></button>
 						<view class="center-bg">
 							<image class="icon" src="/assets/main/icon_scan.png"></image>
 							<text class="text">设备录入</text>
 						</view>
 					</view>
 					<view class="right" catchtap="listOnTap">
+						<button class="button" hover-class="button-hover"></button>
 						<view class="center-bg">
 							<image class="icon" src="/assets/main/icon_device_list.png"></image>
 							<text class="text">设备列表</text>
@@ -51,12 +54,14 @@
 			<view class="bottom">
 				<block wx:if="{{isLogin}}">
 					<view class="left" catchtap="centerOnTap">
+						<button class="button" hover-class="button-hover"></button>
 						<view class="center-bg">
 							<image class="icon" src="/assets/main/icon_events.png"></image>
 							<text class="text">事件中心</text>
 						</view>
 					</view>
 					<view class="right" catchtap="accountOnTap">
+						<button class="button" hover-class="button-hover"></button>
 						<view class="center-bg">
 							<image class="icon" src="/assets/main/icon_setting.png"></image>
 							<text class="text">我的账号</text>

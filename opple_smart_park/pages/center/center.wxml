@@ -1,40 +1,33 @@
 <!--pages/center/center.wxml-->
-<view class="container">
+<view class="container" style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px">
+<!-- <view class="container"> -->
+	<navBar backType='back' title='事件中心'></navBar>
 
-  <!-- 日常应用 -->
-  <view class="center_container">
-    <text class="title">日常应用</text>
+	<view class="swiper-tab" style="top: {{statusHeight+navigateHeight}}px">
+		<view class="swiper-bg">
+			<block wx:for="{{tabList}}" wx:key='index' wx:for-index="index">
+				<text class="swiper-item {{currentTab == index ? 'on' : ''}}" data-current="{{index}}" bindtap="swichTab" decode="{{true}}">{{item.title}}</text>
+			</block>
+		</view>
+	</view>
 
-    <view class="items_container">
-      <view class="item_container" catchtap="actionForMap">
-        <image class="item_image"></image>
-        <text class="item_title">GIS地图</text>
-      </view>
+  <swiper class="swiper_box" duration="300" current="{{currentTab}}" bindchange="bindTabChange">
+		<swiper-item wx:for="{{tabList}}" wx:key='index' wx:for-index="index" item-id="{{index}}">
 
-      <view class="item_container" catchtap="actionForMyWork">
-        <image class="item_image"></image>
-        <text class="item_title">我的工作</text>
-      </view>
-    </view>
-  </view>
+			<scroll-view scroll-y="true" scroll-with-animation="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{loading && currentTab === index}}" bindscrolltolower="onReachBottom" class="talents_list">
 
-  <!-- 系统管理 -->
-  <view class="center_container">
-    <text class="title">系统管理</text>
+				<view class="item-background" wx:for="{{itemList[currentTab]}}" wx:key="subIndex">
+          <view class="top-bg">
+            <text class="title">{{item.title}}</text>
+            <text class="status">{{item.orderTypeName}}</text>
+          </view>
+          <view class="bottom-bg">
+            <text class="priority">优先级：{{item.orderLevelName}}</text>
+            <text class="time">{{item.createTime}}</text>
+          </view>
+        </view>
+			</scroll-view>
+		</swiper-item>
+	</swiper>
 
-    <!-- 地图 -->
-    <view class="items_container">
-      <view class="item_container" catchtap="actionForUserInfo">
-        <image class="item_image"></image>
-        <text class="item_title">用户信息</text>
-      </view>
-
-       <view class="item_container" catchtap="actionForProject">
-        <image class="item_image"></image>
-        <text class="item_title">项目切换</text>
-      </view>
-    </view>
-
-
-  </view>
 </view>

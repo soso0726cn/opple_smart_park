@@ -1,27 +1,35 @@
 <!--pages/component_module/videoModal/videoModal.wxml-->
 
-<view class="video_container" wx:if="{{show}}">
 
-  <image class="video-top-image" src="/assets/component_module/video_modal/video_bg.png"></image>
-  <view class="video-top-bg">
-    <text class="title">{{video.name}}</text>
-    <text class="device">设备ID：{{video.macAddress}}</text>
-    <text class="status">状态：{{video.status === 1 ? '在线' : '空闲'}}</text>
-    <text class="time">更新时间：{{video.updateDate}}</text>
-    <view class="image_close">
-      <image class="close" src="/assets/component_module/video_modal/icon_close.png" catchtap="closeVideoModal"></image>  
-    </view>
-    
+<view class="video_component_container" wx:if="{{status}}" catchtap="none">
 
-    <view class="video-bg" catchtap="liveOnTap" data-data="{{video}}">
-    
-    <image class="video" src="/assets/component_module/video_modal/icon_video.png"></image>
-      
-      <text class="text">实时画面</text>
-    </view>
-    
-  </view>
+	<view class="video_container" >
 
-  <image class="video-bottom-bg" src="{{video.picUrl}}" catchtap="liveOnTap" data-data="{{video}}"></image>
-  
+		<image class="video-top-image" src="/assets/component_module/video_modal/video_bg.png"></image>
+		<view class="video-top-bg">
+			<text class="title">{{product.name}}</text>
+			<text class="device">设备ID：{{product.macAddress}}</text>
+			<text class="status">状态：{{product.status === 1 ? '在线' : '空闲'}}</text>
+			<text class="time">更新时间：{{product.updateDate}}</text>
+			<view class="image_close">
+				<image class="close" src="/assets/component_module/video_modal/icon_close.png" catchtap="actionForClose"></image>
+			</view>
+
+
+			<view class="video-bg" catchtap="liveOnTap" data-data="{{product}}">
+
+				<image class="video" src="/assets/component_module/video_modal/icon_video.png"></image>
+
+				<text class="text">实时画面</text>
+			</view>
+
+		</view>
+		<block wx:if="{{product.picUrl == null || product.picUrl.length == 0 || !product.online}}">
+			<image class="video-bottom-nobg" src="/assets/component_module/video_modal/video_default.png" catchtap="none" mode='aspectFit'></image>
+		</block>
+		<block wx:else>
+			<image class="video-bottom-bg" src="{{product.picUrl}}" catchtap="liveOnTap" data-data="{{product}}"></image>
+		</block>
+	</view> 
+  <live_modal status="{{liveStatus}}" product="{{liveProduct}}"></live_modal>
 </view>

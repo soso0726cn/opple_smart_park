@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "selectView": "/pages/component_module/select_module/select_component/select_component"
+  }
+}

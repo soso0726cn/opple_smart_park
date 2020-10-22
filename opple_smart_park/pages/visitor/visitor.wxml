@@ -1,0 +1,9 @@
+<!--pages/visitor/visitor.wxml-->
+<view class="container" style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px">
+	<navBar backType='none' title='测试'></navBar>
+  <view class="mainbody">
+    <view class="bodyImage"/> 
+    <view class="bodyInfoLayout"/> 
+  </view>
+
+</view>

@@ -1,5 +1,24 @@
 <!--pages/equipment/equipment.wxml-->
 
-<view class="container">
-  <text class="text">{{context}}</text>
+<view class="container" style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px">
+	<navBar backType='back' title='设备录入'></navBar>
+
+	<scan_view class="top_container" product="{{lightProduct}}" bindtoastlight="actionForToastLight" bindtoastarea="actionForToastArea" bindlightname="actionForLightName" bindlightcode="actionForLightCode" bindlightremark="actionForLightRemark"></scan_view>
+
+	<view class="config_container">
+		<view class="item-background" catchtap="actionForSwitch">
+			<text class="title">默认配置灯杆</text>
+			<image class="select" src="{{config.open ? config.select : config.normal}}"></image>
+			<view class="line"></view>
+		</view>
+	</view>
+
+	<block wx:if="{{!config.open}}">
+		<scan_view deviceType="{{1}}" product="{{roleProduct}}" bindtoastrole="actionForToastRole" bindtoastarea="actionForToastArea" bindrolename="actionForRoleName" bindrolecode="actionForRoleCode" bindroleremark="actionForRoleRemark"></scan_view>
+	</block>
+
+
+	<view class="confirm-button" catchtap="actionForSure">确定</view>
+
+	<selectView status="{{toast.selectStatus}}" list="{{toast.selectLists}}" bindselect="actionForSelect"></selectView>
 </view>

@@ -1,10 +1,18 @@
 // pages/setting/setting.js
+
+const app = getApp()
+const API = require('../../utils/api.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+
+    statusHeight: 44,
+    navigateHeight: 44,
+
     user: {}, // 读取缓存数据
     name: {
       icon: '/assets/setting/ic_setting_name.png',
@@ -47,10 +55,13 @@ Page({
       title: '账号设置'
     })
 
+    this.setData({ statusHeight: app.globalData.statusHeight,navigateHeight: app.globalData.navigateHeight});
+
     // 获取数据
     const user = wx.getStorageSync('user');
-    const project = user.projectInfos.length > 0 ? user.projectInfos[0] : {name: ''};
-    console.log(user);
+    
+    const project = wx.getStorageSync('project');
+    
     this.setData({
       user: user,
       userName: user.userName,
@@ -87,11 +98,28 @@ Page({
 
   // 选中项目切换
   actionForChooseProject: function () {
-    let list = this.data.user.projectInfos || [];
-    if (list.length == 0) return;
-    this.setData({
-      showChooseProject: true,
-      chooseList: list,
+    this.data.user = wx.getStorageSync('user');
+    const params = {
+      "userName": this.data.user.phone,
+    }
+    console.log("actionForChooseProject:user.phone:"+this.data.user.phone)
+    API.post(API.user_info_fetch, params).then((res) => {
+      if (res.rstCode === 200) {
+        // 1.保存用户信息到本地
+        wx.setStorageSync('user', res.info);
+        this.data.user = res.info;
+        let list = this.data.user.projectInfos || [];
+        if (list.length == 0) return;
+        this.setData({
+          showChooseProject: true,
+          chooseList: list,
+        });
+      }
+    }).catch(error => {
+      wx.showToast({
+        icon: 'none',
+        title: error.data.desc
+      })
     });
   },
 

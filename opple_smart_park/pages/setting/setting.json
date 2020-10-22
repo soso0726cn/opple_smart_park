@@ -3,6 +3,6 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "itemView": "/pages/component_module/setting_module/setting_item_component/setting_item_component",
-    "chooseView": "/pages/component_module/setting_module/setting_choose_component/setting_choose_component"
+    "selectView": "/pages/component_module/select_module/select_component/select_component"
   }
 }

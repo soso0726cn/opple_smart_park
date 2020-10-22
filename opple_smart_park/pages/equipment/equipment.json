@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "",
-  "usingComponents": {}
+  "usingComponents": {
+    "scan_view": "/pages/component_module/scan_module/scan_component",
+    "selectView": "/pages/component_module/select_module/select_component/select_component"
+  }
 }

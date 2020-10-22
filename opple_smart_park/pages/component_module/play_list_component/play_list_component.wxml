@@ -1,9 +1,0 @@
-<!--pages/component_module/play_list_component/play_list_component.wxml-->
-
-
-<!-- 音频列表 -->
-<view class="play_list_component_container" wx:if="{{playListStatus}}">
-  <view class="list_container" wx:for="{{playList}}" wx:key="index" catchtap="actionForChooseItem" data-item="{{item}}">
-    <text class="list_name">{{item.name}}</text>
-  </view>
-</view>

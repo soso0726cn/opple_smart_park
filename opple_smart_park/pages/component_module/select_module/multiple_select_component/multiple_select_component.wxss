@@ -1,0 +1,116 @@
+/* pages/component_module/select_module/multiple_select_component/multiple_select_component.wxss */
+
+.multiple_select_component_container {
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  background-color: transparent;
+}
+
+.multiple_select_component_container .multiple_select_container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 667rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  overflow: scroll;
+  border: solid 2rpx #EEEEEE;
+  justify-content: center;
+}
+
+/* 选择 */
+.multiple_select_container .select_view_container {
+  margin-left: 30rpx;
+  width: 690rpx;
+  height: 567rpx;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.select_view_container .select_view {
+  width: 100%;
+  height: 400rpx;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  display:none;
+  width:0;
+  height:0;
+  color:transparent;
+}
+
+.select_view .select_item_view {
+  position: relative;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+
+
+.select_item_view .img_status {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.select_item_view .title {
+  width: 630rpx;
+  text-align: center;
+  line-height: 100rpx;
+  margin-left: 20rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.select_item_view .div {
+  position: absolute;
+  left: 0;
+  width: 690rpx;
+  height: 2rpx;
+  bottom: 0;
+  background-color: #bfbfbf;
+}
+
+/* 确定 */
+.multiple_select_container .sure_view {
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sure_view .close {
+  width: 220rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #EEEEEE;
+  text-align: center;
+  color: rgb(58, 150, 250);
+  line-height: 80rpx;
+}
+
+.sure_view .sure {
+  width: 220rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  margin-left: 30rpx;
+  background-color: rgb(58, 150, 250);
+  text-align: center;
+  color: white;
+  line-height: 80rpx
+}
+
