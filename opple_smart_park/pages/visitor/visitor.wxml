@@ -1,9 +1,39 @@
 <!--pages/visitor/visitor.wxml-->
 <view class="container" style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px">
-	<navBar backType='none' title='测试'></navBar>
+	<!-- <navBar backType='none' title='测试'></navBar> -->
+  <view class="backgroundLayout">
+    <image class="backgroundImage" src="/assets/visitor/visitor_bg.jpg" mode="aspectFit"></image>
+    <image class="backgroundImage" src="/assets/visitor/pole.png" mode="aspectFit"></image>
+  </view>
   <view class="mainbody">
-    <view class="bodyImage"/> 
-    <view class="bodyInfoLayout"/> 
+    <view class="bodyTop"> 
+      <view class = "bodyTopImage"></view>
+      <view class="bodyTopItem">
+        <text class = "bodyTopItemInfoTitle">智慧灯杆</text>
+        <text class = "bodyTopItemInfoContent">XXXXXXXXX</text>
+        <text class = "bodyTopItemInfoContent">XXXXXXXXX</text>
+        <text class = "bodyTopItemInfoContent">XXXXXXXXX</text>
+      </view>
+    </view> 
+    <view class="bodyBottom">
+      <scroll-view scroll-x = "true" style="height:100%;"> 
+        <view class="bodyBottomContainer">
+          <view class="bodyBottomItemNormal" wx:for="{{signalProduct || []}}" wx:key="index" catchtap="actionForChooseControl" data-item="{{item}}"></view>
+        </view> 
+      </scroll-view>
+    </view>
+    <view class="bodyMargin"/>    
   </view>
 
+<!-- 单个灯杆 -->
+<signalLightView status="{{signalLightStatus}}" product="{{signalLight}}"></signalLightView>
+<!-- 单个广播 -->
+<signalBroadcastView status="{{signalBroadcastStatus}}" product="{{signalBroadcast}}"></signalBroadcastView>
+<!-- 视频 -->
+<video_modal  status="{{signalVcrStauts}}"  product="{{signalVcr}}"></video_modal>
+<!-- 广告 -->
+<ad_view status="{{signalAdStatus}}" product="{{signalAd}}"></ad_view>
+
 </view>
+
+

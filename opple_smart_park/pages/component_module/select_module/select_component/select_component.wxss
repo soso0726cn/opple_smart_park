@@ -25,6 +25,7 @@
   overflow: scroll;
   border: solid 2rpx #EEEEEE;
   justify-content: center;
+  box-shadow:0px -3px 5px #888888
 }
 
 .play_list_component_container .picker_container {

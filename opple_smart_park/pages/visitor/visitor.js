@@ -1,11 +1,63 @@
 // pages/visitor/visitor.js
 Page({
 
-  /**
-   * 页面的初始数据
+   /**
+   * 组件的初始数据
    */
   data: {
 
+    signalProduct:[
+      {type:"lighting"},{type:"broadcast"},{type:"vcr"},{type:"screen"}
+    ],
+
+    /*********** 照明设备 **********/ 
+    signalLightStatus: false,
+    signalLight: null, // 照明设备
+
+    /*********** 广播设备 **********/ 
+    signalBroadcastStatus: false,
+    signalBroadcast: null,
+
+    /*********** 视频设备 **********/ 
+    signalVcrStauts: false,
+    signalVcr: null,
+
+    /*********** 广告设备 **********/ 
+    signalAdStatus: false,
+    signalAd: null,
+  },
+
+  actionForChooseControl: function (e){
+    const item = e.currentTarget.dataset.item;
+    console.log(item);
+    if(item.type === 'lighting'){
+      console.log("点击lighting");
+      this.setData({
+        signalLightStatus: true,
+        signalLight: null
+      });
+    }
+    if(item.type === 'broadcast'){
+      console.log("点击broadcast");
+      this.setData({
+        signalBroadcastStatus: true,
+        signalBroadcast: null
+      })
+    }
+    if(item.type === 'vcr'){
+      console.log("点击vcr");
+      this.setData({
+        signalVcrStauts: true,
+        signalVcr: null
+      });
+    }
+    if(item.type === 'screen'){
+      console.log("点击screen");
+      this.setData({
+        signalAdStatus: true,
+        signalAd: null
+      });
+    }
   },
 
   /**
