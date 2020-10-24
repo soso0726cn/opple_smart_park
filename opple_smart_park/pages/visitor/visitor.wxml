@@ -7,18 +7,68 @@
   </view>
   <view class="mainbody">
     <view class="bodyTop"> 
-      <view class = "bodyTopImage"></view>
+      <image class = "bodyTopImage" src="/assets/visitor/map.png" mode="aspectFit" />
       <view class="bodyTopItem">
         <text class = "bodyTopItemInfoTitle">智慧灯杆</text>
-        <text class = "bodyTopItemInfoContent">XXXXXXXXX</text>
-        <text class = "bodyTopItemInfoContent">XXXXXXXXX</text>
-        <text class = "bodyTopItemInfoContent">XXXXXXXXX</text>
+        <text class = "bodyTopItemInfoContent">XXXXXXXXXXX</text>
+        <text class = "bodyTopItemInfoContent">XXXXXXXXXXX</text>
+        <text class = "bodyTopItemInfoContent">XXXXXXXXXXX</text>
       </view>
     </view> 
     <view class="bodyBottom">
       <scroll-view scroll-x = "true" style="height:100%;"> 
         <view class="bodyBottomContainer">
-          <view class="bodyBottomItemNormal" wx:for="{{signalProduct || []}}" wx:key="index" catchtap="actionForChooseControl" data-item="{{item}}"></view>
+          <view class="bodyBottomItem" wx:for="{{signalProduct || []}}" wx:key="index" 
+          catchtap="actionForChooseControl" data-item="{{item}}" data-id="{{item.index}}">
+              <view class="bodyBottomItemSelected" wx:if="{{item.checked}}">
+                <view class = "bodyBottomItemTop">
+                  <block>
+                    <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light_f.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='broadcast'}}" src="/assets/visitor/ic_broadcast_f.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='vcr'}}" src="/assets/visitor/ic_camera_f.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_light_f.png"></image>
+                  </block>
+                  <block>
+                    <view class="bodyBottomItemRightTopIconContainer">
+                      <image class="bodyBottomItemRightTopIcon" wx:if="{{item.online}}" src="/assets/visitor/ic_online.png"></image>
+                      <image class="bodyBottomItemRightTopIcon" wx:else src="/assets/visitor/offline.png"></image>
+                    </view> 
+                  </block>
+                </view>
+                <view class = "bodyBottomItemBottom">
+                  <view class="bodyBottomItemSelectedText">
+                  <block wx:if="{{item.type == 'lighting'}}">照明</block>
+                  <block wx:elif="{{item.type == 'broadcast'}}">广播</block>
+                  <block wx:elif="{{item.type == 'vcr'}}">监控</block>
+                  <block wx:elif="{{item.type == 'screen'}}">广告</block>
+                  </view>
+                </view>
+              </view>
+              <view class="bodyBottomItemNormal" wx:else >
+                <view class = "bodyBottomItemTop">
+                  <block>
+                    <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light_normal.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='broadcast'}}" src="/assets/visitor/ic_broadcast.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='vcr'}}" src="/assets/visitor/ic_camera.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_light_normal.png"></image>
+                  </block>
+                  <block>
+                    <view class="bodyBottomItemRightTopIconContainer">
+                      <image class="bodyBottomItemRightTopIcon" wx:if="{{item.online}}" src="/assets/visitor/ic_online.png"></image>
+                      <image class="bodyBottomItemRightTopIcon" wx:else src="/assets/visitor/offline.png"></image>
+                    </view>
+                  </block>
+                </view>
+                <view class = "bodyBottomItemBottom">
+                  <view class="bodyBottomItemNormalText">
+                  <block wx:if="{{item.type == 'lighting'}}">照明</block>
+                  <block wx:elif="{{item.type == 'broadcast'}}">广播</block>
+                  <block wx:elif="{{item.type == 'vcr'}}">监控</block>
+                  <block wx:elif="{{item.type == 'screen'}}">广告</block>
+                  </view>
+                </view>
+              </view>
+          </view>
         </view> 
       </scroll-view>
     </view>

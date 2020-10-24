@@ -7,8 +7,9 @@ Page({
   data: {
 
     signalProduct:[
-      {type:"lighting"},{type:"broadcast"},{type:"vcr"},{type:"screen"}
+      {index:"0",type:"lighting",online:true},{index:"1",type:"broadcast",online:true},{index:"3",type:"vcr",online:true},{index:"4",type:"screen",online:true}
     ],
+
 
     /*********** 照明设备 **********/ 
     signalLightStatus: false,
@@ -30,33 +31,50 @@ Page({
   actionForChooseControl: function (e){
     const item = e.currentTarget.dataset.item;
     console.log(item);
-    if(item.type === 'lighting'){
+    var id = e.currentTarget.dataset.id
+    for (var i = 0; i < this.data.signalProduct.length; i++) {
+      if (this.data.signalProduct[i].index == id) {
+        if(this.data.signalProduct[i].checked){
+          this.data.signalProduct[i].checked = false;
+        }else{
+          this.data.signalProduct[i].checked = true;
+        }
+      }else{
+        this.data.signalProduct[i].checked = false;
+      }
+    }
+    this.setData(
+      {
+        signalProduct:this.data.signalProduct
+      }
+    )
+    if(item.type === 'lighting'&& !item.checked){
       console.log("点击lighting");
-      this.setData({
-        signalLightStatus: true,
-        signalLight: null
-      });
+      // this.setData({
+      //   signalLightStatus: true,
+      //   signalLight: null
+      // });
     }
-    if(item.type === 'broadcast'){
+    if(item.type === 'broadcast'&& !item.checked){
       console.log("点击broadcast");
-      this.setData({
-        signalBroadcastStatus: true,
-        signalBroadcast: null
-      })
+      // this.setData({
+      //   signalBroadcastStatus: true,
+      //   signalBroadcast: null
+      // })
     }
-    if(item.type === 'vcr'){
+    if(item.type === 'vcr'&& !item.checked){
       console.log("点击vcr");
-      this.setData({
-        signalVcrStauts: true,
-        signalVcr: null
-      });
+      // this.setData({
+      //   signalVcrStauts: true,
+      //   signalVcr: null
+      // });
     }
-    if(item.type === 'screen'){
+    if(item.type === 'screen'&& !item.checked){
       console.log("点击screen");
-      this.setData({
-        signalAdStatus: true,
-        signalAd: null
-      });
+      // this.setData({
+      //   signalAdStatus: true,
+      //   signalAd: null
+      // });
     }
   },
 
