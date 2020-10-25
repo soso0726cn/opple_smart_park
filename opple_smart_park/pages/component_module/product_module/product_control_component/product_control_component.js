@@ -73,7 +73,7 @@ Component({
             signalLight: res.data
           });
         });
-        
+
       } else if(item.type === 'broadcast') { // 选中广播
          // 请求设备信息
         const params = {

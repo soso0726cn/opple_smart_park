@@ -18,8 +18,8 @@
     <view class="bodyBottom">
       <scroll-view scroll-x = "true" style="height:100%;"> 
         <view class="bodyBottomContainer">
-          <view class="bodyBottomItem" wx:for="{{signalProduct || []}}" wx:key="index" 
-          catchtap="actionForChooseControl" data-item="{{item}}" data-id="{{item.index}}">
+          <view class="bodyBottomItem" wx:for="{{currentProduct.devices || []}}" wx:key="index" 
+          catchtap="actionForChooseControl" data-item="{{item}}" data-id="{{item.id}}">
               <view class="bodyBottomItemSelected" wx:if="{{item.checked}}">
                 <view class = "bodyBottomItemTop">
                   <block>

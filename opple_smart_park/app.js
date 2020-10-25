@@ -3,6 +3,8 @@
 const DEFAULT_ANDROID_HEIGHT = '48';
 const DEFAULT_APPLE_HEIGHT = '44';
 
+
+
 App({
   onLaunch: function () {
     let that = this;
