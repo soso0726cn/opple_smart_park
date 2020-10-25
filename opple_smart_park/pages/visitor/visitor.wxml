@@ -2,17 +2,15 @@
 <view class="container" style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px">
 	<!-- <navBar backType='none' title='测试'></navBar> -->
   <view class="backgroundLayout">
-    <image class="backgroundImage" src="/assets/visitor/visitor_bg.jpg" mode="aspectFit"></image>
-    <image class="backgroundImage" src="/assets/visitor/pole.png" mode="aspectFit"></image>
+    <image class="backgroundImage" src="/assets/visitor/visitor_bg.jpg" mode="scaleToFill"></image>
+    <image class="backgroundImage" src="/assets/visitor/pole.png" mode="scaleToFill"></image>
   </view>
   <view class="mainbody">
     <view class="bodyTop"> 
       <image class = "bodyTopImage" src="/assets/visitor/map.png" mode="aspectFit" />
       <view class="bodyTopItem">
         <text class = "bodyTopItemInfoTitle">智慧灯杆</text>
-        <text class = "bodyTopItemInfoContent">XXXXXXXXXXX</text>
-        <text class = "bodyTopItemInfoContent">XXXXXXXXXXX</text>
-        <text class = "bodyTopItemInfoContent">XXXXXXXXXXX</text>
+        <text class = "bodyTopItemInfoContent">包含、IP广播、照明、监控、灯杆屏、环境传感器等物联网设备。</text>
       </view>
     </view> 
     <view class="bodyBottom">
@@ -30,8 +28,9 @@
                   </block>
                   <block>
                     <view class="bodyBottomItemRightTopIconContainer">
-                      <image class="bodyBottomItemRightTopIcon" wx:if="{{item.online}}" src="/assets/visitor/ic_online.png"></image>
-                      <image class="bodyBottomItemRightTopIcon" wx:else src="/assets/visitor/offline.png"></image>
+                      <!-- <image class="bodyBottomItemRightTopIcon" wx:if="{{item.online}}" src="/assets/visitor/ic_online.png"></image> -->
+                      <!-- <image class="bodyBottomItemRightTopIcon" wx:else src="/assets/visitor/offline.png"></image> -->
+                      <image class="bodyBottomItemRightTopIcon" src="/assets/visitor/ic_online.png"></image>
                     </view> 
                   </block>
                 </view>
@@ -54,8 +53,9 @@
                   </block>
                   <block>
                     <view class="bodyBottomItemRightTopIconContainer">
-                      <image class="bodyBottomItemRightTopIcon" wx:if="{{item.online}}" src="/assets/visitor/ic_online.png"></image>
-                      <image class="bodyBottomItemRightTopIcon" wx:else src="/assets/visitor/offline.png"></image>
+                      <!-- <image class="bodyBottomItemRightTopIcon" wx:if="{{item.online}}" src="/assets/visitor/ic_online.png"></image> -->
+                      <!-- <image class="bodyBottomItemRightTopIcon" wx:else src="/assets/visitor/offline.png"></image> -->
+                       <image class="bodyBottomItemRightTopIcon" src="/assets/visitor/ic_online.png"></image>
                     </view>
                   </block>
                 </view>

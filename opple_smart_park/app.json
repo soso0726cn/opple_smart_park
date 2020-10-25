@@ -8,7 +8,6 @@
     "pages/device_list/device_list",
     "pages/setting/setting",
     "pages/map_module/gis_map_v2/gis_map_v2"
-
   ],
   "window": {
     "backgroundTextStyle": "light",
