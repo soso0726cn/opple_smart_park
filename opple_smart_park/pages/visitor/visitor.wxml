@@ -1,20 +1,22 @@
 <!--pages/visitor/visitor.wxml-->
-<view class="container" style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px">
+<!-- style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px" -->
+<view class="container" catchtouchmove="noAction">
 	<!-- <navBar backType='none' title='测试'></navBar> -->
   <view class="backgroundLayout">
     <image class="backgroundImage" src="/assets/visitor/visitor_bg.jpg" mode="scaleToFill"></image>
     <image class="backgroundImage" src="/assets/visitor/pole.png" mode="scaleToFill"></image>
+    <image class="backgroundTitle" src="/assets/visitor/title.png" mode = "aspectFit"></image>
   </view>
   <view class="mainbody">
     <view class="bodyTop"> 
-      <image class = "bodyTopImage" src="/assets/visitor/map.png" mode="aspectFit" />
       <view class="bodyTopItem">
         <text class = "bodyTopItemInfoTitle">智慧灯杆</text>
         <text class = "bodyTopItemInfoContent">包含、IP广播、照明、监控、灯杆屏、环境传感器等物联网设备。</text>
       </view>
+      <image class = "bodyTopImage" src="/assets/visitor/map.png" mode="aspectFit" />
     </view> 
     <view class="bodyBottom">
-      <scroll-view scroll-x = "true" style="height:100%;"> 
+      <scroll-view scroll-x = "true" class="bodyBottomScroll"> 
         <view class="bodyBottomContainer">
           <view class="bodyBottomItem" wx:for="{{currentProduct.devices || []}}" wx:key="index" 
           catchtap="actionForChooseControl" data-item="{{item}}" data-id="{{item.id}}">

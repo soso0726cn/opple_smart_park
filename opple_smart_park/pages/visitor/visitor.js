@@ -30,11 +30,11 @@ const TEST_PRODUCT1 = {
       type: "lighting",
     },
     {
-      deviceId: "144",
-      id: 315,
-      macAddress: "867726030294856",
-      name: "nena测试",
-      type: "lighting",
+      deviceId: "25",
+      id: 310,
+      macAddress: "8136",
+      name: "8136",
+      type: "broadcast",
     }
   ],
   height: 50,
@@ -224,6 +224,10 @@ Page({
         });
       });
     }
+  },
+
+  noAction:function(){
+
   },
 
   /**
