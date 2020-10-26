@@ -26,7 +26,7 @@
                     <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light_f.png"></image>
                     <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='broadcast'}}" src="/assets/visitor/ic_broadcast_f.png"></image>
                     <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='vcr'}}" src="/assets/visitor/ic_camera_f.png"></image>
-                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_light_f.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_screen_black.png"></image>
                   </block>
                   <block>
                     <view class="bodyBottomItemRightTopIconContainer">
@@ -51,7 +51,7 @@
                     <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light_normal.png"></image>
                     <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='broadcast'}}" src="/assets/visitor/ic_broadcast.png"></image>
                     <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='vcr'}}" src="/assets/visitor/ic_camera.png"></image>
-                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_light_normal.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_screen.png"></image>
                   </block>
                   <block>
                     <view class="bodyBottomItemRightTopIconContainer">
