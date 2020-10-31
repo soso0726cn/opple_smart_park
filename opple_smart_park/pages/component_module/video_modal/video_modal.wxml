@@ -2,9 +2,7 @@
 
 
 <view class="video_component_container" wx:if="{{status}}" catchtap="none">
-
-	<view class="video_container" >
-
+	<view class="video_container">
 		<image class="video-top-image" src="/assets/component_module/video_modal/video_bg.png"></image>
 		<view class="video-top-bg">
 			<text class="title">{{product.name}}</text>
@@ -31,5 +29,5 @@
 			<image class="video-bottom-bg" src="{{product.picUrl}}" catchtap="liveOnTap" data-data="{{product}}"></image>
 		</block>
 	</view> 
-  <live_modal status="{{liveStatus}}" product="{{liveProduct}}"></live_modal>
+  <live_modal status="{{liveStatus}}" product="{{liveProduct}}" bindsendEvent="receiveValue"></live_modal>
 </view>

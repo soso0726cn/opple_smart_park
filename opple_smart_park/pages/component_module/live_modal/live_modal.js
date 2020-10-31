@@ -31,6 +31,7 @@ Component({
       this.setData({
         status: false,
       })
+      this.triggerEvent("sendEvent", "close");
     }
   }
 })

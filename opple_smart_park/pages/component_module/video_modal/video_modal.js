@@ -30,7 +30,8 @@ Component({
   methods: {
     actionForClose: function() {
       this.setData({
-        status: false
+        status: false,
+        liveStatus: false,
       })
     },
 
@@ -40,6 +41,16 @@ Component({
         this.setData({
           liveProduct: this.data.product,
           liveStatus: true
+        })
+      }
+    },
+
+    receiveValue:function(res){
+      if(res.detail == 'close'){
+        this.setData({
+          liveProduct: null,
+          liveStatus: false,
+          status:false,
         })
       }
     }

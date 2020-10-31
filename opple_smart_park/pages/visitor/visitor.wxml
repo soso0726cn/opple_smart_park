@@ -53,10 +53,14 @@
               <view class="bodyBottomItemNormal" wx:else >
                 <view class = "bodyBottomItemTop">
                   <block>
-                    <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light.png"></image>
+                    <!-- <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light.png"></image>
                     <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='broadcast'}}" src="/assets/visitor/ic_broadcast.png"></image>
                     <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='vcr'}}" src="/assets/visitor/ic_camera.png"></image>
-                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_screen.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_screen.png"></image> -->
+                    <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light_pressed.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='broadcast'}}" src="/assets/visitor/ic_broadcast_pressed.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='vcr'}}" src="/assets/visitor/ic_camera_pressed.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_screen_pressed.png"></image>
                   </block>
                   <block>
                     <view class="bodyBottomItemRightTopIconContainer">

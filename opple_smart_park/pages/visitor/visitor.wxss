@@ -240,7 +240,8 @@ page{
   font-weight: bold;
   margin-left: 20rpx;
   margin-bottom: 20rpx;
-  color: white;
+  /* color: white; */
+  color: black;
 }
 
 .divLine{
