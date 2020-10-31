@@ -1,19 +1,24 @@
 <!--pages/visitor/visitor.wxml-->
 <!-- style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px" -->
 <view class="container" catchtouchmove="noAction">
-	<!-- <navBar backType='none' title='测试'></navBar> -->
   <view class="backgroundLayout">
-    <image class="backgroundImage" src="/assets/visitor/visitor_bg.jpg" mode="scaleToFill"></image>
-    <image class="backgroundImage" src="/assets/visitor/pole.png" mode="scaleToFill"></image>
+    <image class="backgroundImage" src="/assets/visitor/bg.jpg" mode="scaleToFill"></image>
+    <image class="backgroundPole" src="/assets/visitor/pole.png" mode="aspectFit"></image>
     <image class="backgroundTitle" src="/assets/visitor/title.png" mode = "aspectFit"></image>
   </view>
   <view class="mainbody">
     <view class="bodyTop"> 
       <view class="bodyTopItem">
-        <text class = "bodyTopItemInfoTitle">智慧灯杆</text>
-        <text class = "bodyTopItemInfoContent">包含、IP广播、照明、监控、灯杆屏、环境传感器等物联网设备。</text>
+        <text class = "bodyTopItemInfoContent">可集成\n智慧照明、\n视频监控、\n公共广播、\n多媒体发布、\n环境监测、\n5G微基站等设备。</text>
+        <view class = "divLine"></view>
+        <view style="width:100%;height:auto;display:flex;flex-direction:row;align-items:center;">
+        <image style="width:15rpx;height:15rpx;" src="/assets/visitor/arrow_down.png" mode = "aspectFit"></image>
+        <text class = "bodyTopItemInfoContentEnd" >动手体验</text>
+        <image style="width:15rpx;height:15rpx;" src="/assets/visitor/arrow_down.png" mode = "aspectFit"></image>
+        </view>
+        
       </view>
-      <image class = "bodyTopImage" src="/assets/visitor/map.png" mode="aspectFit" />
+      <!-- <image class = "bodyTopImage" src="/assets/visitor/map.png" mode="aspectFit" /> -->
     </view> 
     <view class="bodyBottom">
       <scroll-view scroll-x = "true" class="bodyBottomScroll"> 
@@ -23,10 +28,10 @@
               <view class="bodyBottomItemSelected" wx:if="{{item.checked}}">
                 <view class = "bodyBottomItemTop">
                   <block>
-                    <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light_f.png"></image>
-                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='broadcast'}}" src="/assets/visitor/ic_broadcast_f.png"></image>
-                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='vcr'}}" src="/assets/visitor/ic_camera_f.png"></image>
-                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_screen_black.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light_pressed.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='broadcast'}}" src="/assets/visitor/ic_broadcast_pressed.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='vcr'}}" src="/assets/visitor/ic_camera_pressed.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_screen_pressed.png"></image>
                   </block>
                   <block>
                     <view class="bodyBottomItemRightTopIconContainer">
@@ -48,7 +53,7 @@
               <view class="bodyBottomItemNormal" wx:else >
                 <view class = "bodyBottomItemTop">
                   <block>
-                    <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light_normal.png"></image>
+                    <image class="bodyBottomItemLeftTopIcon" wx:if="{{item.type=='lighting'}}" src="/assets/visitor/ic_light.png"></image>
                     <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='broadcast'}}" src="/assets/visitor/ic_broadcast.png"></image>
                     <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='vcr'}}" src="/assets/visitor/ic_camera.png"></image>
                     <image class="bodyBottomItemLeftTopIcon" wx:elif="{{item.type=='screen'}}" src="/assets/visitor/ic_screen.png"></image>
