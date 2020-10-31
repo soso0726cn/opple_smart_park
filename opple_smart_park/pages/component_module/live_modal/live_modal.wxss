@@ -64,9 +64,25 @@
 }
 
 .live_bottom_bg {
-  position: relative;
-  display: flex;
+  display: relative;
   width: 95%;
   height: calc(100% - 130rpx);
   margin-top: 10rpx;
+  background-color: royalblue;
+}
+
+.live_main{
+  width: 95%;
+  height: calc(100% - 130rpx);
+  position: absolute;
+}
+
+.live_controller_layout{
+  width: 200rpx;
+  height: 200rpx;
+  position: absolute;
+  background-color: seagreen;
+  margin-left: 65%;
+  margin-top: 50%;
+  opacity: 0.5;
 }

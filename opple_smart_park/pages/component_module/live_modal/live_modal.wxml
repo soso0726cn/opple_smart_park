@@ -8,8 +8,12 @@
 				<image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>
 			</view>
 		</view>
-
-		<live-player class="live_bottom_bg" src="{{product.rtmp}}" autoplay="true"></live-player>
+		<view class="live_bottom_bg">
+			<live-player class="live_main" src="{{product.rtmp}}" autoplay="true"></live-player>
+			<view class="live_controller_layout">监控控制盘</view>
+		</view>
+		
+		
 	</view>
 
 </view>
