@@ -21,29 +21,29 @@ const TEST_PRODUCT_114 = {
   "installer": "-",
   "devices": [
     {
-      "id": 3,
-      "deviceId": "3",
+      "id": 34,
+      "deviceId": "34",
       "type": "vcr",
       "macAddress": "867726030859963",
       "name": "1"
     },
     {
-      "id": 4,
-      "deviceId": "4",
+      "id": 137,
+      "deviceId": "137",
       "type": "lighting",
       "macAddress": "ba7db984e8f211b8",
       "name": "环湖屏幕"
     },
+    // {
+    //   "id": 25,
+    //   "deviceId": "25",
+    //   "type": "broadcast",
+    //   "macAddress": "867726030859963",
+    //   "name": "1"
+    // },
     {
-      "id": 25,
-      "deviceId": "25",
-      "type": "broadcast",
-      "macAddress": "867726030859963",
-      "name": "1"
-    },
-    {
-      "id": 3,
-      "deviceId": "3",
+      "id": 36,
+      "deviceId": "36",
       "type": "screen",
       "macAddress": "ba7db984e8f211b8",
       "name": "环湖屏幕"
@@ -72,29 +72,29 @@ const TEST_PRODUCT_115 =  {
   "installer": "-",
   "devices": [
     {
-      "id": 20,
-      "deviceId": "20",
+      "id": 33,
+      "deviceId": "33",
       "type": "vcr",
       "macAddress": "867726030859963",
       "name": "1"
     },
     {
-      "id": 71,
-      "deviceId": "71",
+      "id": 138,
+      "deviceId": "138",
       "type": "lighting",
       "macAddress": "ba7db984e8f211b8",
       "name": "环湖屏幕"
     },
+    // {
+    //   "id": 25,
+    //   "deviceId": "25",
+    //   "type": "broadcast",
+    //   "macAddress": "867726030859963",
+    //   "name": "1"
+    // },
     {
-      "id": 25,
-      "deviceId": "25",
-      "type": "broadcast",
-      "macAddress": "867726030859963",
-      "name": "1"
-    },
-    {
-      "id": 3,
-      "deviceId": "3",
+      "id": 37,
+      "deviceId": "37",
       "type": "screen",
       "macAddress": "ba7db984e8f211b8",
       "name": "环湖屏幕"
@@ -252,11 +252,20 @@ Page({
           signalAdStatus: false,
           signalAd: null,
         })
+        wx.setStorageSync('project', item);
       }
     }
     // this.setData({
     //   currentProduct:TEST_PRODUCT_114
     // })
+    if(this.data.currentProduct!=null){
+      var project = {
+        'id':this.data.currentProduct.projectId
+      }
+      console.log("project id:"+project.id)
+      wx.setStorageSync('project', project)
+    }
+    
   },
 
   receiveValue:function(res){

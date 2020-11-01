@@ -244,6 +244,7 @@ Component({
 
       const project = wx.getStorageSync('project');
       const projectId = project.id;
+      console.log("actionForChooseMusicList project id:"+projectId)
       const params = {
         "approval": 1, // 已审核
         "projectId": projectId,
