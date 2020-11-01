@@ -85,6 +85,10 @@ const API = {
 
   // 用户信息
   'user_info_fetch': '/auth/user/mobile/wx/user/info',
+
+  //摄像头控制
+  'vcr_control':'/vcr/ptz/control',
+
 }
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
@@ -180,6 +184,7 @@ module.exports = {
   auth_user_mobile_wx_session_fetch: HOST.host + API.auth_user_mobile_wx_session_fetch,
   auth_user_mobile_wx_phone_check: HOST.host + API.auth_user_mobile_wx_phone_check,
   user_info_fetch:HOST.host+API.user_info_fetch,
+  vcr_control:HOST.host+API.vcr_control,
   get,
   post,
 }

@@ -254,9 +254,9 @@ Page({
         })
       }
     }
-    this.setData({
-      currentProduct:TEST_PRODUCT_115
-    })
+    // this.setData({
+    //   currentProduct:TEST_PRODUCT_114
+    // })
   },
 
   receiveValue:function(res){

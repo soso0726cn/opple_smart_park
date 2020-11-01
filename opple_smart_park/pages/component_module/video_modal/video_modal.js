@@ -38,16 +38,27 @@ Component({
 
     liveOnTap (e) {
       console.log("this.data.product:"+this.data.product.picUrl);
+
+      wx.showLoading({
+        title: '请求中，请耐心等待..',
+        mask:true
+      });
+      var that = this;
+      setTimeout(function () {
+        that.setData({
+          liveProduct: that.data.product,
+          liveStatus: true
+        })
+        wx.hideLoading();
+       }, 500)
+      
       // if(this.data.product.picUrl != null&&this.data.product.picUrl!=""){
       //   this.setData({
       //     liveProduct: this.data.product,
       //     liveStatus: true
       //   })
       // }
-      this.setData({
-        liveProduct: this.data.product,
-        liveStatus: true
-      })
+
     },
 
     receiveValue:function(res){

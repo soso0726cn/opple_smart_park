@@ -1,5 +1,7 @@
 // pages/component_module/live_modal/live_modal.js
 
+const API = require('../../../utils/api.js');
+
 const ARROW_UP_SRC = '/assets/component_module/up_arrow.png';
 const ARROW_UP_PRESSED_SRC = '/assets/component_module/up_arrow_pressed.png';
 const ARROW_DOWN_SRC = '/assets/component_module/down_arrow.png';
@@ -52,6 +54,15 @@ Component({
 
     handleArrowUpTap:function (e){
       console.log("up tap");
+      const params = {
+        "direction": 0,
+        "ipcId": this.properties.product.id,
+        "speed": 1,
+        "token": "string"
+      };
+      API.post(API.vcr_control,params).then((res) => {
+    
+      });
     },
 
     handleArrowUpTouchStart:function (e){
@@ -68,6 +79,15 @@ Component({
 
     handleArrowDownTap:function (e){
       console.log("down tap");
+      const params = {
+        "direction": 1,
+        "ipcId": this.properties.product.id,
+        "speed": 1,
+        "token": "string"
+      };
+      API.post(API.vcr_control,params).then((res) => {
+    
+      });
     },
 
     handleArrowDownTouchStart:function (e){
@@ -84,6 +104,15 @@ Component({
 
     handleArrowLeftTap:function (e){
       console.log("left tap");
+      const params = {
+        "direction": 2,
+        "ipcId": this.properties.product.id,
+        "speed": 1,
+        "token": "string"
+      };
+      API.post(API.vcr_control,params).then((res) => {
+    
+      });
     },
 
     handleArrowLeftTouchStart:function (e){
@@ -100,6 +129,16 @@ Component({
 
     handleArrowRightTap:function (e){
       console.log("right tap");
+      console.log("left tap");
+      const params = {
+        "direction": 3,
+        "ipcId": this.properties.product.id,
+        "speed": 1,
+        "token": "string"
+      };
+      API.post(API.vcr_control,params).then((res) => {
+    
+      });
     },
 
     handleArrowRightTouchStart:function (e){
