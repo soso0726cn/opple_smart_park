@@ -33,16 +33,21 @@ Component({
         status: false,
         liveStatus: false,
       })
+      this.triggerEvent("homePage", "close");
     },
 
     liveOnTap (e) {
       console.log("this.data.product:"+this.data.product.picUrl);
-      if(this.data.product.picUrl != null&&this.data.product.picUrl!=""){
-        this.setData({
-          liveProduct: this.data.product,
-          liveStatus: true
-        })
-      }
+      // if(this.data.product.picUrl != null&&this.data.product.picUrl!=""){
+      //   this.setData({
+      //     liveProduct: this.data.product,
+      //     liveStatus: true
+      //   })
+      // }
+      this.setData({
+        liveProduct: this.data.product,
+        liveStatus: true
+      })
     },
 
     receiveValue:function(res){
@@ -52,6 +57,7 @@ Component({
           liveStatus: false,
           status:false,
         })
+        this.triggerEvent("homePage", "close");
       }
     }
   }

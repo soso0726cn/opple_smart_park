@@ -8,9 +8,28 @@
 				<image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>
 			</view>
 		</view>
-		<view class="live_bottom_bg">
+		<view class="live_bottom_bg" >
 			<live-player class="live_main" src="{{product.rtmp}}" autoplay="true"></live-player>
-			<view class="live_controller_layout">监控控制盘</view>
+			<view class="live_controller_layout" >
+				<image class = "live_container_bg"  src="/assets/component_module/control_bg.png"></image>
+				<view class="live_controller_up_down_layout">
+						<view class = "live_controller_up">
+							<image class = "live_controller_arrow_column" src="{{upArrowSrc}}" catchtap="handleArrowUpTap" bindtouchstart="handleArrowUpTouchStart" bindtouchend="handleArrowUpTouchEnd"></image>
+						</view>
+						<view class = "live_controller_down">
+							<image class = "live_controller_arrow_column" src="{{downArrowSrc}}" catchtap="handleArrowDownTap" bindtouchstart="handleArrowDownTouchStart" bindtouchend="handleArrowDownTouchEnd"></image>
+							</view>
+				</view>
+					<view class="live_controller_left_right_layout">
+							<view class = "live_controller_left">
+								<image class = "live_controller_arrow_row" src="{{leftArrowSrc}}" catchtap="handleArrowLeftTap" bindtouchstart="handleArrowLeftTouchStart" bindtouchend="handleArrowLeftTouchEnd"></image>
+							</view>
+							<view class = "live_controller_right">
+								<image class = "live_controller_arrow_row" src="{{rightArrowSrc}}" catchtap="handleArrowRightTap" bindtouchstart="handleArrowRightTouchStart" bindtouchend="handleArrowRightTouchEnd"></image>
+							</view>
+					</view>
+			</view>
+				
 		</view>
 		
 		

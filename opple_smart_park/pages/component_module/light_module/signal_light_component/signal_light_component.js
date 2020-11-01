@@ -75,6 +75,7 @@ Component({
       this.setData({
         status: false
       });
+      this.triggerEvent("homePage", "close");
     },
 
     // 开灯

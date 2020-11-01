@@ -59,6 +59,7 @@ Component({
         status: false,
         selectStatus: false,
       });
+      this.triggerEvent("homePage", "close");
     },
 
 

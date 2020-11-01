@@ -2,116 +2,106 @@
 
 const API = require('../../utils/api.js');
 
-const TEST_PRODUCT1 = {
-  areaId: 67,
-  areaName: "展厅",
-  createDate: "2020-03-12 16:52:05",
-  devNum: 4,
-  devices:[
+const TEST_PRODUCT_114 = {
+  "id": 114,
+  "name": "智慧灯杆A",
+  "areaId": 84,
+  "areaName": "会展中心",
+  "projectId": 39,
+  "projectName": "进博会",
+  "productModelId": 1,
+  "productModelName": "欧普灯杆",
+  "lat": 31.189648,
+  "lng": 121.301593,
+  "type": "pole",
+  "status": 0,
+  "serialNo": "EPLOE2020-A",
+  "devNum": 0,
+  "remarks": "",
+  "installer": "-",
+  "devices": [
     {
-      deviceId: "3",
-      id: 313,
-      macAddress: "D42805075",
-      name: "智慧灯杆",
-      type: "vcr",
+      "id": 3,
+      "deviceId": "3",
+      "type": "vcr",
+      "macAddress": "867726030859963",
+      "name": "1"
     },
     {
-      deviceId: "3",
-      id: 314,
-      macAddress: "y30-a18-20236",
-      name: "西门口屏幕",
-      type: "screen",
+      "id": 4,
+      "deviceId": "4",
+      "type": "lighting",
+      "macAddress": "ba7db984e8f211b8",
+      "name": "环湖屏幕"
     },
     {
-      deviceId: "4",
-      id: 312,
-      macAddress: "867726031862537",
-      name: "智慧灯杆照明",
-      type: "lighting",
+      "id": 25,
+      "deviceId": "25",
+      "type": "broadcast",
+      "macAddress": "867726030859963",
+      "name": "1"
     },
     {
-      deviceId: "25",
-      id: 310,
-      macAddress: "8136",
-      name: "8136",
-      type: "broadcast",
+      "id": 3,
+      "deviceId": "3",
+      "type": "screen",
+      "macAddress": "ba7db984e8f211b8",
+      "name": "环湖屏幕"
     }
   ],
-  height: 50,
-  iconPath: "/assets/map_view/icon_pole.png",
-  id: 70,
-  installer: "-",
-  lat: 31.035164,
-  latitude: 31.035164,
-  lng: 120.795501,
-  longitude: 120.795501,
-  name: "智慧灯杆",
-  poleType: 0,
-  productModelId: 1,
-  productModelName: "欧普灯杆",
-  projectId: 1,
-  projectName: "欧普环湖",
-  remarks: "",
-  serialNo: "智慧灯杆",
-  status: 0,
-  type: "pole",
-  width: 35,
+  "createDate": "2020-10-29 12:29:47",
+  "poleType": 1
 };
 
-const TEST_PRODUCT2 = {
-  areaId: 10,
-  areaName: "欧普园区",
-  createDate: "2020-07-08 17:53:16",
-  devNum: 2,
-  devices:[
+const TEST_PRODUCT_115 =  {
+  "id": 115,
+  "name": "智慧灯杆B",
+  "areaId": 84,
+  "areaName": "会展中心",
+  "projectId": 39,
+  "projectName": "进博会",
+  "productModelId": 1,
+  "productModelName": "欧普灯杆",
+  "lat": 31.189687,
+  "lng": 121.301548,
+  "type": "pole",
+  "status": 0,
+  "serialNo": "EPLOE2020-B",
+  "devNum": 0,
+  "remarks": "",
+  "installer": "-",
+  "devices": [
     {
-      deviceId: "20",
-      id: 309,
-      macAddress: "202642283",
-      name: "展厅半球",
-      type: "vcr",
+      "id": 20,
+      "deviceId": "20",
+      "type": "vcr",
+      "macAddress": "867726030859963",
+      "name": "1"
     },
     {
-      deviceId: "25",
-      id: 310,
-      macAddress: "8136",
-      name: "8136",
-      type: "broadcast",
+      "id": 71,
+      "deviceId": "71",
+      "type": "lighting",
+      "macAddress": "ba7db984e8f211b8",
+      "name": "环湖屏幕"
     },
     {
-      deviceId: "4",
-      id: 312,
-      macAddress: "867726031862537",
-      name: "智慧灯杆照明",
-      type: "lighting",
+      "id": 25,
+      "deviceId": "25",
+      "type": "broadcast",
+      "macAddress": "867726030859963",
+      "name": "1"
     },
     {
-      deviceId: "144",
-      id: 315,
-      macAddress: "867726030294856",
-      name: "nena测试",
-      type: "lighting",
+      "id": 3,
+      "deviceId": "3",
+      "type": "screen",
+      "macAddress": "ba7db984e8f211b8",
+      "name": "环湖屏幕"
     }
   ],
-  height: 50,
-  iconPath: "/assets/map_view/icon_pole.png",
-  id: 0,
-  installer: "-",
-  lat: 31.034563,
-  latitude: 31.034563,
-  lng: 120.795849,
-  longitude: 120.795849,
-  name: "展厅智多星",
-  poleType: 0,
-  productModelId: 1,
-  productModelName: "欧普灯杆",
-  projectId: 1,
-  projectName: "欧普环湖",
-  remarks: "",
-  serialNo: "01",
-  status: 0,
-  type: "pole",
-  width: 35,
+  "createDate": "2020-10-29 12:30:49",
+  "poleType": 1
 };
 
 Page({
@@ -121,7 +111,7 @@ Page({
    */
   data: {
 
-    currentProduct:TEST_PRODUCT1,
+    currentProduct:null,
 
     /*********** 照明设备 **********/ 
     signalLightStatus: false,
@@ -145,11 +135,7 @@ Page({
     console.log(item);
     for (var i = 0; i < this.data.currentProduct.devices.length; i++) {
       if (this.data.currentProduct.devices[i].id == item.id) {
-        if(this.data.currentProduct.devices[i].checked){
-          this.data.currentProduct.devices[i].checked = false;
-        }else{
-          this.data.currentProduct.devices[i].checked = true;
-        }
+        this.data.currentProduct.devices[i].checked = true;
       }else{
         this.data.currentProduct.devices[i].checked = false;
       }
@@ -234,7 +220,57 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var qrCode = decodeURIComponent(options.q);
+    var home = "https://zhiyuan.opple.com:444/wx?pole=";
+    console.log("qrCode:"+qrCode);
+    if(qrCode.startsWith(home)){
+      console.log("通过二维码扫描地址:"+qrCode);  
+      var id = qrCode.substring(home.length,qrCode.length);
+      console.log("通过二维码扫描ID:"+id);  
+      if(id == "114"){
+        this.setData({
+          currentProduct:TEST_PRODUCT_114,
+          signalLightStatus: false,
+          signalLight: null,
+          signalBroadcastStatus: false,
+          signalBroadcast: null,
+          signalVcrStauts: false,
+          signalVcr: null,
+          signalAdStatus: false,
+          signalAd: null,
+        })
+      }
+      if(id == "115"){
+        this.setData({
+          currentProduct:TEST_PRODUCT_115,
+          signalLightStatus: false,
+          signalLight: null,
+          signalBroadcastStatus: false,
+          signalBroadcast: null,
+          signalVcrStauts: false,
+          signalVcr: null,
+          signalAdStatus: false,
+          signalAd: null,
+        })
+      }
+    }
+    this.setData({
+      currentProduct:TEST_PRODUCT_115
+    })
+  },
 
+  receiveValue:function(res){
+    console.log(res);
+    if(res.detail=="close"){
+      for (var i = 0; i < this.data.currentProduct.devices.length; i++) {
+        this.data.currentProduct.devices[i].checked = false;
+      }
+      this.setData(
+        {
+          currentProduct:this.data.currentProduct
+        }
+      )
+    }
   },
 
   /**
@@ -284,5 +320,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
 })

@@ -46,7 +46,7 @@
 .video-top-bg .title {
   position: relative;
   display: flex;
-  margin-left: 45rpx;
+  margin-left: 50rpx;
   margin-top: 22rpx;
   font-size: 32rpx;
   color: white;

@@ -76,6 +76,7 @@ Component({
         status: false,
         selectStatus: false,
       });
+      this.triggerEvent("homePage", "close");
     },
 
     // 广告开

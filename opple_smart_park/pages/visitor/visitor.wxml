@@ -87,13 +87,13 @@
   </view>
 
 <!-- 单个灯杆 -->
-<signalLightView status="{{signalLightStatus}}" product="{{signalLight}}"></signalLightView>
+<signalLightView status="{{signalLightStatus}}" product="{{signalLight}}" bind:homePage="receiveValue"></signalLightView>
 <!-- 单个广播 -->
-<signalBroadcastView status="{{signalBroadcastStatus}}" product="{{signalBroadcast}}"></signalBroadcastView>
+<signalBroadcastView status="{{signalBroadcastStatus}}" product="{{signalBroadcast}}" bind:homePage="receiveValue"></signalBroadcastView>
 <!-- 视频 -->
-<video_modal  status="{{signalVcrStauts}}"  product="{{signalVcr}}"></video_modal>
+<video_modal  status="{{signalVcrStauts}}"  product="{{signalVcr}}" bind:homePage="receiveValue"></video_modal>
 <!-- 广告 -->
-<ad_view status="{{signalAdStatus}}" product="{{signalAd}}"></ad_view>
+<ad_view status="{{signalAdStatus}}" product="{{signalAd}}" bind:homePage="receiveValue"></ad_view>
 
 </view>
 
