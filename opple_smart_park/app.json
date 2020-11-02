@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/main/main",
     "pages/login/login",
     "pages/equipment/equipment",
@@ -9,6 +8,7 @@
     "pages/setting/setting",
     "pages/map_module/gis_map_v2/gis_map_v2",
     "pages/visitor/visitor"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -14,7 +14,7 @@
 				<view class="left_container">
 					<text class="left_title">设备：{{product.lastRec.macAddress || '-'}}</text>
 					<text class="left_title">型号：{{product.devicePlatformName || '-'}}</text>
-					<text class="left_title">状态：{{product.lastRec.online  == '0' ? '离线' : (product.lastRec.online  == '1' ? '在线' : '报警')}}</text>
+					<text class="left_title">状态：{{product.online  == '0' ? '离线' : (product.online  == '1' ? '在线' : '报警')}}</text>
 					<text class="left_title">亮度：{{product.lastRec.level}}</text>
 				</view>
 				<view class="right_container">

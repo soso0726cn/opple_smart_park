@@ -7,7 +7,7 @@
 		<view class="video-top-bg">
 			<text class="title">{{product.name}}</text>
 			<text class="device">设备ID：{{product.macAddress}}</text>
-			<text class="status">状态：{{product.status === 1 ? '在线' : '空闲'}}</text>
+			<text class="status">状态：{{product.status === 1 ? '在线' : '离线'}}</text>
 			<text class="time">更新时间：{{product.updateDate}}</text>
 			<view class="image_close">
 				<image class="close" src="/assets/component_module/video_modal/icon_close.png" catchtap="actionForClose"></image>

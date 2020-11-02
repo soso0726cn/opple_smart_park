@@ -256,7 +256,7 @@ Page({
       }
     }
     // this.setData({
-    //   currentProduct:TEST_PRODUCT_114
+    //   currentProduct:TEST_PRODUCT_115
     // })
     if(this.data.currentProduct!=null){
       var project = {
