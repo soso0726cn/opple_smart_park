@@ -81,7 +81,14 @@ Component({
 
     // 广告开
     actionForProductLightOpen: function () {
-
+      // let product = this.data.product;
+      // if (product.online != 1) {
+      //   // wx.showToast({
+      //   //   icon:'none',
+      //   //   title: '当前设备不在线',
+      //   // })
+      //   return;
+      // }
       let params = {
         "deviceId": this.data.product.id,
         "switchOn": 1,
@@ -115,7 +122,14 @@ Component({
 
     // 广告关
     actionForProductLightClose: function () {
-
+      let product = this.data.product;
+      if (product.online != 1) {
+        // wx.showToast({
+        //   icon:'none',
+        //   title: '当前设备不在线',
+        // })
+        return;
+      }
       let params = {
         "deviceId": this.data.product.id,
         "switchOn": 0,
@@ -286,17 +300,17 @@ Component({
       console.log(selectItem);
       console.log(product);
       if (!selectItem || Object.keys(selectItem).length == 0) { // 节目为空,请选择节目
-        wx.showToast({
-          icon:'none',
-          title: '请选择节目',
-        })
+        // wx.showToast({
+        //   icon:'none',
+        //   title: '请选择节目',
+        // })
         return;
       }
       if (product.online != 1) {
-        wx.showToast({
-          icon:'none',
-          title: '当前设备不在线',
-        })
+        // wx.showToast({
+        //   icon:'none',
+        //   title: '当前设备不在线',
+        // })
         return;
       }
 

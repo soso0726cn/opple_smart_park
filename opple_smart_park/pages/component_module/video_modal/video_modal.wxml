@@ -22,7 +22,7 @@
 			</view>
 
 		</view>
-		<!-- || !product.online -->
+		<!-- || product.status == 0 -->
 		<block wx:if="{{product.picUrl == null || product.picUrl.length == 0 }}">
 			<image class="video-bottom-nobg" src="/assets/component_module/video_modal/video_default.png" catchtap="none" mode='aspectFit'></image>
 		</block>

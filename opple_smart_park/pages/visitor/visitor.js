@@ -252,7 +252,14 @@ Page({
           signalAdStatus: false,
           signalAd: null,
         })
-        wx.setStorageSync('project', item);
+      }
+    }else{
+      this.data.currentProduct = wx.getStorageSync('currentVisitorProduct')
+      console.log("currentProduct in cache:"+this.data.currentProduct)
+      if(this.data.currentProduct!=null){
+        this.setData({
+          currentProduct:this.data.currentProduct
+        })
       }
     }
     // this.setData({
@@ -264,8 +271,9 @@ Page({
       }
       console.log("project id:"+project.id)
       wx.setStorageSync('project', project)
+      wx.setStorageSync('visitor', true);
+      wx.setStorageSync('currentVisitorProduct', this.data.currentProduct);
     }
-    
   },
 
   receiveValue:function(res){

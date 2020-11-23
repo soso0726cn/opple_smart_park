@@ -37,8 +37,10 @@ Component({
     },
 
     liveOnTap (e) {
-      console.log("this.data.product:"+this.data.product.picUrl);
-
+      console.log("this.data.product.picUrl:"+this.data.product.picUrl);
+      if(this.data.product.status == 0){
+        return;
+      }
       wx.showLoading({
         title: '请求中，请耐心等待..',
         mask:true
