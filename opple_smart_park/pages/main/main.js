@@ -87,7 +87,6 @@ Page({
 
   // 设备录入
   scanOnTap: function () {
-
     wx.scanCode().then(res => {
       if (res.errMsg == 'scanCode:ok') {
         wx.getLocation({
@@ -105,7 +104,6 @@ Page({
               latitude: newloc.latitude.toFixed(5),
             }
           }
-          
           wx.navigateTo({
             url: '/pages/equipment/equipment?data=' + JSON.stringify(data)
           })
@@ -214,6 +212,27 @@ Page({
               wx.scanCode({
                 success (res) {
                   console.log(res)
+                  if (res.errMsg == 'scanCode:ok') {
+                    wx.getLocation({
+                      type: 'wgs84'
+                    }).then(location => {
+                      console.log("=====getLocation longitude=====" + location.longitude)
+                      console.log("=====getLocation latitude=====" + location.latitude)
+                      var newloc = UTIL.transformFromWGSToGCJ(location.latitude,location.longitude);
+                      console.log("=====getLocation GCJ longitude=====" + newloc.longitude.toFixed(5))
+                      console.log("=====getLocation GCJ latitude=====" + newloc.latitude.toFixed(5))
+                      let data = {
+                        code: res.result,
+                        location: {
+                          longitude: newloc.longitude.toFixed(5),
+                          latitude: newloc.latitude.toFixed(5),
+                        }
+                      }
+                      wx.navigateTo({
+                        url: '/pages/equipment/equipment?data=' + JSON.stringify(data)
+                      })
+                    })
+                  }
                 },
                 fail(error) {
                   console.log(error);

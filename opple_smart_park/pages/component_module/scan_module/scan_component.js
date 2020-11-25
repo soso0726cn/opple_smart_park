@@ -12,6 +12,12 @@ Component({
       value: null,
       observer: function (item) {
         if (!!item) {
+          if(item.code!=null){
+            var temp = item.code.split('/');
+            if(temp.length > 1&& temp[0] == ''){
+              item.code = temp[1] ;
+            }
+          }
           this.setData({item: item})
         }
       }
