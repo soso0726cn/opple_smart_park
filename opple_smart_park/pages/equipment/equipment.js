@@ -43,14 +43,13 @@ Page({
     this.setData({ statusHeight: app.globalData.statusHeight,navigateHeight: app.globalData.navigateHeight});
 
     let data = JSON.parse(options.data)
-    console.log('scanview.data.location.longitude:'+data.location.longitude);
-    console.log('scanview.data.location.latitude:'+data.location.latitude);
+    
     // 获取灯杆数据
     let lightProduct = {
       code: data.code || '',
       location: {
-        longitude: data.location.longitude.toFixed(5) || '',
-        latitude: data.location.latitude.toFixed(5) || '',
+        longitude: data.location.longitude || '',
+        latitude: data.location.latitude || '',
       }
     };
 
