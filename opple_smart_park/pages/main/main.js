@@ -1,6 +1,7 @@
 // pages/main/main.js
 
 const API = require('../../utils/api.js');
+const UTIL = require('../../utils/util.js');
 const app = getApp()
 /**
  * 登录逻辑
@@ -92,12 +93,16 @@ Page({
         wx.getLocation({
           type: 'wgs84'
         }).then(location => {
-
+          console.log("=====getLocation longitude=====" + location.longitude)
+          console.log("=====getLocation latitude=====" + location.latitude)
+          var newloc = UTIL.transformFromWGSToGCJ(location.latitude,location.longitude);
+          console.log("=====getLocation GCJ longitude=====" + newloc.longitude.toFixed(5))
+          console.log("=====getLocation GCJ latitude=====" + newloc.latitude.toFixed(5))
           let data = {
             code: res.result,
             location: {
-              longitude: location.longitude,
-              latitude: location.latitude,
+              longitude: newloc.longitude.toFixed(5),
+              latitude: newloc.latitude.toFixed(5),
             }
           }
           

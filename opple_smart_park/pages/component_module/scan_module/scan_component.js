@@ -1,5 +1,6 @@
 // pages/component_module/scan_module/scan_component.js
 const API = require('../../../utils/api.js');
+const UTIL = require('../../../utils/util.js');
 const app = getApp()
 Component({
   /**
@@ -70,11 +71,14 @@ Component({
       }).then(location =>{
         console.log("=====getLocation longitude=====" + location.longitude)
         console.log("=====getLocation latitude=====" + location.latitude)
+        var newloc = UTIL.transformFromWGSToGCJ(location.latitude,location.longitude);
+        console.log("=====getLocation GCJ longitude=====" + newloc.longitude.toFixed(5))
+        console.log("=====getLocation GCJ latitude=====" + newloc.latitude.toFixed(5))
         this.setData(
           {
             ['item.location']:{
-              longitude:location.longitude,
-              latitude:location.latitude,
+              longitude:newloc.longitude.toFixed(5),
+              latitude:newloc.latitude.toFixed(5),
             }
           }
         )
