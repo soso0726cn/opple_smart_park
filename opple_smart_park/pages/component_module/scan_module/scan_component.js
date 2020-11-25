@@ -12,7 +12,12 @@ Component({
       value: null,
       observer: function (item) {
         if (!!item) {
-          this.setData({item: item})
+          if(item.code!=null){
+            var temp = item.code.split('/');
+            if(temp.length > 1&& temp[0] == ''){
+              item.code = temp[1] ;
+            }
+          }
         }
       }
     },
@@ -33,7 +38,15 @@ Component({
       value: {
         longitude: '0.0',
         latitude: '0.0'
-      }
+      },
+      observer: function (location) {
+        console.log('location:'+location);
+        if (!!location) {
+            location.latitude = location.latitude.toFixed(5);
+            location.longitude = location.longitude.toFixed(5);
+          }
+          this.setData({location: location})
+        }
     }
   },
 
