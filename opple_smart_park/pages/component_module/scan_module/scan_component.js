@@ -18,6 +18,17 @@ Component({
               item.code = temp[1] ;
             }
           }
+          item.mapLocation = item.location;
+          // item.marks =[
+          //   {
+
+          //     "iconPath": "/assets/map_view/map_mark.png",
+          //     "latitude": item.mapLocation.latitude,
+          //     "longitude":item.mapLocation.longitude,
+          //     "width":35,
+          //     "height":50,
+          //   }
+          // ] 
           this.setData({item: item})
         }
       }
@@ -29,7 +40,6 @@ Component({
       value: 0
     },
 
-
     deviceNumber: {
       type: String,
       value: ''
@@ -40,7 +50,7 @@ Component({
         longitude: '0.0',
         latitude: '0.0'
       }
-    }
+    },
   },
 
   /**
@@ -85,10 +95,60 @@ Component({
             ['item.location']:{
               longitude:newloc.longitude.toFixed(5),
               latitude:newloc.latitude.toFixed(5),
-            }
+            },
+            ['item.mapLocation']:{
+              longitude:newloc.longitude.toFixed(5),
+              latitude:newloc.latitude.toFixed(5),
+            },
+            // ['item.marks']:[
+            //   {
+            //     "iconPath": "/assets/map_view/map_mark.png",
+            //     "latitude": newloc.latitude.toFixed(5),
+            //     "longitude":newloc.longitude.toFixed(5),
+            //     "width":35,
+            //     "height":50,
+            //   }
+            // ] 
           }
         )
       })
+    },
+
+    // 地图
+    actionForChange: function (e){
+        if(e.type == 'end'){
+        console.log(e);
+        let that = this;
+        this.mapCtx = wx.createMapContext("map",this)
+        this.mapCtx.getCenterLocation({
+          success:function(res){
+          console.log('移动中心的lat:'+res.latitude);
+          console.log('移动中心的lng:'+res.longitude);
+          that.setData(
+            {
+              ['item.location']:{
+                longitude:res.longitude.toFixed(5),
+                latitude:res.latitude.toFixed(5),
+              },
+              // ['item.marks']:[
+              //   {
+              //     "iconPath": "/assets/map_view/map_mark.png",
+              //     "latitude": res.latitude.toFixed(5),
+              //     "longitude":res.longitude.toFixed(5),
+              //     "width":35,
+              //     "height":50,
+              //   }
+              // ] 
+            }
+          )
+
+
+        },fail:function(error){
+          console.log('error:'+error);
+        },complete:function(msg){
+          console.log('complete:'+msg);
+        }})
+      }
     },
 
     // 点击区域

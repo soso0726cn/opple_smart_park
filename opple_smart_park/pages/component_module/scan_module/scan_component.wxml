@@ -34,9 +34,14 @@
       <text class="context">纬度</text>
       <text class="input-location">{{item.location.latitude || '0.0'}}</text>
     </view>
-    
-
     <image class="location" src="/assets/component_module/scan_module/location.png" catchtap="getLocation"></image>
+    <view class="line"></view>
+  </view>
+
+  <view class="item-background-map">
+    <map class="map_container"  id="map" longitude="{{item.mapLocation.longitude || '0.0'}}" latitude="{{item.mapLocation.latitude || '0.0'}}"  show-location="false" bindregionchange="actionForChange">
+      <image class = "map_marker_container" src="/assets/map_view/map_mark.png"></image>
+    </map>
     <view class="line"></view>
   </view>
 
