@@ -89,16 +89,26 @@ const API = {
   //摄像头控制
   'vcr_control':'/vcr/ptz/control',
 
+  //事件单处理人
+  'handler_list':'/auth/user/prj_list',
+
+  'event_order_info':'/event/order/info',
+
+  'event_order_submit':'/event/order/submit',
+
+  'event_order_ignore':'/event/order/ignore',
 }
 
-const http = ({ url = '', param = {}, ...other } = {}) => {
+const http = ({ url = '', param = {}, needShowLoading = true,...other } = {}) => {
   console.log('----------网络开始----------')
   console.log(url)
   console.log(param)
-  wx.showLoading({
+  if(needShowLoading){
+    wx.showLoading({
       title: '请求中，请耐心等待..',
       mask:true
-  });
+    });
+  }
   // let timeStart = Date.now();
   return new Promise((resolve, reject) => {
       wx.request({
@@ -110,7 +120,9 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
           timeout: 20000,
           ...other,
           complete: (res) => {
-              wx.hideLoading();
+              if(needShowLoading){
+                wx.hideLoading();
+              }
               // console.log(`耗时${Date.now() - timeStart}`);
               console.log(res)
               console.log('----------网络结束----------')
@@ -144,6 +156,16 @@ const post = (url, param = {}) => {
   return http({
       url,
       param,
+      needShowLoading:true,
+      method: 'post'
+  })
+}
+
+const postNoLoading = (url, param = {}) => {
+  return http({
+      url,
+      param,
+      needShowLoading:false,
       method: 'post'
   })
 }
@@ -185,6 +207,11 @@ module.exports = {
   auth_user_mobile_wx_phone_check: HOST.host + API.auth_user_mobile_wx_phone_check,
   user_info_fetch:HOST.host+API.user_info_fetch,
   vcr_control:HOST.host+API.vcr_control,
+  handler_list:HOST.host+API.handler_list,
+  event_order_info:HOST.host+API.event_order_info,
+  event_order_submit:HOST.host+API.event_order_submit,
+  event_order_ignore:HOST.host+API.event_order_ignore,
   get,
   post,
+  postNoLoading,
 }

@@ -16,12 +16,12 @@
 
 			<scroll-view scroll-y="true" scroll-with-animation="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{loading && currentTab === index}}" bindscrolltolower="onReachBottom" class="talents_list">
 
-				<view class="item-background" wx:for="{{itemList[currentTab]}}" wx:key="subIndex">
-          <view class="top-bg">
+				<view class="item-background" wx:for="{{itemList[currentTab]}}" wx:key="subIndex" catchtap="actionForCenterDetail" data-item="{{item}}" data-id="{{item.id}}">
+          <view class="top-bg" >
             <text class="title">{{item.title}}</text>
             <text class="status">{{item.orderTypeName}}</text>
           </view>
-          <view class="bottom-bg">
+          <view class="bottom-bg" >
             <text class="priority">优先级：{{item.orderLevelName}}</text>
             <text class="time">{{item.createTime}}</text>
           </view>

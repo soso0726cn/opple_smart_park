@@ -1,0 +1,30 @@
+<!--pages/component_module/scan_module/scan_component.wxml-->
+
+<view class="container">
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">管理员</text>
+      <text class="row_display_value">{{item.handleUserID}}</text>
+    </view>
+  </view>
+  <view class="line"></view>
+
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">备注</text>
+      <text class="row_display_value">{{item.description}}</text>
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">派单时间</text>
+      <text class="row_display_value">{{item.createTime}}</text>
+    </view>
+  </view>
+  <view class="center_margin"></view>
+</view>
+
+
+
+

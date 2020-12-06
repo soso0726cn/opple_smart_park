@@ -20,7 +20,7 @@
   position: relative;
   display: flex;
   width: 100vw;
-  height: 300rpx;
+  height: 450rpx;
   align-items: center;
 }
 
@@ -35,7 +35,7 @@
   width: 40rpx;
   height: 60rpx;
   left: 50%;
-  top: 49%;
+  top: 46%;
   transform:translate3d(-50%,-50%,0);
 }
 

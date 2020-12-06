@@ -175,4 +175,44 @@ Page({
     }
   },
 
+  actionForCenterDetail:function(e){
+    const item = e.currentTarget.dataset.item;
+    
+    const project = wx.getStorageSync('project');
+    const projectId = project.id;
+    var handlerListParams = {
+      'projectId':projectId,
+      'token':"string",
+    }
+    var param = {
+      'orderId':item.id,
+      'orderStatus':item.orderStatus,
+    }
+    wx.showLoading({
+      title: '请求中，请耐心等待..',
+      mask:true
+    });
+    API.postNoLoading(API.handler_list,handlerListParams).then((res)=>{
+      if (res.rstCode === 200) {
+        var handlerJson = JSON.stringify(res.rows);
+        API.postNoLoading(API.event_order_info,param).then((res)=>{
+          if (res.rstCode === 200) {
+            console.log(res);
+            var data = JSON.stringify(res.data);
+            wx.hideLoading();
+            wx.navigateTo({
+              url: '/pages/center_detail/center_detail?data='+data+'&handler_list='+ handlerJson
+            })
+          }else{
+            wx.hideLoading();
+          }
+        });
+      }else{
+        wx.hideLoading();
+      }
+    });
+
+   
+  }
+
 })

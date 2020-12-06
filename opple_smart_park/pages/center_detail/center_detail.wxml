@@ -1,0 +1,61 @@
+<!--pages/center_detail/center_detail.wxml-->
+<view class="container" style="height: calv(100vh - {{statusHeight+navigateHeight}}px);margin-top: {{statusHeight+navigateHeight}}px">
+<!-- <view class="container"> -->
+	<navBar backType='back' title='事件处理' backgroudColor="#027aff"></navBar>
+  <view class="navigator_bottom"></view>
+  <scroll-view scroll-x = "false" scroll-y = "true" class="scroll_body">
+    <centerEventInfoDisplay class="center_event_info_display" param="{{item}}"></centerEventInfoDisplay> 
+    <view class="center_margin"></view>
+    <block wx:if="{{item.orderStatus == 1}}">
+      <centerEvnentHandlerEdit class="center_event_handler_edit" handler="{{currentHandler}}" level="{{currentLevel}}" bind:center_detail="receiveValue" orderStatus = "1"></centerEvnentHandlerEdit>
+      <view class="center_margin"></view> 
+    </block>
+
+    <block wx:if="{{item.orderStatus == 2}}">
+      <centerEventSenderDisplay class="center_sender_handler_display" param="{{item}}"></centerEventSenderDisplay>
+      <view class="center_margin"></view> 
+      <centerEvnentHandlerEdit class="center_event_handler_edit" handler="{{currentHandler}}" level="{{currentLevel}}" bind:center_detail="receiveValue" orderStatus = "2"></centerEvnentHandlerEdit>
+      <view class="center_margin"></view> 
+    </block>
+
+    <block wx:if="{{item.orderStatus == 3}}">
+      <centerEventSenderDisplay class="center_sender_handler_display" param="{{item}}"></centerEventSenderDisplay>
+      <view class="center_margin"></view> 
+      <centerEventHandlerDisplay class="center_event_handler_display" param="{{item}}"></centerEventHandlerDisplay>
+      <view class="center_margin"></view>
+      <centerEventAuditingEdit bind:center_detail="receiveValue"></centerEventAuditingEdit>
+      <view class="center_margin"></view> 
+    </block>
+
+    
+    <!-- <centerEventHandlerDisplay class="center_event_handler_display"></centerEventHandlerDisplay>
+    <view class="center_margin"></view> 
+    <centerEventSenderDisplay class="center_sender_handler_display"></centerEventSenderDisplay>
+    <view class="center_margin"></view> 
+    <centerEvnentHandlerEdit class="center_sender_handler_display"></centerEvnentHandlerEdit>
+    <view class="center_margin"></view> 
+    <centerEventAuditingEdit class="center_sender_handler_display"></centerEventAuditingEdit>
+    <view class="center_margin"></view>  -->
+
+    <!-- <view class="confirm-button" catchtap="actionForSure">确定</view> -->
+    
+    <block wx:if="{{item.orderStatus == 1}}">
+      <view class="center_margin"></view>
+        <view class="button_container">
+        <view class="ignore_button" catchtap="actionForIgnore">忽略</view>
+      </view>
+    </block>
+  
+    <view class="center_margin"></view>
+    <view class="button_container">
+      <view class="submit_button" catchtap="actionForSure">保存</view>
+    </view>
+    <view class="center_margin"></view>
+    <view class="center_margin"></view>
+    <view class="center_margin"></view>
+  </scroll-view> 
+
+  <selectView status="{{showHandlerSelect}}" list="{{displayHandlerList}}" bind:select="actionForSelectHandler" bind:selectClose="actionForSelectHandlerClose"></selectView>
+  <selectView status="{{showLevelSelect}}" list="{{levelList}}" bind:select="actionForSelectLevel" bind:selectClose="actionForSelectLevelClose"></selectView>
+
+</view>

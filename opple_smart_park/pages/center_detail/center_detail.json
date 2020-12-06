@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+
+    "centerEventInfoDisplay": "/pages/component_module/center_module/center_event_info_display_component/center_event_info_display_component",
+    "centerEventHandlerDisplay": "/pages/component_module/center_module/center_event_handler_display_component/center_event_handler_display_component",
+    "centerEventSenderDisplay": "/pages/component_module/center_module/center_event_sender_display_component/center_event_sender_display_component",
+    "centerEvnentHandlerEdit": "/pages/component_module/center_module/center_event_handler_edit_component/center_event_handler_edit_component",
+    "centerEventAuditingEdit": "/pages/component_module/center_module/center_event_auditing_edit_component/center_event_auditing_edit_component",
+    "selectView": "/pages/component_module/select_module/select_component/select_component"
+  },
+
+  "enablePullDownRefresh": false
+}

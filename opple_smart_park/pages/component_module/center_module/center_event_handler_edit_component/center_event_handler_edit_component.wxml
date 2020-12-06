@@ -1,0 +1,32 @@
+<!--pages/component_module/scan_module/scan_component.wxml-->
+
+<view class="container">
+  <view class="body">
+    <view class='row' catchtap='selectHandler'>
+      <text class="row_key">处理人</text>
+      <view class="row_display_value">
+        <text class="row_display_value_title">{{handler.userName}}:{{handler.realName}}</text>
+        <image class="more" src="/assets/setting/ic_right_arrow.png"></image>
+      </view>
+    </view>
+    <view class="line"></view>
+  </view>
+  <view class="body" wx:if="{{orderStatus == 1}}">
+    <view class='row' catchtap='selectLevel'>
+      <text class="row_key">紧急度</text>
+      <view class="row_display_value">
+        <text class="row_display_value_title">{{level.name}}</text>
+        <image class="more" src="/assets/setting/ic_right_arrow.png"></image>
+      </view>
+    </view>
+    <view class="line"></view>
+  </view>
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">备注</text>
+      <input class="row_display_value_input" bindinput="actionForInputTag"></input>
+    </view>
+  </view>
+  <view class="center_margin"></view>
+</view>  
+

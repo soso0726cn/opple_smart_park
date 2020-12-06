@@ -1,0 +1,46 @@
+<!--pages/component_module/center_module/center_event_info_display_component/center_event_info_display_component.wxml-->
+<view class="container">
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">事件标题</text>
+      <text class="row_display_value">{{item.title}}</text>
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">事件类型</text>
+      <text class="row_display_value">{{item.orderTypeName}}</text>
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">设备监控</text>
+      <text class="row_display_value">{{item.deviceName}}</text>
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">设备ID</text>
+      <text class="row_display_value">{{item.macAddress}}</text>
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">附件</text>
+      <view class="row_display_image_container" >
+        <block wx:if="{{imageUrl == null}}">
+          <image class="row_display_default_image" src="/assets/component_module/video_modal/video_default.png"></image>
+        </block>
+        <block wx:else >
+          <image class="row_display_default_image" src="{{imageUrl}}" binderror="imageRequestError"></image>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+

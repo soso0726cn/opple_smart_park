@@ -1,0 +1,24 @@
+<!--pages/component_module/scan_module/scan_component.wxml-->
+<view class="container">
+
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">审核</text>
+      <view class="row_display_value">
+        <radio-group class="radio-group" bindchange="radioChange">
+          <radio class="row_radio"  color="#228B22" value="同意" checked="false">同意</radio>
+          <radio class="row_radio" color="#228B22" value="拒绝" checked="true">拒绝</radio>
+        </radio-group>
+      </view>
+    </view>
+    <view class="line"></view>
+  </view>
+  <view class="body">
+    <view class='row'>
+      <text class="row_key">备注</text>
+      <input class="row_display_value_input" bindinput="actionForInputTag"></input>
+    </view>
+  </view>
+  <view class="center_margin"></view>
+</view>  
+

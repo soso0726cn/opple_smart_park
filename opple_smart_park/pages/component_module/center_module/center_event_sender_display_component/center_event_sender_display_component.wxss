@@ -1,0 +1,58 @@
+/* pages/component_module/scan_module/scan_component.wxss */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.body{
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-top: 20rpx;
+}
+
+.line {
+  display: flex;
+  width: 100%;
+  height: 2rpx;
+  background-color: #eeeeee;
+  margin-top: 20rpx;
+}
+
+.row{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.row_key{
+  font-size: 30rpx;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  flex:2;
+  color: #323232
+}
+
+.row_display_value{
+  font-size: 25rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  border-radius: 10rpx;
+  background-color: #eeeeee;
+  flex:8;
+  margin-left: 20rpx;
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  color: #323232
+}
+
+.center_margin{
+  width: 100%;
+  height: 20rpx;
+}

@@ -46,6 +46,7 @@ Component({
         status: false,
         selectItem: null
       });
+      this.triggerEvent('selectClose');
     },
 
     // 确定
