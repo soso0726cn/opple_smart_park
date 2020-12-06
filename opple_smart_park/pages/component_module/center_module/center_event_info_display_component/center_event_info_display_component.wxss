@@ -64,3 +64,8 @@
   width: 210rpx;
   height: 200rpx;
 }
+
+.row_display_url_image{
+  width: 350rpx;
+  height: 200rpx;
+}

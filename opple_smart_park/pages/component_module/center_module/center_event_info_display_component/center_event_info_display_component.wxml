@@ -36,7 +36,7 @@
           <image class="row_display_default_image" src="/assets/component_module/video_modal/video_default.png"></image>
         </block>
         <block wx:else >
-          <image class="row_display_default_image" src="{{imageUrl}}" binderror="imageRequestError"></image>
+          <image class="row_display_url_image" src="{{imageUrl}}" binderror="imageRequestError" catchtap="tapImage"></image>
         </block>
       </view>
     </view>
