@@ -60,7 +60,7 @@ Component({
         "speed": 1,
         "token": "string"
       };
-      API.post(API.vcr_control,params).then((res) => {
+      API.postNoLoading(API.vcr_control,params).then((res) => {
     
       });
     },
@@ -85,7 +85,7 @@ Component({
         "speed": 1,
         "token": "string"
       };
-      API.post(API.vcr_control,params).then((res) => {
+      API.postNoLoading(API.vcr_control,params).then((res) => {
     
       });
     },
@@ -110,7 +110,7 @@ Component({
         "speed": 1,
         "token": "string"
       };
-      API.post(API.vcr_control,params).then((res) => {
+      API.postNoLoading(API.vcr_control,params).then((res) => {
     
       });
     },
@@ -136,7 +136,7 @@ Component({
         "speed": 1,
         "token": "string"
       };
-      API.post(API.vcr_control,params).then((res) => {
+      API.postNoLoading(API.vcr_control,params).then((res) => {
     
       });
     },
