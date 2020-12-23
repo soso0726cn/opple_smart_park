@@ -758,8 +758,14 @@ Page({
     API.post(API.bc_manager_device_playList,params).then((res) => {
       if (res.rstCode === 200) {
         if (type === 'left') {
+          console.log("displayImage:"+ recommendsLeft[2][index].playImage);
+          recommendsLeft[2][index].playImage = recommendsLeft[2][index].status == 'play' ?  that.data.videoIcon.idle : that.data.videoIcon.select
+          recommendsLeft[2][index].statusContext = recommendsLeft[2][index].status == 'play' ? '空闲' : '正在播放'
           recommendsLeft[2][index].status = recommendsLeft[2][index].status == 'play' ? 'idle' : 'play'
         } else {
+          recommendsRight[2][index].playImage = recommendsRight[2][index].status == 'play' ?  that.data.videoIcon.idle : that.data.videoIcon.select
+          console.log("displayImage:"+ recommendsRight[2][index].playImage);
+          recommendsRight[2][index].statusContext = recommendsRight[2][index].status == 'play' ? '空闲' : '正在播放'
           recommendsRight[2][index].status = recommendsRight[2][index].status == 'play' ? 'idle' : 'play'
         }
 
@@ -776,7 +782,7 @@ Page({
   pause: function (deviceId, type, index) {
     let recommendsRight = this.data.recommendsRight
     let recommendsLeft = this.data.recommendsLeft
-
+    let that = this
     const params = {
       deviceIds: [
         deviceId
@@ -787,8 +793,12 @@ Page({
 
       if (res.rstCode === 200) {
         if (type === 'left') {
+          recommendsLeft[2][index].playImage = recommendsLeft[2][index].status == 'play' ?  that.data.videoIcon.idle : that.data.videoIcon.select
+          recommendsLeft[2][index].statusContext = recommendsLeft[2][index].status == 'play' ? '空闲' : '正在播放'
           recommendsLeft[2][index].status = recommendsLeft[2][index].status == 'play' ? 'idle' : 'play'
         } else {
+          recommendsRight[2][index].playImage = recommendsRight[2][index].status == 'play' ?  that.data.videoIcon.idle : that.data.videoIcon.select
+          recommendsRight[2][index].statusContext = recommendsRight[2][index].status == 'play' ? '空闲' : '正在播放'
           recommendsRight[2][index].status = recommendsRight[2][index].status == 'play' ? 'idle' : 'play'
         }
 

@@ -120,7 +120,7 @@ Component({
             this.data.area.id,
           ],
           listId: item.id,
-          mode: '1',
+          mode: '5',
           "token": "string"
         };
         API.post(API.bc_manager_area_playList,params);

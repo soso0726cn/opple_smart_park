@@ -17,7 +17,7 @@
 				</view>
 			</view>
 			<image class="broadcast_image" wx:if="{{!product.showStatus || product.showStatus == '正在播放'}}" src="/assets/map_view/broadcast_play.png" catchtap="actionForStopPlayMusic"></image>
-      <image class="broadcast_image" wx:else src="/assets/map_view/braodcast_desc_image.png" catchtap="actionForIdle" ></image>
+      <image class="broadcast_image" wx:else src="/assets/map_view/braodcast_desc_image.png" catchtap="actionForPlayAreaMusic" ></image>
 		</view>
 
 

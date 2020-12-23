@@ -172,7 +172,7 @@ Component({
         let that = this;
         let product = this.data.product;
         API.post(API.bc_manager_device_playList,params).then((res) => {
-          product.showStatus = '广播';
+          product.showStatus = '正在播放';
           product.status == 'play'
           that.setData({
             product: product,
