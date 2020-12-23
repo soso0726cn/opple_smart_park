@@ -166,7 +166,7 @@ Component({
             this.data.product.id
           ],
           listId: item.id,
-          mode: '1',
+          mode: '5',
           "token": "string"
         };
         let that = this;
