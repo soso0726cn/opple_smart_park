@@ -685,50 +685,77 @@ Page({
   },
 
   playOnTap: function (e) {
-    let index = e.currentTarget.dataset.index
-    let type = e.currentTarget.dataset.type
-    let data = e.currentTarget.dataset.data
-
-    if (type === 'left') {
-      // 请求开关灯接口
-      let recommends = this.data.recommendsLeft
-
-      if (recommends[2][index].status === 'offline' || recommends[2][index].status === 'warning') {
-        return
+    var index = e.currentTarget.dataset.index
+    var type = e.currentTarget.dataset.type
+    var data = e.currentTarget.dataset.data
+    const project = wx.getStorageSync('project');
+    const projectId = project.id;
+    const listParams = {
+      "projectId": projectId,
+      "token": "string"
+    };
+    var that = this;
+    API.postNoLoading(API.bc_media_type_list,listParams).then((res) => {
+      console.log("playOnTap.index:"+index);
+      if(res.items.length == 0){
+        wx.showToast({
+          icon: 'none',
+          title: '播放失败,播放列表为空'
+        })
+        return;
       }
-
-      if (recommends[2][index].status === 'play') {
-        this.pause(data.id, 'left', index)
+      console.log(res)
+      var defaultId = res.items[0].id;
+      console.log("defaultId:"+defaultId);
+      if (type === 'left') {
+        // 请求开关灯接口
+        console.log(data);
+        let recommends = that.data.recommendsLeft
+        if (recommends[2][index].status === 'offline' || recommends[2][index].status === 'warning') {
+          return
+        }
+  
+        if (recommends[2][index].status === 'play') {
+          that.pause(data.id, 'left', index)
+        } else {
+          that.play(data.id,defaultId, 'left',index)
+        }
       } else {
-        this.play(data.id, 'left')
+        let recommends = that.data.recommendsRight
+        if (recommends[2][index].status === 'offline' || recommends[2][index].status === 'warning') {
+          return
+        }
+        if (recommends[2][index].status === 'play') {
+          that.pause(data.id, 'right', index)
+        } else {
+          that.play(data.id,defaultId, 'right', index)
+        }
       }
-    } else {
-      let recommends = this.data.recommendsRight
+    }).catch(() => {
+      wx.showToast({
+        icon: 'none',
+        title: '播放列表获取失败'
+      })
+    });
+  
 
-      if (recommends[2][index].status === 'offline' || recommends[2][index].status === 'warning') {
-        return
-      }
-
-      if (recommends[2][index].status === 'play') {
-        this.pause(data.id, 'right', index)
-      } else {
-        this.play(data.id, 'right', index)
-      }
-    }
+   
   },
 
-  play: function (deviceId, type, index) {
-    let recommendsRight = this.data.recommendsRight
-    let recommendsLeft = this.data.recommendsLeft
-
+  play: function (deviceId, listId,type, index) {
+    var that = this;
+    var recommendsRight = that.data.recommendsRight
+    var recommendsLeft = that.data.recommendsLeft
     const params = {
       "deviceIds": [
         deviceId
       ],
+      listId: listId,
+      mode: '5',
       "token": "string"
     };
-    API.post(API.bc_manager_device_playList,params).then((res) => {
 
+    API.post(API.bc_manager_device_playList,params).then((res) => {
       if (res.rstCode === 200) {
         if (type === 'left') {
           recommendsLeft[2][index].status = recommendsLeft[2][index].status == 'play' ? 'idle' : 'play'
@@ -736,7 +763,7 @@ Page({
           recommendsRight[2][index].status = recommendsRight[2][index].status == 'play' ? 'idle' : 'play'
         }
 
-        this.setData({
+        that.setData({
           recommendsRight: recommendsRight,
           recommendsLeft: recommendsLeft
         })
