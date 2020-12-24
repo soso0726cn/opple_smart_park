@@ -15,12 +15,12 @@
 					<text class="left_title">设备：{{product.lastRec.macAddress || '-'}}</text>
 					<text class="left_title">型号：{{product.devicePlatformName || '-'}}</text>
 					<text class="left_title">状态：{{product.online  == '0' ? '离线' : (product.online  == '1' ? '在线' : '报警')}}</text>
-					<text class="left_title">亮度：{{product.lastRec.level}}</text>
+					<text class="left_title">亮度：{{product.online  == '0'?'0':product.lastRec.level}}</text>
 				</view>
 				<view class="right_container">
-					<text class="right_title">电压：{{product.lastRec.voltage || '0'}}V</text>
-					<text class="right_title">电流：{{product.lastRec.current || '0'}}mA</text>
-					<text class="right_title">功率：{{product.lastRec.activePower || '0'}}W</text>
+					<text class="right_title">电压：{{product.online  == '0'?'0':(product.lastRec.voltage || '0')}}V</text>
+					<text class="right_title">电流：{{product.online  == '0'?'0':(product.lastRec.current || '0')}}mA</text>
+					<text class="right_title">功率：{{product.online  == '0'?'0':(product.lastRec.activePower || '0')}}W</text>
 					<text class="right_title">{{product.lastRec.updateTime || '-'}}</text>
 				</view>
 			</view>

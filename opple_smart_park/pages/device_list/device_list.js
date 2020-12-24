@@ -633,12 +633,24 @@ Page({
     let type = e.currentTarget.dataset.type
     let data = e.currentTarget.dataset.data
 
+    if(data.online == 0){
+      wx.showToast({
+        icon: 'none',
+        title: '设备离线'
+      })
+      return;
+    }
+    console.log('type:'+type);
     if (type === 'left') {
       // 请求开关灯接口
       let recommends = this.data.recommendsLeft
 
-      if (recommends[1][index].online !== 0) {
-        return
+      if (recommends[1][index].online == 0) {
+        wx.showToast({
+          icon: 'none',
+          title: '设备离线'
+        })
+        return;
       }
 
       let params = {
@@ -661,8 +673,12 @@ Page({
     } else {
       let recommends = this.data.recommendsRight
 
-      if (recommends[1][index].online !== 0) {
-        return
+      if (recommends[1][index].online == 0) {
+        wx.showToast({
+          icon: 'none',
+          title: '设备离线'
+        })
+        return;
       }
 
       let params = {

@@ -37,6 +37,9 @@ Component({
           }
 
           let level = !!newVal.lastRec ? (newVal.lastRec.level || 0) : 0;
+          if(newVal.online == 0){
+            level = 0;
+          }
           if (level == 0) {
             this.toolsForLight(0);
           }else if (level > 0 && level <= 25) {
@@ -87,10 +90,10 @@ Component({
     // 开灯
     actionForProductLightOpen: function () {
       if (!this.data.product.online) {
-        // wx.showToast({
-        //   icon:'none',
-        //   title: '当前设备离线状态',
-        // })
+        wx.showToast({
+          icon:'none',
+          title: '设备离线',
+        })
         return;
       }
 
@@ -118,10 +121,10 @@ Component({
     // 关灯
     actionForProductLightClose: function () {
       if (!this.data.product.online) {
-        // wx.showToast({
-        //   icon:'none',
-        //   title: '当前设备离线状态',
-        // })
+        wx.showToast({
+          icon:'none',
+          title: '设备离线',
+        })
         return;
       }
 
@@ -150,10 +153,10 @@ Component({
     actionForProductLightChoose: function (e) {
 
       if (!this.data.product.online) {
-        // wx.showToast({
-        //   icon:'none',
-        //   title: '当前设备离线状态',
-        // })
+        wx.showToast({
+          icon:'none',
+          title: '设备离线',
+        })
         return;
       }
 
