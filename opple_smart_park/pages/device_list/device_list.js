@@ -112,12 +112,27 @@ Page({
     this.netWorkForAreaList()
   },
 
+  onShareAppMessage:function (res) {
+    return {
+      title: '智元平台',
+      //path: '/page/user?id=123'
+      path:  'pages/main/main',
+    }
+  },
+
+  onShareTimeline:function(res){
+    return {
+      title:'智元平台',
+      query:  'pages/main/main',
+    }
+  },
+
   netWorkForAreaList: function() {
 
     const project = wx.getStorageSync('project');
     const projectId = project.id;
 
-    API.post(API.mc_area_list,{projectId: projectId, token: 'string'}).then((res) => {
+    API.postNoLoading(API.mc_area_list,{projectId: projectId, token: 'string'}).then((res) => {
       console.log(res);
       let area = {
         selectArea: res.items.length > 0 ? res.items[0] : null,
@@ -163,7 +178,7 @@ Page({
         "token": "string"
       }
 
-      API.post(API.vcr_ipc_page, params).then((res) => {
+      API.postNoLoading(API.vcr_ipc_page, params).then((res) => {
 
         if (res.rstCode === 200) {
 
@@ -201,7 +216,7 @@ Page({
         "token": "string"
       };
 
-      API.post(API.ls_device_list, params).then((res) => {
+      API.postNoLoading(API.ls_device_list, params).then((res) => {
 
         let newList = recommends[currentIndex]
         newList = newList.concat(res.rows)
@@ -248,7 +263,7 @@ Page({
         "token": "string"
       };
 
-      API.post(API.bc_device_page, params).then((res) => {
+      API.postNoLoading(API.bc_device_page, params).then((res) => {
 
         res.rows.filter((item) => {
           let status = item.status
@@ -322,7 +337,7 @@ Page({
         "token": "string"
       };
 
-      API.post(API.scn_device_list, params).then((res) => {
+      API.postNoLoading(API.scn_device_list, params).then((res) => {
 
         let newList = recommends[currentIndex]
         newList = newList.concat(res.rows)
@@ -360,7 +375,7 @@ Page({
         "token": "string"
       };
 
-      API.post(API.sensor_weather_device_list, params).then((res) => {
+      API.postNoLoading(API.sensor_weather_device_list, params).then((res) => {
 
         let newList = res.items
 
@@ -603,7 +618,7 @@ Page({
     };
 
     let that = this;
-    API.post(API.scn_device_ctrl_power,params).then((res) => {
+    API.postNoLoading(API.scn_device_ctrl_power,params).then((res) => {
       that.setData({
         openStatus: true,
         closeStatus: false
@@ -659,7 +674,7 @@ Page({
         "token": "string"
       };
   
-      API.post(API.ls_device_switch,params).then((res) => {
+      API.postNoLoading(API.ls_device_switch,params).then((res) => {
         if (res.rstCode === 200) {
 
           recommends[1][index].switchOn = !recommends[1][index].switchOn
@@ -687,7 +702,7 @@ Page({
         "token": "string"
       };
   
-      API.post(API.ls_device_switch,params).then((res) => {
+      API.postNoLoading(API.ls_device_switch,params).then((res) => {
         if (res.rstCode === 200) {
           recommends[1][index].switchOn = !recommends[1][index].switchOn
           this.setData({
@@ -771,7 +786,7 @@ Page({
       "token": "string"
     };
 
-    API.post(API.bc_manager_device_playList,params).then((res) => {
+    API.postNoLoading(API.bc_manager_device_playList,params).then((res) => {
       if (res.rstCode === 200) {
         if (type === 'left') {
           console.log("displayImage:"+ recommendsLeft[2][index].playImage);
@@ -805,7 +820,7 @@ Page({
       ],
       token: "string"
     };
-    API.post(API.bc_manager_device_stopPlay,params).then((res) => {
+    API.postNoLoading(API.bc_manager_device_stopPlay,params).then((res) => {
 
       if (res.rstCode === 200) {
         if (type === 'left') {

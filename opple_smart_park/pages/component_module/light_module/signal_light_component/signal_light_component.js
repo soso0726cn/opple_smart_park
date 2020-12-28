@@ -104,7 +104,7 @@ Component({
       };
 
       let that = this;
-      API.post(API.ls_device_switch,params).then((res) => {
+      API.postNoLoading(API.ls_device_switch,params).then((res) => {
         that.setData({
           openStatus: true,
           closeStatus: false
@@ -136,7 +136,7 @@ Component({
 
       let that = this;
       
-      API.post(API.ls_device_switch,params).then((res) => {
+      API.postNoLoading(API.ls_device_switch,params).then((res) => {
         that.setData({
           openStatus: false,
           closeStatus: true
@@ -179,7 +179,7 @@ Component({
       };
       let that = this;
       let product = this.data.product;
-      API.post(API.ls_device_control,params).then(res => {
+      API.postNoLoading(API.ls_device_control,params).then(res => {
         product.lastRec.level = selectItem.level;
         that.setData({
           product: product

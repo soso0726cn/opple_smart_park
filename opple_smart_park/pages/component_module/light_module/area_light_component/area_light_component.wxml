@@ -4,7 +4,8 @@
 
 <!-- 区域调光 -->
 <view class="container" wx:if="{{status}}" catchtap="none" catchtouchmove="none">
-<view class="area_light_component_container">
+  <view style="display: flex; flex: 1;" catchtap="actionForClose"/>
+  <view class="area_light_component_container">
   <text class="title">区域开关灯</text>
   <view class="close" catchtap="actionForClose">
       <image class="close_image" src="/assets/component_module/ic_close_dark.png"></image>

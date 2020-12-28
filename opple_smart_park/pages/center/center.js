@@ -75,7 +75,7 @@ Page({
       "token": "string"
     }
 
-    API.post(API.event_order_list, params).then((res) => {
+    API.postNoLoading(API.event_order_list, params).then((res) => {
 
       if (res.rstCode === 200) {
 
@@ -188,10 +188,10 @@ Page({
       'orderId':item.id,
       'orderStatus':item.orderStatus,
     }
-    wx.showLoading({
-      title: '请求中，请耐心等待..',
-      mask:true
-    });
+    // wx.showLoading({
+    //   title: '加载中...',
+    //   mask:true
+    // });
     API.postNoLoading(API.handler_list,handlerListParams).then((res)=>{
       if (res.rstCode === 200) {
         var handlerJson = JSON.stringify(res.rows);
@@ -199,16 +199,16 @@ Page({
           if (res.rstCode === 200) {
             console.log(res);
             var data = JSON.stringify(res.data);
-            wx.hideLoading();
+            // wx.hideLoading();
             wx.navigateTo({
               url: '/pages/center_detail/center_detail?data='+data+'&handler_list='+ handlerJson
             })
           }else{
-            wx.hideLoading();
+            // wx.hideLoading();
           }
         });
       }else{
-        wx.hideLoading();
+        // wx.hideLoading();
       }
     });
 

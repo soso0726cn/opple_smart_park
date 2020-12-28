@@ -1,6 +1,7 @@
 <!--pages/component_module/sensor_module/sensor_component.wxml-->
 
 <view class="signal_light_component_container" wx:if="{{status}}" catchtap="none">
+	<view style="display: flex; flex: 1;" catchtap="actionForClose"/>
 	<view class="product_light_component_container">
 		<view class="product_detail_container">
 			<view class="detial_image"></view>

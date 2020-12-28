@@ -210,7 +210,7 @@ Component({
       }
 
       let that = this;
-      API.post(API.ls_device_platform_list, params).then((res) => {
+      API.postNoLoading(API.ls_device_platform_list, params).then((res) => {
         console.log(res)
         if (res.rows.length) {
           // 传递灯杆数据 type 1:灯具型号 2:灯具区域 3:灯杆型号 4:灯杆区域
@@ -236,7 +236,7 @@ Component({
         "token": "string"
       }
 
-      API.post(API.mc_product_model_list, params).then((res) => {
+      API.postNoLoading(API.mc_product_model_list, params).then((res) => {
         if (res.items.length) {
           // 传递灯杆数据 type 1:灯具型号 2:灯具区域 3:灯杆型号 4:灯杆区域
           this.triggerEvent('toastrole',{lists: res.items,type: 3})
@@ -260,7 +260,7 @@ Component({
       const projectId = project.id;
 
       let that = this;
-      API.post(API.mc_area_list,{projectId: projectId, token: 'string'}).then((res) => {
+      API.postNoLoading(API.mc_area_list,{projectId: projectId, token: 'string'}).then((res) => {
         if (res.items.length) {
           that.triggerEvent('toastarea',{lists: res.items,type: type})
         } else {

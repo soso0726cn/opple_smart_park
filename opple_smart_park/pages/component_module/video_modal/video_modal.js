@@ -42,7 +42,7 @@ Component({
         return;
       }
       wx.showLoading({
-        title: '请求中，请耐心等待..',
+        title: '加载中...',
         mask:true
       });
       var that = this;

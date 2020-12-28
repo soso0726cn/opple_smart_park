@@ -1,6 +1,7 @@
 <!--pages/component_module/broadcast_module/signal_broadcast_component/signal_broadcast_component.wxml-->
 
 <view class="container" wx:if="{{status}}" catchtap="none" catchtouchmove="none">
+	<view style="display: flex; flex: 1;" catchtap="actionForClose"/>
 	<view class="product_light_component_container">
 		<view class="product_detail_container">
 			<image class="detial_image" src="/assets/map_view/broadcast_bg.png"></image>

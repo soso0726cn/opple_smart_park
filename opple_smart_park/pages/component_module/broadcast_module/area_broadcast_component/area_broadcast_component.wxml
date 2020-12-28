@@ -3,6 +3,7 @@
 
 <!-- 区域广播 -->
 <view class="container" wx:if="{{status}}"  catchtap="none" catchtouchmove="none">
+	<view style="display: flex; flex: 1;" catchtap="actionForClose"/>
 	<view class="area_play_component_container">
 		<text class="title">区域广播</text>
 		<view class="close" catchtap="actionForClose">

@@ -71,7 +71,7 @@ Page({
 
     let self = this
 
-    API.post(API.auth_user_mobile_wx_session_fetch, params).then((res) => {
+    API.postNoLoading(API.auth_user_mobile_wx_session_fetch, params).then((res) => {
 
       if (res.rstCode === 200) {
 
@@ -96,7 +96,7 @@ Page({
       "iv": param.iv
     };
 
-    API.post(API.auth_user_mobile_wx_phone_check, params).then((res) => {
+    API.postNoLoading(API.auth_user_mobile_wx_phone_check, params).then((res) => {
 
       if (res.rstCode === 200) {
         console.log('------- check success = ' + JSON.stringify(res))

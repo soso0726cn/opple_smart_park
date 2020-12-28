@@ -212,7 +212,7 @@ Page({
       'token':token,
       'userId':userId,
     };
-    API.post(API.event_order_submit,param).then((res)=>{
+    API.postNoLoading(API.event_order_submit,param).then((res)=>{
       wx.showToast({
         title: '保存成功',
       })
@@ -237,7 +237,7 @@ Page({
         success: function (res) {
           if (res.confirm) {
             console.log('用户点击确定')
-            API.post(API.event_order_ignore,param).then((res)=>{
+            API.postNoLoading(API.event_order_ignore,param).then((res)=>{
               wx.showToast({
                 title: '忽略成功',
               })

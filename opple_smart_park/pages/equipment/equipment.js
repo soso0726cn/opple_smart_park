@@ -113,6 +113,7 @@ Page({
   // 灯杆编号
   actionForLightCode: function (e) {
     const code = e.detail.code;
+    console.log('code1111111111:'+code);
     let lightProduct = this.data.lightProduct;
     lightProduct.code = code;
     this.setData({
@@ -158,7 +159,12 @@ Page({
 
   // 灯杆编号
   actionForRoleCode: function (e) {
-    const code = e.detail.code;
+    console.log("333333333333333333");
+    var code = e.detail.code;
+    var temp = code.split('/');
+    if(temp.length > 1&& temp[0] == ''){
+      code = temp[1] ;
+    }
     let roleProduct = this.data.roleProduct;
     roleProduct.code = code;
     this.setData({
@@ -253,7 +259,7 @@ Page({
 
     let that = this;
     let roleProduct = this.data.roleProduct;
-    API.post(API.mc_product_model_list, params).then((res) => {
+    API.postNoLoading(API.mc_product_model_list, params).then((res) => {
       // 获取默认灯杆配置
       let list = res.items || [];
       if (list.length) {
@@ -350,8 +356,13 @@ Page({
 
   // 添加灯具网络接口
   networkForAddLight : function (){
-
     let light = this.data.lightProduct;
+
+    var temp = light.code.split('/');
+    if(temp.length > 1&& temp[0] == ''){
+      light.code = temp[1] ;
+    }
+
     const params = {
       'name': light.name,
       'macAddress': light.code,
@@ -380,8 +391,10 @@ Page({
       'watt': '0'
     }
 
+    console.log(params);
+
     let that = this;
-    API.post(API.ls_device_add, params).then((res) => {
+    API.postNoLoading(API.ls_device_add, params).then((res) => {
       const lightId = res.id;
       that.networkForAddRole(lightId);
     }).catch(error => {
@@ -408,7 +421,7 @@ Page({
       'token': 'string'
     }
 
-    API.post(API.mc_product_add, params).then((res) => {
+    API.postNoLoading(API.mc_product_add, params).then((res) => {
       const roleId = res.id;
       this.networkForBind(lightId, roleId)
     }).catch(error => {
@@ -422,6 +435,11 @@ Page({
   // 绑定
   networkForBind: function (lightId,roleId) {
     let light = this.data.lightProduct;
+
+    var temp = light.code.split('/');
+    if(temp.length > 1&& temp[0] == ''){
+      light.code = temp[1] ;
+    }
 
     const params = {
       'deviceIds': [
@@ -437,7 +455,7 @@ Page({
     }
 
 
-    API.post(API.mc_product_device_add, params).then((res) => {
+    API.postNoLoading(API.mc_product_device_add, params).then((res) => {
       wx.showToast({
         icon:'none',
         title: '添加灯具成功'

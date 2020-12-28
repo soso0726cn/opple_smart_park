@@ -2,6 +2,7 @@
 
 
 <view class="video_component_container" wx:if="{{status}}" catchtap="none">
+	<view style="display: flex; flex: 1;" catchtap="actionForClose"/>
 	<view class="video_container">
 		<image class="video-top-image" src="/assets/component_module/video_modal/video_bg.png"></image>
 		<view class="video-top-bg">

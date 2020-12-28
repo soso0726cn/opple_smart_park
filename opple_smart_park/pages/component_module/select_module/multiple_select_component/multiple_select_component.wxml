@@ -2,7 +2,6 @@
 
 <!-- 多项选择 -->
 <view class="multiple_select_component_container" catchtap="actionForClose" wx:if="{{status}}" catchtouchmove="none">
-
 	<view class="multiple_select_container">
 
 		<view class="select_view_container">

@@ -1,5 +1,6 @@
 <!--pages/component_module/ad_module/ad_component.wxml-->
 <view class="signal_light_component_container" wx:if="{{status}}" catchtap="none">
+	<view style="display: flex; flex: 1;" catchtap="actionForClose"/>
 	<view class="product_light_component_container">
 		<view class="product_detail_container">
 			<!-- <image class="detial_image" src="/assets/map_view/light_bg.png"></image> -->
@@ -47,6 +48,5 @@
 			<image class="light_sure_image" src="/assets/map_view/icon_bd_send.png" catchtap="actionForPlayAreaMusic"></image>
 		</view>
 	</view>
-
 	<selectView status="{{selectStatus}}" list="{{adLists}}" bindselect="actionForSelect"></selectView>
 </view>

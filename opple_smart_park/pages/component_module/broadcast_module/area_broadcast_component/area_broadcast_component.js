@@ -68,7 +68,7 @@ Component({
         volume: selectItem.level,
       };
 
-      API.post(API.bc_manager_area_volumeSet,params);
+      API.postNoLoading(API.bc_manager_area_volumeSet,params);
 
     },
 
@@ -91,7 +91,7 @@ Component({
         "token": "string"
       };
   
-      API.post(API.bc_media_type_list,params).then((res) => {
+      API.postNoLoading(API.bc_media_type_list,params).then((res) => {
         this.setData({
           selectLists:res.items,
           selectStatus: true
@@ -123,7 +123,7 @@ Component({
           mode: '5',
           "token": "string"
         };
-        API.post(API.bc_manager_area_playList,params);
+        API.postNoLoading(API.bc_manager_area_playList,params);
       }
       
       
@@ -137,7 +137,7 @@ Component({
         ],
         token: "string"
       };
-      API.post(API.bc_manager_area_stopPlay,params);
+      API.postNoLoading(API.bc_manager_area_stopPlay,params);
     },
 
     /**

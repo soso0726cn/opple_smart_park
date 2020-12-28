@@ -67,7 +67,7 @@ Page({
     // 获取当前项目id
     const project = wx.getStorageSync('project');
     const projectId = project.id;
-    API.post(API.mc_area_list,{projectId: projectId, token: 'string'}).then((res) => {
+    API.postNoLoading(API.mc_area_list,{projectId: projectId, token: 'string'}).then((res) => {
       this.setData({
         areaList: res.items,
         selectArea: res.items.length > 0 ? res.items[0] : null
@@ -97,7 +97,7 @@ Page({
       "token": "string"
     };
 
-    API.post(API.mc_product_list,params).then((res) => {
+    API.postNoLoading(API.mc_product_list,params).then((res) => {
       let productList = this.businessForChangeToShowLocation(res.items);
       let centerLocation = productList.length > 0 ? productList[0] : {};
       centerLocation = {

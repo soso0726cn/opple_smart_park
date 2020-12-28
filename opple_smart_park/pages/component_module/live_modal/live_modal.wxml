@@ -1,6 +1,7 @@
 <!--pages/component_module/live_modal/live_modal.wxml-->
 
 <view class="live_component_container" wx:if="{{status}}" catchtap="none">
+	<view style="display: flex; flex: 1;" catchtap="actionForClose"/>
 	<view class="live_container">
 		<view class="live_top_bg">
 			<text class="title">{{product.name}}</text>

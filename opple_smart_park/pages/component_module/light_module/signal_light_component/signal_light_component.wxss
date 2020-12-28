@@ -9,7 +9,6 @@
   bottom: 0;
   display: flex;
   background-color: transparent;
-
 }
 
 .signal_light_component_container .product_light_component_container {

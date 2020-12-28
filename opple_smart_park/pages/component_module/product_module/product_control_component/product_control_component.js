@@ -67,7 +67,7 @@ Component({
           "deviceId": item.deviceId,
           "token": "string"
         };
-        API.post(API.ls_device_info,params).then(res => {
+        API.postNoLoading(API.ls_device_info,params).then(res => {
           this.setData({
             signalLightStatus: true,
             signalLight: res.data
@@ -80,7 +80,7 @@ Component({
           "id": item.deviceId,
           "token": "string"
         };
-        API.post(API.bc_device_infor,params).then((res) => {
+        API.postNoLoading(API.bc_device_infor,params).then((res) => {
           let item = res.data;
           item.showStatus = (item.status == 'idle' ? '空闲' : (item.status == 'offline' ? '离线' : (item.status == 'play' ? '正在播放' : (item.status == 'warning' ? '报警' : '空闲'))))
           this.setData({
@@ -95,7 +95,7 @@ Component({
           "token": "string"
         };
   
-        API.post(API.vcr_ipc_infor,param).then((res) => {
+        API.postNoLoading(API.vcr_ipc_infor,param).then((res) => {
           
           this.setData({
             signalVcrStauts: true,
@@ -109,7 +109,7 @@ Component({
           "token": "string"
         };
   
-        API.post(API.scn_device_info,param).then((res) => {
+        API.postNoLoading(API.scn_device_info,param).then((res) => {
           let item = res.data;
           if (item.online === 0) {
             item.onlineContext = '设备离线'

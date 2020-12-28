@@ -51,12 +51,12 @@ Component({
     actionForAreaLightOpen: function () {
       
       let params = {
-        "areaPath": this.data.area.id,
+        "areaPath": this.data.area.path,
         "switchStatus": 1,
         "token": "string"
       };
 
-      API.post(API.ls_device_area_switch,params).then((res) => {
+      API.postNoLoading(API.ls_device_area_switch,params).then((res) => {
         this.setData({
           openStatus: true,
           closeStatus: false
@@ -72,12 +72,12 @@ Component({
     // 关灯
     actionForAreaLightClose: function () {
       let params = {
-        "areaPath": this.data.area.id,
+        "areaPath": this.data.area.path,
         "switchStatus": 0,
         "token": "string"
       };
 
-      API.post(API.ls_device_area_switch,params).then((res) => {
+      API.postNoLoading(API.ls_device_area_switch,params).then((res) => {
         this.setData({
           openStatus: false,
           closeStatus: true
@@ -109,7 +109,7 @@ Component({
         "token": "string"
       };
   
-      API.post(API.ls_device_area_control,params);
+      API.postNoLoading(API.ls_device_area_control,params);
 
     },
   }

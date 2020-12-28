@@ -103,7 +103,7 @@ Page({
       "userName": this.data.user.phone,
     }
     console.log("actionForChooseProject:user.phone:"+this.data.user.phone)
-    API.post(API.user_info_fetch, params).then((res) => {
+    API.postNoLoading(API.user_info_fetch, params).then((res) => {
       if (res.rstCode === 200) {
         // 1.保存用户信息到本地
         wx.setStorageSync('user', res.info);

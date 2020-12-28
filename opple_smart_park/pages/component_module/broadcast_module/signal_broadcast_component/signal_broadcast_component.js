@@ -94,7 +94,7 @@ Component({
 
       let that = this;
       let product = this.data.product;
-      API.post(API.bc_manager_device_volumeSet,params).then(() => {
+      API.postNoLoading(API.bc_manager_device_volumeSet,params).then(() => {
         product.volume = selectItem.level;
         that.setData({
           product: product,
@@ -121,7 +121,7 @@ Component({
         "token": "string"
       };
   
-      API.post(API.bc_media_type_list,params).then((res) => {
+      API.postNoLoading(API.bc_media_type_list,params).then((res) => {
         this.setData({
           selectLists:res.items,
           selectStatus: true
@@ -171,7 +171,7 @@ Component({
         };
         let that = this;
         let product = this.data.product;
-        API.post(API.bc_manager_device_playList,params).then((res) => {
+        API.postNoLoading(API.bc_manager_device_playList,params).then((res) => {
           product.showStatus = '正在播放';
           product.status == 'play'
           that.setData({
@@ -207,7 +207,7 @@ Component({
 
       let that = this;
       let product = this.data.product;
-      API.post(API.bc_manager_device_stopPlay,params).then((res) => {
+      API.postNoLoading(API.bc_manager_device_stopPlay,params).then((res) => {
         product.showStatus = '空闲';
         product.status == 'idle'
         that.setData({

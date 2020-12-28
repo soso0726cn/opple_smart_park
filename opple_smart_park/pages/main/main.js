@@ -85,6 +85,21 @@ Page({
     })
   },
 
+  onShareAppMessage:function (res) {
+    return {
+      title: '智元平台',
+      //path: '/page/user?id=123'
+      path:  'pages/main/main',
+    }
+  },
+
+  onShareTimeline:function(res){
+    return {
+      title:'智元平台',
+      query:  'pages/main/main',
+    }
+  },
+
   // 设备录入
   scanOnTap: function () {
     wx.scanCode().then(res => {
@@ -133,7 +148,7 @@ Page({
       "userName": temp.phone,
     }
     console.log("accountOnTap:user.phone:"+temp.phone)
-    API.post(API.user_info_fetch, params).then((res) => {
+    API.postNoLoading(API.user_info_fetch, params).then((res) => {
       if (res.rstCode === 200) {
         // 1.保存用户信息到本地
         wx.setStorageSync('user', res.info);
@@ -156,7 +171,7 @@ Page({
 
     let self = this
 
-    API.post(API.auth_user_mobile_wx_session_fetch, params).then((res) => {
+    API.postNoLoading(API.auth_user_mobile_wx_session_fetch, params).then((res) => {
 
       if (res.rstCode === 200) {
 
@@ -182,7 +197,7 @@ Page({
     };
 
     let self = this
-    API.post(API.auth_user_mobile_wx_phone_check, params).then((res) => {
+    API.postNoLoading(API.auth_user_mobile_wx_phone_check, params).then((res) => {
 
       if (res.rstCode === 200) {
 
