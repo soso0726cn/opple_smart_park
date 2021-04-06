@@ -221,7 +221,7 @@ Page({
    */
   onLoad: function (options) {
     var qrCode = decodeURIComponent(options.q);
-    var home = "https://zhiyuan.opple.com:444/wx?pole=";
+    var home = "https://zhiyuan.opple.com/wx?pole=";
     console.log("qrCode:"+qrCode);
     if(qrCode.startsWith(home)){
       console.log("通过二维码扫描地址:"+qrCode);  
